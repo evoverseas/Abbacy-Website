@@ -157,6 +157,13 @@ if (faqList) {
   });
 }
 
+/* ── Phone Validation Helper ───────────────────────── */
+function isValidPhone(phone) {
+  const cleaned = phone.replace(/[\s\-\(\)\+]/g, '');
+  // Accept 10-digit Indian numbers (with or without 91 prefix)
+  return /^(91)?[6-9]\d{9}$/.test(cleaned);
+}
+
 /* ── Hero Quick Form ───────────────────────────────── */
 const heroForm = document.getElementById('heroForm');
 if (heroForm) {
@@ -167,19 +174,16 @@ if (heroForm) {
       alert('Please fill in your name and phone number.');
       return;
     }
-    const btn = heroForm.querySelector('button[type="submit"]');
-    btn.textContent = 'Submitting…';
-    btn.disabled = true;
+    if (!isValidPhone(data.phone)) {
+      alert('Please enter a valid 10-digit phone number.');
+      return;
+    }
 
-    submitToGoogleSheets(data)
-      .then(() => {
-        heroForm.innerHTML = '<p style="color:#16A34A;font-weight:600;text-align:center;padding:20px 0">✅ Thank you! We\'ll call you within 1 hour.</p>';
-      })
-      .catch(() => {
-        btn.textContent = 'Get Free Consultation →';
-        btn.disabled = false;
-        alert('Sorry, there was an issue. Please call us directly at +91 83097 13212.');
-      });
+    // Show success instantly
+    heroForm.innerHTML = '<p style="color:#16A34A;font-weight:600;text-align:center;padding:20px 0">✅ You\'re all set! Our expert counselor will reach out to you shortly. 🚀</p>';
+
+    // Submit in background
+    submitToGoogleSheets(data).catch(() => {});
   });
 }
 
@@ -194,21 +198,16 @@ if (contactForm) {
 
     const data = Object.fromEntries(new FormData(contactForm));
     const btn = document.getElementById('submitBtn');
-    btn.textContent = 'Submitting…';
-    btn.disabled = true;
 
-    submitToGoogleSheets(data)
-      .then(() => {
-        showMsg('success', '✅ Thank you! Your enquiry has been submitted. We will contact you shortly.');
-        contactForm.reset();
-      })
-      .catch(() => {
-        showMsg('error', '❌ Something went wrong. Please call us at +91 83097 13212.');
-      })
-      .finally(() => {
-        btn.textContent = 'Submit Enquiry';
-        btn.disabled = false;
-      });
+    // Show success instantly
+    showMsg('success', '✅ Thank you! Our team will get back to you shortly. We look forward to helping you! 🎓');
+    contactForm.reset();
+    btn.textContent = 'Submitted ✓';
+    btn.disabled = true;
+    setTimeout(() => { btn.textContent = 'Submit Enquiry'; btn.disabled = false; }, 3000);
+
+    // Submit in background
+    submitToGoogleSheets(data).catch(() => {});
   });
 }
 
@@ -223,6 +222,7 @@ function validateContactForm() {
   if (email && !email.value.trim()) { markError(email, 'Email is required'); valid = false; }
   else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { markError(email, 'Enter a valid email'); valid = false; }
   if (phone && !phone.value.trim()) { markError(phone, 'Phone number is required'); valid = false; }
+  else if (phone && !isValidPhone(phone.value)) { markError(phone, 'Enter a valid 10-digit phone number'); valid = false; }
 
   return valid;
 }
