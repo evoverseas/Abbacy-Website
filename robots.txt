@@ -1,0 +1,7 @@
+User-Agent: *
+Allow: /
+
+Sitemap: https://abbacy.in/sitemap.xml
+
+# Abbacy Global Group — Overseas Education Consultants in Hyderabad
+# Website: https://abbacy.in
