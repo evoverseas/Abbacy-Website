@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Page Not Found | Abbacy Global Group</title>
+  <meta name="robots" content="noindex, nofollow">
+  <meta name="theme-color" content="#1B3A5C">
+  <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="48x48" href="./images/favicon.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="./images/apple-touch-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --navy: #1B3A5C;
+      --navy-dark: #0F2540;
+      --gold: #C4952D;
+      --gold-light: #E5AC30;
+      --white: #FFFFFF;
+      --gray-500: #6B7280;
+    }
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: 'Inter', sans-serif;
+      min-height: 100vh;
+      display: flex; flex-direction: column; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 50%, #254E7A 100%);
+      color: var(--white);
+      text-align: center;
+      padding: 24px;
+      overflow: hidden;
+    }
+    body::before {
+      content: ''; position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 70% 40%, rgba(201,151,58,.1) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .container { position: relative; z-index: 1; max-width: 560px; }
+    .error-code {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(6rem, 20vw, 10rem);
+      font-weight: 900;
+      line-height: 1;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 16px;
+      letter-spacing: -.04em;
+    }
+    h1 {
+      font-family: 'Montserrat', sans-serif;
+      font-size: clamp(1.4rem, 4vw, 2rem);
+      font-weight: 800;
+      margin-bottom: 16px;
+      color: var(--white);
+    }
+    p {
+      color: rgba(255,255,255,.7);
+      font-size: 1rem;
+      line-height: 1.7;
+      margin-bottom: 36px;
+    }
+    .actions { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+      padding: 14px 32px; border-radius: 999px; font-size: .95rem;
+      font-weight: 600; font-family: 'Montserrat', sans-serif;
+      border: 2px solid transparent; text-decoration: none;
+      transition: all .25s ease; cursor: pointer; white-space: nowrap;
+    }
+    .btn-gold { background: var(--gold); color: var(--white); }
+    .btn-gold:hover { background: var(--gold-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(196,149,45,.4); }
+    .btn-outline { background: transparent; border-color: rgba(255,255,255,.4); color: var(--white); }
+    .btn-outline:hover { border-color: var(--white); background: rgba(255,255,255,.08); }
+    .brand {
+      position: absolute; top: 24px; left: 24px;
+      display: flex; align-items: center; gap: 10px; text-decoration: none; z-index: 2;
+    }
+    .brand img { height: 40px; width: auto; }
+    .brand-name {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1rem; font-weight: 800; color: var(--white);
+    }
+    @media (max-width: 480px) {
+      .actions { flex-direction: column; }
+      .btn { width: 100%; }
+      .brand { position: static; justify-content: center; margin-bottom: 48px; }
+    }
+  </style>
+</head>
+<body>
+  <a href="/" class="brand">
+    <img src="./images/logo.png" alt="Abbacy Global Group">
+    <span class="brand-name">Abbacy Global</span>
+  </a>
+  <div class="container">
+    <div class="error-code">404</div>
+    <h1>Oops! This page doesn't exist</h1>
+    <p>Looks like you've ventured off-course. Don't worry — let's get you back on track to your study abroad journey.</p>
+    <div class="actions">
+      <a href="/" class="btn btn-gold">← Back to Home</a>
+      <a href="/contact.html" class="btn btn-outline">Contact Us</a>
+    </div>
+  </div>
+</body>
+</html>
