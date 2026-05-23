@@ -1,4 +1,4 @@
-/* ============================================================
+﻿/* ============================================================
    ABBACY GLOBAL GROUP — app.js
    Next-Level · Interactive · Performant
    ============================================================ */
@@ -450,8 +450,12 @@ function isValidPhone(phone) {
 /* ── Hero Quick Form ───────────────────────────────────── */
 const heroForm = document.getElementById('heroForm');
 if (heroForm) {
-  heroForm.addEventListener('submit', e => {
+  heroForm.addEventListener('submit', async e => {
     e.preventDefault();
+    
+    // Refresh hidden UTM values from sessionStorage
+    populateHiddenUtmFields();
+    
     const data = Object.fromEntries(new FormData(heroForm));
     if (!data.name.trim() || !data.phone.trim()) {
       alert('Please fill in your name and phone number.');
@@ -462,30 +466,73 @@ if (heroForm) {
       return;
     }
 
-    heroForm.innerHTML = '<p style="color:#16A34A;font-weight:600;text-align:center;padding:20px 0">✅ You\'re all set! Our expert counselor will reach out to you shortly. 🚀</p>';
-    submitToGoogleSheets(data).catch(() => {});
+    const btn = heroForm.querySelector('button[type="submit"]');
+    const originalText = btn.textContent;
+    btn.textContent = 'Submitting... ⏳';
+    btn.disabled = true;
+
+    // Clean, robust race redirect: wait max 2 seconds for sheet fetch, otherwise redirect to track ads conversion
+    let redirected = false;
+    const redirectToThankYou = () => {
+      if (!redirected) {
+        redirected = true;
+        window.location.href = 'thank-you.html';
+      }
+    };
+
+    const timeoutId = setTimeout(redirectToThankYou, 2000);
+
+    try {
+      await submitToGoogleSheets(data);
+      clearTimeout(timeoutId);
+      redirectToThankYou();
+    } catch (err) {
+      console.error('Google Sheet submission failed:', err);
+      clearTimeout(timeoutId);
+      redirectToThankYou();
+    }
   });
 }
 
-/* ── Contact Form ──────────────────────────────────────── */
+/* â”€â”€ Contact Form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const contactForm = document.getElementById('contactForm');
 const formMsg = document.getElementById('formMsg');
 
 if (contactForm) {
-  contactForm.addEventListener('submit', e => {
+  contactForm.addEventListener('submit', async e => {
     e.preventDefault();
+    
+    // Refresh hidden UTM values from sessionStorage
+    populateHiddenUtmFields();
+    
     if (!validateContactForm()) return;
 
     const data = Object.fromEntries(new FormData(contactForm));
     const btn = document.getElementById('submitBtn');
-
-    showMsg('success', '✅ Thank you! Our team will get back to you shortly. We look forward to helping you! 🎓');
-    contactForm.reset();
-    btn.textContent = 'Submitted ✓';
+    
+    btn.textContent = 'Submitting... ⏳';
     btn.disabled = true;
-    setTimeout(() => { btn.textContent = 'Submit Enquiry'; btn.disabled = false; }, 3000);
 
-    submitToGoogleSheets(data).catch(() => {});
+    // Clean, robust race redirect: wait max 2 seconds for sheet fetch, otherwise redirect to track ads conversion
+    let redirected = false;
+    const redirectToThankYou = () => {
+      if (!redirected) {
+        redirected = true;
+        window.location.href = 'thank-you.html';
+      }
+    };
+
+    const timeoutId = setTimeout(redirectToThankYou, 2000);
+
+    try {
+      await submitToGoogleSheets(data);
+      clearTimeout(timeoutId);
+      redirectToThankYou();
+    } catch (err) {
+      console.error('Google Sheet submission failed:', err);
+      clearTimeout(timeoutId);
+      redirectToThankYou();
+    }
   });
 }
 
@@ -555,7 +602,7 @@ function showMsg(type, text) {
  * 4. Copy the deployment URL and paste it below as SCRIPT_URL
  */
 
-const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbzsV8v426BYo87BZtU8FngVh_6TOpLWvnfAQVO_VXZsN-C2KO6mA5Vpaosjo6gdlawl/exec';
+const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF96iTb5oh81VK5Z6TWtS9eNxSVWYm6nwPkOK5N0Be_56ga6c/exec';
 
 async function submitToGoogleSheets(data) {
   const res = await fetch(SCRIPT_URL, {
@@ -566,4 +613,55 @@ async function submitToGoogleSheets(data) {
   const json = await res.json();
   if (json.result !== 'success') throw new Error('Script error');
   return json;
+}
+
+/* â”€â”€ UTM & Paid Ads Conversion Attribution Tracker â”€â”€â”€â”€â”€â”€â”€â”€ */
+const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'];
+
+function captureUtmParameters() {
+  try {
+    const urlParams = new URLSearchParams(window.location.search);
+    
+    // 1. Check if any UTM parameter is in the current URL query string and store in session
+    UTM_PARAMS.forEach(param => {
+      const val = urlParams.get(param);
+      if (val) {
+        sessionStorage.setItem(param, val);
+      }
+    });
+    
+    // 2. Automatically populate form hidden fields
+    populateHiddenUtmFields();
+  } catch (err) {
+    console.error('UTM capture failed:', err);
+  }
+}
+
+function populateHiddenUtmFields() {
+  try {
+    UTM_PARAMS.forEach(param => {
+      const val = sessionStorage.getItem(param);
+      if (val) {
+        // For Hero form
+        const heroField = document.getElementById('hero_' + param);
+        if (heroField) {
+          heroField.value = val;
+        }
+        // For Contact form
+        const contactField = document.getElementById('contact_' + param);
+        if (contactField) {
+          contactField.value = val;
+        }
+      }
+    });
+  } catch (err) {
+    console.error('Populating UTM hidden fields failed:', err);
+  }
+}
+
+// Automatically capture and populate on load
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', captureUtmParameters);
+} else {
+  captureUtmParameters();
 }

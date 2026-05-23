@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -178,6 +178,15 @@
         <h3>Quick Enquiry</h3>
         <p>Drop your details — our experts will reach out shortly! 🚀</p>
         <form class="qform" id="heroForm" novalidate>
+          <!-- Paid Ads UTM & Conversion Tracking Fields -->
+          <input type="hidden" name="utm_source" id="hero_utm_source" value="">
+          <input type="hidden" name="utm_medium" id="hero_utm_medium" value="">
+          <input type="hidden" name="utm_campaign" id="hero_utm_campaign" value="">
+          <input type="hidden" name="utm_content" id="hero_utm_content" value="">
+          <input type="hidden" name="utm_term" id="hero_utm_term" value="">
+          <input type="hidden" name="gclid" id="hero_gclid" value="">
+          <input type="hidden" name="fbclid" id="hero_fbclid" value="">
+          
           <input type="text" name="name" placeholder="Your Full Name" required aria-label="Full Name">
           <input type="tel" name="phone" placeholder="Phone Number (+91 XXXXX XXXXX)" required aria-label="Phone Number">
           <select name="destination" aria-label="Preferred Destination">

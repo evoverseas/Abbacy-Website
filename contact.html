@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
@@ -121,6 +121,15 @@
         <p>Fill out the form below and our team will get back to you within 24 hours.</p>
         <div class="form-msg" id="formMsg"></div>
         <form id="contactForm" novalidate>
+          <!-- Paid Ads UTM & Conversion Tracking Fields -->
+          <input type="hidden" name="utm_source" id="contact_utm_source" value="">
+          <input type="hidden" name="utm_medium" id="contact_utm_medium" value="">
+          <input type="hidden" name="utm_campaign" id="contact_utm_campaign" value="">
+          <input type="hidden" name="utm_content" id="contact_utm_content" value="">
+          <input type="hidden" name="utm_term" id="contact_utm_term" value="">
+          <input type="hidden" name="gclid" id="contact_gclid" value="">
+          <input type="hidden" name="fbclid" id="contact_fbclid" value="">
+          
           <div class="form-group">
             <label class="flabel" for="name">Full Name *</label>
             <input class="finput" type="text" id="name" name="name" placeholder="Your full name" required>
