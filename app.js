@@ -1,4 +1,4 @@
-﻿/* ============================================================
+/* ============================================================
    ABBACY GLOBAL GROUP — app.js
    Next-Level · Interactive · Performant
    ============================================================ */
@@ -450,7 +450,7 @@ function isValidPhone(phone) {
 /* ── Hero Quick Form ───────────────────────────────────── */
 const heroForm = document.getElementById('heroForm');
 if (heroForm) {
-  heroForm.addEventListener('submit', async e => {
+  heroForm.addEventListener('submit', e => {
     e.preventDefault();
     
     // Refresh hidden UTM values from sessionStorage
@@ -467,30 +467,18 @@ if (heroForm) {
     }
 
     const btn = heroForm.querySelector('button[type="submit"]');
-    const originalText = btn.textContent;
-    btn.textContent = 'Submitting... ⏳';
-    btn.disabled = true;
-
-    // Clean, robust race redirect: wait max 2 seconds for sheet fetch, otherwise redirect to track ads conversion
-    let redirected = false;
-    const redirectToThankYou = () => {
-      if (!redirected) {
-        redirected = true;
-        window.location.href = 'thank-you.html';
-      }
-    };
-
-    const timeoutId = setTimeout(redirectToThankYou, 2000);
-
-    try {
-      await submitToGoogleSheets(data);
-      clearTimeout(timeoutId);
-      redirectToThankYou();
-    } catch (err) {
-      console.error('Google Sheet submission failed:', err);
-      clearTimeout(timeoutId);
-      redirectToThankYou();
+    if (btn) {
+      btn.textContent = 'Submitting... ⏳';
+      btn.disabled = true;
     }
+
+    // Send data in background using keepalive
+    submitToGoogleSheets(data);
+
+    // Redirect to thank-you page after a tiny visual delay for optimal UX
+    setTimeout(() => {
+      window.location.href = 'thank-you.html';
+    }, 150);
   });
 }
 
@@ -499,7 +487,7 @@ const contactForm = document.getElementById('contactForm');
 const formMsg = document.getElementById('formMsg');
 
 if (contactForm) {
-  contactForm.addEventListener('submit', async e => {
+  contactForm.addEventListener('submit', e => {
     e.preventDefault();
     
     // Refresh hidden UTM values from sessionStorage
@@ -510,29 +498,18 @@ if (contactForm) {
     const data = Object.fromEntries(new FormData(contactForm));
     const btn = document.getElementById('submitBtn');
     
-    btn.textContent = 'Submitting... ⏳';
-    btn.disabled = true;
-
-    // Clean, robust race redirect: wait max 2 seconds for sheet fetch, otherwise redirect to track ads conversion
-    let redirected = false;
-    const redirectToThankYou = () => {
-      if (!redirected) {
-        redirected = true;
-        window.location.href = 'thank-you.html';
-      }
-    };
-
-    const timeoutId = setTimeout(redirectToThankYou, 2000);
-
-    try {
-      await submitToGoogleSheets(data);
-      clearTimeout(timeoutId);
-      redirectToThankYou();
-    } catch (err) {
-      console.error('Google Sheet submission failed:', err);
-      clearTimeout(timeoutId);
-      redirectToThankYou();
+    if (btn) {
+      btn.textContent = 'Submitting... ⏳';
+      btn.disabled = true;
     }
+
+    // Send data in background using keepalive
+    submitToGoogleSheets(data);
+
+    // Redirect to thank-you page after a tiny visual delay for optimal UX
+    setTimeout(() => {
+      window.location.href = 'thank-you.html';
+    }, 150);
   });
 }
 
@@ -604,15 +581,19 @@ function showMsg(type, text) {
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF96iTb5oh81VK5Z6TWtS9eNxSVWYm6nwPkOK5N0Be_56ga6c/exec';
 
-async function submitToGoogleSheets(data) {
-  const res = await fetch(SCRIPT_URL, {
-    method: 'POST',
-    headers: { 'Content-Type': 'text/plain' },
-    body: JSON.stringify(data)
-  });
-  const json = await res.json();
-  if (json.result !== 'success') throw new Error('Script error');
-  return json;
+function submitToGoogleSheets(data) {
+  try {
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      headers: { 'Content-Type': 'text/plain' },
+      body: JSON.stringify(data),
+      keepalive: true
+    }).catch(err => {
+      console.warn('Background Google Sheet submission error:', err);
+    });
+  } catch (err) {
+    console.error('Failed to initiate background submission:', err);
+  }
 }
 
 /* â”€â”€ UTM & Paid Ads Conversion Attribution Tracker â”€â”€â”€â”€â”€â”€â”€â”€ */
