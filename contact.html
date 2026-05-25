@@ -56,6 +56,217 @@
   <script type="application/ld+json">
   {"@context":"https://schema.org","@type":"Organization","name":"Abbacy Global Group","url":"https://abbacy.in","contactPoint":[{"@type":"ContactPoint","telephone":"+91-83097-13212","contactType":"customer service","areaServed":"IN","availableLanguage":["English","Hindi","Telugu"],"hoursAvailable":{"@type":"OpeningHoursSpecification","dayOfWeek":["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"],"opens":"09:00","closes":"19:00"}},{"@type":"ContactPoint","telephone":"+91-78932-34081","contactType":"customer service","areaServed":"IN"}]}
   </script>
+
+  <!-- Premium top 0.1% advertiser UI/UX styling for high conversion and trust -->
+  <style>
+    /* Tighten desktop layout spacing */
+    section {
+      padding: 48px 0 !important;
+    }
+    .contact-page-hero {
+      padding: calc(var(--nav-h) + 48px) 0 40px !important;
+      background: linear-gradient(135deg, var(--navy-deep), var(--navy-dark), var(--navy));
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    /* HIDE MESSY OVERLAPPING FLOATING WIDGETS ON CONTACT PAGE FOR ZERO TAPPING FRICTION */
+    .fab-call, .fab-whatsapp, .back-to-top {
+      display: none !important;
+    }
+    
+    .contact-form-box {
+      border: 1.5px solid var(--gray-200);
+      box-shadow: 0 16px 48px rgba(15,37,64,0.06);
+      background: var(--white);
+      position: relative;
+    }
+    
+    /* Google Rating Badge Styling */
+    .google-trust-badge {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gt-stars {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gt-rating {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .star-rating {
+      display: flex;
+      gap: 2px;
+      color: #eab308; /* Premium golden stars */
+      font-size: 0.85rem;
+    }
+    .gt-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: #475569;
+    }
+    .google-icon {
+      flex-shrink: 0;
+    }
+    
+    /* Gift Magnet Banner Styling */
+    .gift-magnet-box {
+      background: #eff6ff;
+      border: 1px solid #bfdbfe;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      display: flex;
+      gap: 10px;
+      align-items: flex-start;
+      color: #1e40af;
+      line-height: 1.4;
+    }
+    .gift-icon {
+      color: #3b82f6;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+      margin-top: 2px;
+      animation: pulse-ring 2.5s infinite;
+    }
+    @keyframes pulse-ring {
+      0% { transform: scale(0.95); opacity: 0.85; }
+      50% { transform: scale(1.05); opacity: 1; }
+      100% { transform: scale(0.95); opacity: 0.85; }
+    }
+    .gift-magnet-box strong {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 800;
+      color: #1e3a8a;
+      margin-bottom: 3px;
+      letter-spacing: 0.02em;
+    }
+    .gift-magnet-box p {
+      font-size: 0.76rem;
+      color: #2563eb;
+      margin: 0;
+      font-weight: 500;
+    }
+    
+    /* Form fields tweaks */
+    .contact-form-box h3 {
+      font-size: 1.5rem;
+      font-weight: 800;
+      color: var(--navy-dark) !important;
+      letter-spacing: -0.025em;
+      margin-bottom: 4px;
+    }
+    .contact-form-box > p {
+      font-size: 0.85rem;
+      color: #475569;
+      margin-bottom: 18px;
+      line-height: 1.4;
+    }
+    
+    /* Submit button premium styling */
+    .lp-submit-btn {
+      font-family: var(--font-head);
+      font-weight: 700;
+      font-size: 1rem !important;
+      letter-spacing: 0.02em;
+      padding: 13px 26px !important;
+      border-radius: var(--radius) !important;
+      background: linear-gradient(135deg, var(--gold), var(--gold-light)) !important;
+      box-shadow: 0 4px 16px rgba(196,149,45,0.25) !important;
+      transition: all var(--t) !important;
+      white-space: normal !important;
+      height: auto !important;
+      display: flex !important;
+      align-items: center;
+      justify-content: center;
+      width: 100% !important;
+    }
+    .lp-submit-btn:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 8px 22px rgba(196,149,45,0.35) !important;
+    }
+    
+    /* Trust badges below form */
+    .form-trust-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .ft-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .ft-item i {
+      color: #10b981;
+      font-size: 0.8rem;
+    }
+    
+    /* Mobile Spacing Optimizations for Above-The-Fold Visibility */
+    @media (max-width: 768px) {
+      .contact-page-hero {
+        padding: calc(var(--nav-h) + 16px) 0 20px !important;
+      }
+      .contact-page-hero h1 {
+        font-size: 1.8rem !important;
+        margin-bottom: 6px !important;
+      }
+      .contact-page-hero p {
+        font-size: 0.9rem !important;
+        line-height: 1.45 !important;
+      }
+      .contact-page-hero .urgency-badge {
+        margin-top: 10px !important;
+        padding: 5px 12px !important;
+        font-size: 0.72rem !important;
+      }
+      section {
+        padding: 24px 0 !important;
+      }
+      .contact-row {
+        gap: 20px;
+      }
+      .contact-form-box {
+        padding: 20px 14px !important;
+        margin-top: -24px !important; /* Slide the form container into hero background for premium integrated spacing */
+      }
+      .google-trust-badge {
+        padding: 10px 12px;
+        margin-bottom: 14px;
+      }
+      .gift-magnet-box {
+        padding: 10px 12px;
+        margin-bottom: 16px;
+      }
+      .form-trust-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding-top: 12px;
+      }
+    }
+  </style>
 </head>
 
 <body>
@@ -118,8 +329,41 @@
     <div class="contact-row">
       <!-- Form -->
       <div class="contact-form-box">
-        <h3>Send Us a Message</h3>
+        <!-- Google Review Trust Badge -->
+        <div class="google-trust-badge">
+          <div class="gt-stars">
+            <span class="gt-rating">4.9</span>
+            <div class="star-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="gt-logo-wrap">
+            <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.87-2.6-2.87-4.53-6.02-4.53z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <span class="gt-text">Google Partner Rating · <strong>850+ Verified Reviews</strong></span>
+          </div>
+        </div>
+
+        <h3>Claim Free Counselling Session</h3>
         <p>Fill out the form below and our team will get back to you within 24 hours.</p>
+        
+        <!-- Reciprocity Lead Magnet Banner (Service Integrated) -->
+        <div class="gift-magnet-box">
+          <i class="fas fa-gift gift-icon"></i>
+          <div>
+            <strong>🎁 FREE CAREER ROADMAP & ELIGIBILITY AUDIT</strong>
+            <p>Lock in a free personalized Study Abroad Roadmap, direct scholarship evaluation, and a 1-on-1 counselor guidance session (worth ₹2,500) during your free consult!</p>
+          </div>
+        </div>
+
         <div class="form-msg" id="formMsg"></div>
         <form id="contactForm" novalidate>
           <!-- Paid Ads UTM & Conversion Tracking Fields -->
@@ -140,19 +384,19 @@
             <input class="finput" type="email" id="email" name="email" placeholder="your.email@example.com" required>
           </div>
           <div class="form-group">
-            <label class="flabel" for="phone">Phone Number *</label>
-            <input class="finput" type="tel" id="phone" name="phone" placeholder="+91 XXXXX XXXXX" required>
+            <label class="flabel" for="phone">WhatsApp Number *</label>
+            <input class="finput" type="tel" id="phone" name="phone" placeholder="WhatsApp Number (+91 XXXXX XXXXX)" required>
           </div>
           <div class="form-group">
             <label class="flabel" for="destination">Preferred Destination</label>
             <select class="finput" id="destination" name="destination">
               <option value="">Select Destination</option>
-              <option value="USA">🇺🇸 USA</option>
-              <option value="UK">🇬🇧 United Kingdom</option>
-              <option value="Canada">🇨🇦 Canada</option>
-              <option value="Australia">🇦🇺 Australia</option>
-              <option value="Europe">🇪🇺 Europe</option>
-              <option value="Dubai">🇦🇪 Dubai (UAE)</option>
+              <option value="USA">USA</option>
+              <option value="UK">United Kingdom</option>
+              <option value="Canada">Canada</option>
+              <option value="Australia">Australia</option>
+              <option value="Europe">Europe</option>
+              <option value="Dubai">Dubai (UAE)</option>
               <option value="Other">Other</option>
             </select>
           </div>
@@ -164,13 +408,15 @@
             <label class="flabel" for="message">Message</label>
             <textarea class="finput" id="message" name="message" rows="4" placeholder="Tell us about your study abroad plans..."></textarea>
           </div>
-          <button type="submit" class="btn btn-shimmer btn-full btn-lg" id="submitBtn">Submit Enquiry →</button>
+          <button type="submit" class="btn btn-shimmer btn-full btn-lg lp-submit-btn" id="submitBtn">Claim Free Counselling Session →</button>
         </form>
-        <p style="text-align:center; font-size:.78rem; color:var(--gray-400); margin-top:14px;">
-          <span style="color:var(--green);font-weight:600;">✔</span> 100% Free &nbsp;·&nbsp; 
-          <span style="color:var(--green);font-weight:600;">✔</span> No obligations &nbsp;·&nbsp; 
-          <span style="color:var(--green);font-weight:600;">✔</span> Response within 24 hours
-        </p>
+
+        <!-- Trust Indicators row -->
+        <div class="form-trust-row">
+          <div class="ft-item"><i class="fas fa-shield-halved"></i> <span>99% Visa Success</span></div>
+          <div class="ft-item"><i class="fas fa-university"></i> <span>Direct Partners</span></div>
+          <div class="ft-item"><i class="fas fa-user-shield"></i> <span>100% Private</span></div>
+        </div>
       </div>
 
       <!-- Info + Map -->

@@ -46,7 +46,7 @@
     }
     
     .lp-hero {
-      padding: calc(var(--nav-h) + 40px) 0 60px;
+      padding: calc(var(--nav-h) + 24px) 0 40px;
       background: linear-gradient(135deg, #0f1e36 0%, #1B3A5C 100%);
       position: relative;
       overflow: hidden;
@@ -178,6 +178,68 @@
       text-align: center;
       margin-bottom: 22px;
       line-height: 1.4;
+    }
+    
+    /* Google Rating Badge Styling */
+    .google-trust-badge {
+      background: #f8fafc;
+      border: 1px solid #e2e8f0;
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-bottom: 20px;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+    .gt-stars {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .gt-rating {
+      font-size: 1.1rem;
+      font-weight: 800;
+      color: #0f172a;
+      line-height: 1;
+    }
+    .star-rating {
+      display: flex;
+      gap: 2px;
+      color: #eab308; /* Premium golden stars */
+      font-size: 0.85rem;
+    }
+    .gt-logo-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 0.78rem;
+      color: #475569;
+    }
+    .google-icon {
+      flex-shrink: 0;
+    }
+    
+    /* Trust badges below form */
+    .form-trust-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 6px;
+      margin-top: 18px;
+      padding-top: 16px;
+      border-top: 1px solid #f1f5f9;
+    }
+    .ft-item {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.72rem;
+      color: #64748b;
+      font-weight: 600;
+    }
+    .ft-item i {
+      color: #10b981;
+      font-size: 0.8rem;
     }
     
     /* Service Integrated Reciprocity Bonus Box */
@@ -395,11 +457,28 @@
     /* Mobile UX Enhancements Breakpoints */
     @media (max-width: 1024px) {
       .lp-grid {
-        grid-template-columns: 1fr;
-        gap: 36px;
+        display: flex;
+        flex-direction: column;
+        gap: 24px;
+      }
+      .lp-pitch-col {
+        display: contents;
+      }
+      .lp-header-block {
+        order: 1;
+        width: 100%;
+      }
+      .lp-form-box {
+        order: 2;
+        margin-top: 8px !important;
+      }
+      .lp-bullets-wrapper {
+        order: 3;
+        width: 100%;
+        margin-top: 12px;
       }
       .lp-hero {
-        padding: calc(var(--nav-h) + 20px) 0 45px;
+        padding: calc(var(--nav-h) + 16px) 0 24px !important;
         text-align: center;
       }
       .lp-badge {
@@ -413,7 +492,103 @@
 
     @media (max-width: 768px) {
       .container {
-        padding: 0 16px;
+        padding: 0 12px;
+      }
+      .lp-hero {
+        padding: calc(var(--nav-h) + 8px) 0 16px !important;
+      }
+      .lp-badge {
+        margin-bottom: 10px !important;
+        padding: 6px 12px !important;
+        font-size: 0.76rem !important;
+      }
+      .lp-title {
+        font-size: 1.45rem !important;
+        margin-bottom: 8px !important;
+        line-height: 1.25 !important;
+      }
+      .lp-desc {
+        font-size: 0.9rem !important;
+        line-height: 1.45 !important;
+        margin-bottom: 14px !important;
+        padding: 0 4px;
+      }
+      .lp-grid {
+        gap: 16px !important;
+      }
+      .lp-bullets-wrapper {
+        margin-top: 8px !important;
+      }
+      .lp-form-box {
+        padding: 18px 14px !important;
+        margin-top: 0px !important;
+        border-radius: 16px !important;
+      }
+      .google-trust-badge {
+        flex-direction: row !important;
+        flex-wrap: wrap !important;
+        justify-content: center !important;
+        align-items: center !important;
+        gap: 4px 10px !important;
+        padding: 6px 8px !important;
+        margin-bottom: 10px !important;
+        border-radius: 8px !important;
+      }
+      .gt-stars {
+        gap: 4px !important;
+      }
+      .gt-rating {
+        font-size: 0.9rem !important;
+      }
+      .star-rating {
+        font-size: 0.7rem !important;
+        gap: 1px !important;
+      }
+      .gt-logo-wrap {
+        gap: 4px !important;
+        font-size: 0.7rem !important;
+      }
+      .lp-form-box h3 {
+        font-size: 1.15rem !important;
+        margin-bottom: 4px !important;
+      }
+      .lp-form-box p {
+        font-size: 0.8rem !important;
+        margin-bottom: 10px !important;
+      }
+      .bonus-box {
+        padding: 8px 10px !important;
+        margin-bottom: 12px !important;
+        gap: 6px !important;
+        font-size: 0.74rem !important;
+        line-height: 1.35 !important;
+        border-radius: 8px !important;
+      }
+      .bonus-box i {
+        font-size: 0.9rem !important;
+        margin-top: 1px !important;
+      }
+      .form-group {
+        margin-bottom: 10px !important;
+      }
+      .flabel {
+        margin-bottom: 4px !important;
+        font-size: 0.72rem !important;
+      }
+      .finput {
+        height: 42px !important;
+        padding: 0 12px !important;
+        font-size: 0.88rem !important;
+        border-width: 1.5px !important;
+        border-radius: 8px !important;
+      }
+      .form-trust-row {
+        margin-top: 10px !important;
+        padding-top: 10px !important;
+      }
+      .ft-item {
+        font-size: 0.68rem !important;
+        gap: 4px !important;
       }
       .table-scroll-hint {
         display: block;
@@ -423,9 +598,6 @@
       }
       body {
         padding-bottom: 74px; /* Space for sticky mobile button */
-      }
-      .lp-form-box {
-        padding: 24px 16px;
       }
       /* Prevent long button text overflow on mobile by wrapping and fitting properly */
       .lp-submit-btn, .sticky-cta-mobile .btn {
@@ -525,40 +697,67 @@
   <div class="container">
     <div class="lp-grid">
       <!-- High-Impact Value Pitch -->
-      <div>
-        <div class="lp-badge"><i class="fas fa-bolt"></i> Fast Offers · No IELTS Options</div>
-        <h1 class="lp-title">Study in UK from Hyderabad — <em>Fast 48-Hour</em> Offers</h1>
-        <p class="lp-desc">Secure your admission in premium UK universities. Get your offer letter in **48 hours**, qualify for **Study Without IELTS** (MOI accepted), and apply for scholarships up to **£5,000**.</p>
+      <div class="lp-pitch-col">
+        <div class="lp-header-block">
+          <div class="lp-badge"><i class="fas fa-bolt"></i> Fast Offers · No IELTS Options</div>
+          <h1 class="lp-title">Study in UK from Hyderabad — <em>Fast 48-Hour</em> Offers</h1>
+          <p class="lp-desc">Secure your admission in premium UK universities. Get your offer letter in <strong>48 hours</strong>, qualify for <strong>Study Without IELTS</strong> (MOI accepted), and apply for scholarships up to <strong>£5,000</strong>.</p>
+        </div>
         
-        <ul class="lp-bullets">
-          <li>
-            <i class="fas fa-check-circle"></i>
-            <span><strong>48-Hour Fast-Track</strong> Offer Letters from partner universities</span>
-          </li>
-          <li>
-            <i class="fas fa-check-circle"></i>
-            <span><strong>Study Without IELTS</strong> (Based on Medium of Instruction / 12th English)</span>
-          </li>
-          <li>
-            <i class="fas fa-check-circle"></i>
-            <span><strong>Up to £5,000 Scholarships</strong> directly applied to your tuition</span>
-          </li>
-          <li>
-            <i class="fas fa-check-circle"></i>
-            <span><strong>2-Year Graduate Work Visa</strong> in the UK after graduation</span>
-          </li>
-        </ul>
+        <div class="lp-bullets-wrapper">
+          <ul class="lp-bullets">
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span><strong>48-Hour Fast-Track</strong> Offer Letters from partner universities</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span><strong>Study Without IELTS</strong> (Based on Medium of Instruction / 12th English)</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span><strong>Up to £5,000 Scholarships</strong> directly applied to your tuition</span>
+            </li>
+            <li>
+              <i class="fas fa-check-circle"></i>
+              <span><strong>2-Year Graduate Work Visa</strong> in the UK after graduation</span>
+            </li>
+          </ul>
+        </div>
       </div>
 
       <!-- High-Converting Psychology Squeeze Form -->
       <div class="lp-form-box" id="form-container">
+        <!-- Google Review Trust Badge -->
+        <div class="google-trust-badge">
+          <div class="gt-stars">
+            <span class="gt-rating">4.9</span>
+            <div class="star-rating">
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+              <i class="fas fa-star"></i>
+            </div>
+          </div>
+          <div class="gt-logo-wrap">
+            <svg class="google-icon" viewBox="0 0 24 24" width="18" height="18" xmlns="http://www.w3.org/2000/svg">
+              <path d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z" fill="#4285F4"/>
+              <path d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z" fill="#34A853"/>
+              <path d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22c-.87-2.6-2.87-4.53-6.02-4.53z" fill="#FBBC05"/>
+              <path d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.53 6.16-4.53z" fill="#EA4335"/>
+            </svg>
+            <span class="gt-text">Google Partner Rating · <strong>850+ Verified Reviews</strong></span>
+          </div>
+        </div>
+
         <h3>Verify UK Scholarships</h3>
         <p>Check your admission and scholarship eligibility in 30 seconds!</p>
         
         <!-- Reciprocity Lead Magnet Banner (Service Integrated) -->
         <div class="bonus-box">
           <i class="fas fa-gift"></i>
-          <div><strong>🎁 FREE CONVERSATION BONUS:</strong> Lock in a **Free UK University Scholarship Assessment & CAS Visa Interview Prep Checklist** (worth ₹2,500) during your free consultation session!</div>
+          <div><strong>🎁 FREE CONVERSATION BONUS:</strong> Lock in a <strong>Free UK University Scholarship Assessment & CAS Visa Interview Prep Checklist</strong> (worth ₹2,500) during your free consultation session!</div>
         </div>
 
         <div class="form-msg" id="formMsg"></div>
@@ -583,16 +782,16 @@
           </div>
           
           <div class="form-group">
-            <label class="flabel" for="phone">Phone Number *</label>
-            <input class="finput" type="tel" id="phone" name="phone" placeholder="Enter 10-digit number" required>
+            <label class="flabel" for="phone">WhatsApp Number *</label>
+            <input class="finput" type="tel" id="phone" name="phone" placeholder="WhatsApp Number (+91 XXXXX XXXXX)" required>
           </div>
           
           <div class="form-group">
             <label class="flabel" for="destination">Program Level</label>
             <select class="finput" id="destination" name="destination">
-              <option value="UK">🇬🇧 1-Year Master's Program (UK)</option>
-              <option value="UK">🇬🇧 Bachelor's Program (UK)</option>
-              <option value="UK">🇬🇧 MBA (UK)</option>
+              <option value="UK">1-Year Master's Program (UK)</option>
+              <option value="UK">Bachelor's Program (UK)</option>
+              <option value="UK">MBA (UK)</option>
             </select>
           </div>
 
@@ -602,13 +801,14 @@
           </div>
 
           <button type="submit" class="btn btn-shimmer btn-full btn-lg lp-submit-btn" id="submitBtn">Check Eligibility & Claim Scholarships! →</button>
-          
-          <!-- Trust Badges -->
-          <div class="form-trust-badges">
-            <i class="fas fa-lock"></i>
-            <span>100% Private & Protected · Hyderabad's Most Trusted UK Partners</span>
-          </div>
         </form>
+
+        <!-- Trust Indicators row -->
+        <div class="form-trust-row">
+          <div class="ft-item"><i class="fas fa-shield-halved"></i> <span>99% Visa Success</span></div>
+          <div class="ft-item"><i class="fas fa-university"></i> <span>Direct Partners</span></div>
+          <div class="ft-item"><i class="fas fa-user-shield"></i> <span>100% Private</span></div>
+        </div>
       </div>
     </div>
   </div>
@@ -633,7 +833,7 @@
     <div class="urgency-card">
       <i class="fas fa-exclamation-triangle"></i>
       <div>
-        <strong>⚠️ SEPTEMBER 2026 APPLICATION ADVISORY:</strong> UK universities are closing fast-track applications for this year. Scholarship allocations are distributed on a **first-come, first-served** basis. Secure your free assessment today to lock in your eligibility before university seats are fully booked!
+        <strong>⚠️ SEPTEMBER 2026 APPLICATION ADVISORY:</strong> UK universities are closing fast-track applications for this year. Scholarship allocations are distributed on a <strong>first-come, first-served</strong> basis. Secure your free assessment today to lock in your eligibility before university seats are fully booked!
       </div>
     </div>
 
@@ -665,7 +865,7 @@
       <div class="benefit-card">
         <div class="benefit-icon"><i class="fas fa-piggy-bank"></i></div>
         <h3>Guaranteed Funding</h3>
-        <p>We review and apply for direct university scholarship grants ranging from **£1,500 to £5,000**, heavily reducing your academic investment.</p>
+        <p>We review and apply for direct university scholarship grants ranging from <strong>£1,500 to £5,000</strong>, heavily reducing your academic investment.</p>
       </div>
     </div>
   </div>
