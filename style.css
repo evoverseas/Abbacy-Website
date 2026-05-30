@@ -438,6 +438,28 @@ section { padding: 96px 0; position: relative; }
 .dest-body p { font-size: .83rem; color: var(--gray-500); margin-bottom: 8px; line-height: 1.6; }
 .dest-body p:last-child { margin-bottom: 0; }
 .dest-body strong { color: var(--navy); }
+.dest-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-family: var(--font-head);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--gold);
+  text-decoration: none;
+  margin-top: 12px;
+  transition: all var(--t);
+}
+.dest-link i {
+  transition: transform var(--t);
+}
+.dest-link:hover {
+  color: var(--navy-dark);
+}
+.dest-link:hover i {
+  transform: translateX(4px);
+}
+
 
 /* ─── WHY CHOOSE US — Glass Dark Cards ──── */
 .why-section { background: linear-gradient(135deg, var(--navy-deep), var(--navy-dark), var(--navy)) !important; position: relative; overflow: hidden; }
