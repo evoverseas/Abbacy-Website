@@ -32,7 +32,7 @@
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;0,800;1,700;1,800&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
@@ -122,45 +122,7 @@
       flex-shrink: 0;
     }
     
-    /* Gift Magnet Banner Styling */
-    .gift-magnet-box {
-      background: #eff6ff;
-      border: 1px solid #bfdbfe;
-      border-radius: 12px;
-      padding: 12px 14px;
-      margin-bottom: 20px;
-      display: flex;
-      gap: 10px;
-      align-items: flex-start;
-      color: #1e40af;
-      line-height: 1.4;
-    }
-    .gift-icon {
-      color: #3b82f6;
-      font-size: 1.2rem;
-      flex-shrink: 0;
-      margin-top: 2px;
-      animation: pulse-ring 2.5s infinite;
-    }
-    @keyframes pulse-ring {
-      0% { transform: scale(0.95); opacity: 0.85; }
-      50% { transform: scale(1.05); opacity: 1; }
-      100% { transform: scale(0.95); opacity: 0.85; }
-    }
-    .gift-magnet-box strong {
-      display: block;
-      font-size: 0.82rem;
-      font-weight: 800;
-      color: #1e3a8a;
-      margin-bottom: 3px;
-      letter-spacing: 0.02em;
-    }
-    .gift-magnet-box p {
-      font-size: 0.76rem;
-      color: #2563eb;
-      margin: 0;
-      font-weight: 500;
-    }
+    
     
     /* Form fields tweaks */
     .contact-form-box h3 {
@@ -314,7 +276,7 @@
 <!-- HERO -->
 <div class="contact-page-hero">
   <div class="container">
-    <h1>Get In Touch</h1>
+    <h1>Get <span class="serif-italic text-gradient">In Touch</span></h1>
     <p>Ready to start your study abroad journey? Reach out for free expert counselling — we respond within 1 hour.</p>
     <div class="urgency-badge">
       <i class="fas fa-clock"></i>
@@ -356,12 +318,9 @@
         <p>Fill out the form below and our team will get back to you within 24 hours.</p>
         
         <!-- Reciprocity Lead Magnet Banner (Service Integrated) -->
-        <div class="gift-magnet-box">
-          <i class="fas fa-gift gift-icon"></i>
-          <div>
-            <strong>🎁 FREE CAREER ROADMAP & ELIGIBILITY AUDIT</strong>
-            <p>Lock in a free personalized Study Abroad Roadmap, direct scholarship evaluation, and a 1-on-1 counselor guidance session (worth ₹2,500) during your free consult!</p>
-          </div>
+        <div class="form-badge-micro">
+          <i class="fas fa-gift"></i>
+          <span>Includes Free Career Roadmap &amp; Audit (Worth ₹2,500)</span>
         </div>
 
         <div class="form-msg" id="formMsg"></div>
@@ -470,6 +429,27 @@
             title="Abbacy Global Group — Aaltos A&M Trade Centre, Himayatnagar, Hyderabad">
           </iframe>
         </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT FAQ SECTION -->
+<section class="contact-faq-section" style="background: var(--white); border-top: 1px solid var(--gray-200); padding: 60px 0 !important;">
+  <div class="container" style="max-width: 800px;">
+    <h3 style="text-align: center; font-size: 1.8rem; font-weight: 800; color: var(--navy-dark); margin-bottom: 30px;">Frequently Asked Questions</h3>
+    <div class="contact-faq-grid" style="display: flex; flex-direction: column; gap: 24px;">
+      <div style="background: var(--gray-50); padding: 20px; border-radius: 8px; border: 1px solid var(--gray-200);">
+        <h4 style="margin: 0 0 8px 0; font-size: 1.05rem; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: 8px;"><i class="far fa-question-circle" style="color: var(--gold);"></i> Is the counselling session really 100% free?</h4>
+        <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--gray-500);">Yes. Our initial profile evaluation, university shortlisting, and career mapping sessions are completely free. There are no service charges or registration fees, and absolutely no pressure to proceed.</p>
+      </div>
+      <div style="background: var(--gray-50); padding: 20px; border-radius: 8px; border: 1px solid var(--gray-200);">
+        <h4 style="margin: 0 0 8px 0; font-size: 1.05rem; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: 8px;"><i class="far fa-question-circle" style="color: var(--gold);"></i> Do I need to visit your Himayatnagar office in person?</h4>
+        <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--gray-500);">No. While we welcome students and parents to meet us face-to-face at our Hyderabad office, we also offer complete online video counselling (Zoom/Google Meet) for your convenience, covering all admission and visa steps remotely.</p>
+      </div>
+      <div style="background: var(--gray-50); padding: 20px; border-radius: 8px; border: 1px solid var(--gray-200);">
+        <h4 style="margin: 0 0 8px 0; font-size: 1.05rem; font-weight: 700; color: var(--navy); display: flex; align-items: center; gap: 8px;"><i class="far fa-question-circle" style="color: var(--gold);"></i> What documents should I prepare for the consultation?</h4>
+        <p style="margin: 0; font-size: 0.9rem; line-height: 1.6; color: var(--gray-500);">If you have them ready, having your academic transcripts (10th, 12th, or UG mark sheets) and any test scores (IELTS/GRE) handy helps us evaluate your options faster. However, you don't need any documents just to start the conversation!</p>
       </div>
     </div>
   </div>

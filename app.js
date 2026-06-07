@@ -1262,3 +1262,75 @@ if (document.readyState === 'loading') {
 } else {
   captureUtmParameters();
 }
+
+/* ── Page Scroll Progress Bar ──────────────────────────── */
+(function() {
+  const progressBar = document.createElement('div');
+  progressBar.className = 'scroll-progress-bar';
+  document.body.appendChild(progressBar);
+
+  window.addEventListener('scroll', () => {
+    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+    const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    progressBar.style.width = scrolled + '%';
+  }, { passive: true });
+})();
+
+/* ── Interactive Input Fields Feedback ──────────────────── */
+document.querySelectorAll('.finput, .qform input, .qform select').forEach(input => {
+  input.addEventListener('blur', () => {
+    if (input.required) {
+      if (!input.value.trim()) {
+        input.style.borderColor = 'var(--red)';
+      } else {
+        if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+          input.style.borderColor = 'var(--red)';
+        } else if (input.type === 'tel' && !isValidPhone(input.value)) {
+          input.style.borderColor = 'var(--red)';
+        } else {
+          input.style.borderColor = 'var(--green)';
+        }
+      }
+    }
+  });
+
+  input.addEventListener('input', () => {
+    if (input.style.borderColor === 'var(--red)' || input.style.borderColor === 'rgb(220, 38, 38)') {
+      if (input.value.trim()) {
+        if (input.type === 'email' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+          input.style.borderColor = '';
+        } else if (input.type === 'tel' && isValidPhone(input.value)) {
+          input.style.borderColor = '';
+        } else if (input.type !== 'email' && input.type !== 'tel') {
+          input.style.borderColor = '';
+        }
+      }
+    }
+  });
+});
+
+/* ── Staggered Scroll Reveal System ───────────────────────── */
+(function() {
+  document.addEventListener('DOMContentLoaded', () => {
+    const revealElements = document.querySelectorAll('.reveal-on-scroll');
+    if (!revealElements.length) return;
+
+    const observerOptions = {
+      root: null,
+      rootMargin: '0px 0px -8% 0px',
+      threshold: 0.05
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('revealed');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    revealElements.forEach(el => observer.observe(el));
+  });
+})();
