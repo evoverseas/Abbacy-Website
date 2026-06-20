@@ -260,36 +260,64 @@
         </div>
       </div>
 
-      <!-- Quick Enquiry Card -->
-      <div class="hero-card">
-        <h3>Quick Enquiry</h3>
-        <p>Drop your details — our experts will reach out shortly! 🚀</p>
-        <form class="qform" id="heroForm" novalidate>
-          <!-- Paid Ads UTM & Conversion Tracking Fields -->
-          <input type="hidden" name="utm_source" id="hero_utm_source" value="">
-          <input type="hidden" name="utm_medium" id="hero_utm_medium" value="">
-          <input type="hidden" name="utm_campaign" id="hero_utm_campaign" value="">
-          <input type="hidden" name="utm_content" id="hero_utm_content" value="">
-          <input type="hidden" name="utm_term" id="hero_utm_term" value="">
-          <input type="hidden" name="gclid" id="hero_gclid" value="">
-          <input type="hidden" name="fbclid" id="hero_fbclid" value="">
+      <!-- Interactive 3D Globe Container -->
+      <div class="hero-globe-wrapper">
+        <div class="hero-globe-container">
+          <canvas id="globeCanvas"></canvas>
           
-          <input type="text" name="name" placeholder="Your Full Name" required aria-label="Full Name">
-          <input type="tel" name="phone" placeholder="WhatsApp Number (+91 XXXXX XXXXX)" required aria-label="WhatsApp Number">
-          <select name="destination" aria-label="Preferred Destination">
-            <option value="">Choose Destination</option>
-            <option value="USA">USA</option>
-            <option value="UK">United Kingdom</option>
-            <option value="Canada">Canada</option>
-            <option value="Australia">Australia</option>
-            <option value="Europe">Europe</option>
-            <option value="Dubai">Dubai (UAE)</option>
-            <option value="Other">Other</option>
-          </select>
-          <button type="submit" class="btn btn-primary btn-full">Get Free Consultation →</button>
-        </form>
-        <p class="qform-note" style="margin-bottom: 6px;"><span>✔</span> 100% Free &nbsp;·&nbsp; <span>✔</span> No obligations &nbsp;·&nbsp; <span>✔</span> Expert advice</p>
-        <p class="qform-note" style="margin-top: 0; font-size: 0.72rem; opacity: 0.85;"><i class="fas fa-lock" style="color: var(--gold-light);"></i> 100% Secure &amp; Confidential · No service charge pressure</p>
+          <!-- Globe Info Overlay Card -->
+          <div class="globe-overlay-card" id="globeOverlayCard">
+            <span class="overlay-close" id="closeOverlay">&times;</span>
+            <div class="overlay-flag-title">
+              <img id="overlayFlag" src="https://flagcdn.com/w40/us.png" alt="USA Flag" class="flag-icon" width="24" height="16">
+              <h4 id="overlayTitle">USA</h4>
+            </div>
+            <p id="overlayDesc">Top destination for MS & MBA with robust work permits (3-year OPT), high scholarships & Ivy League placements.</p>
+            <div class="overlay-action">
+              <a href="contact.html" class="btn btn-primary btn-xs">Book Free Counselling <i class="fas fa-arrow-right"></i></a>
+            </div>
+          </div>
+          
+          <!-- Globe Navigation / Destination Legend -->
+          <div class="globe-legend">
+            <div class="legend-title"><i class="fas fa-globe-americas"></i> Global Pathways</div>
+            <div class="legend-destinations">
+              <button type="button" class="legend-tag" data-dest="USA" aria-label="View USA details">
+                <img src="https://flagcdn.com/w20/us.png" alt="USA" width="16" height="11"> USA
+              </button>
+              <button type="button" class="legend-tag" data-dest="UK" aria-label="View United Kingdom details">
+                <img src="https://flagcdn.com/w20/gb.png" alt="UK" width="16" height="11"> UK
+              </button>
+              <button type="button" class="legend-tag" data-dest="Canada" aria-label="View Canada details">
+                <img src="https://flagcdn.com/w20/ca.png" alt="Canada" width="16" height="11"> Canada
+              </button>
+              <button type="button" class="legend-tag" data-dest="Australia" aria-label="View Australia details">
+                <img src="https://flagcdn.com/w20/au.png" alt="Australia" width="16" height="11"> Australia
+              </button>
+              <button type="button" class="legend-tag" data-dest="Europe" aria-label="View Germany details">
+                <img src="https://flagcdn.com/w20/de.png" alt="Germany" width="16" height="11"> Germany
+              </button>
+              <button type="button" class="legend-tag" data-dest="Dubai" aria-label="View Dubai details">
+                <img src="https://flagcdn.com/w20/ae.png" alt="Dubai" width="16" height="11"> Dubai
+              </button>
+              <button type="button" class="legend-tag" data-dest="Malaysia" aria-label="View Malaysia details">
+                <img src="https://flagcdn.com/w20/my.png" alt="Malaysia" width="16" height="11"> Malaysia
+              </button>
+              <button type="button" class="legend-tag" data-dest="Singapore" aria-label="View Singapore details">
+                <img src="https://flagcdn.com/w20/sg.png" alt="Singapore" width="16" height="11"> Singapore
+              </button>
+              <button type="button" class="legend-tag" data-dest="NewZealand" aria-label="View New Zealand details">
+                <img src="https://flagcdn.com/w20/nz.png" alt="New Zealand" width="16" height="11"> New Zealand
+              </button>
+              <button type="button" class="legend-tag" data-dest="SouthKorea" aria-label="View South Korea details">
+                <img src="https://flagcdn.com/w20/kr.png" alt="South Korea" width="16" height="11"> S. Korea
+              </button>
+              <button type="button" class="legend-tag" data-dest="China" aria-label="View China details">
+                <img src="https://flagcdn.com/w20/cn.png" alt="China" width="16" height="11"> China
+              </button>
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -301,7 +329,7 @@
     <div class="trust-items">
       <div class="trust-item"><i class="fas fa-shield-halved"></i><span>99% Visa Success Rate</span></div>
       <div class="trust-item"><i class="fas fa-graduation-cap"></i><span>500+ University Partners</span></div>
-      <div class="trust-item"><i class="fas fa-globe"></i><span>6 Countries</span></div>
+      <div class="trust-item"><i class="fas fa-globe"></i><span>11 Countries</span></div>
       <div class="trust-item"><i class="fas fa-comments"></i><span>Free Expert Counselling</span></div>
       <div class="trust-item"><i class="fas fa-star"></i><span>4.9 / 5 Google Rating</span></div>
       <div class="trust-item"><i class="fas fa-users"></i><span>10,000+ Students Placed</span></div>
@@ -311,7 +339,7 @@
     <div class="trust-items" aria-hidden="true">
       <div class="trust-item"><i class="fas fa-shield-halved"></i><span>99% Visa Success Rate</span></div>
       <div class="trust-item"><i class="fas fa-graduation-cap"></i><span>500+ University Partners</span></div>
-      <div class="trust-item"><i class="fas fa-globe"></i><span>6 Countries</span></div>
+      <div class="trust-item"><i class="fas fa-globe"></i><span>11 Countries</span></div>
       <div class="trust-item"><i class="fas fa-comments"></i><span>Free Expert Counselling</span></div>
       <div class="trust-item"><i class="fas fa-star"></i><span>4.9 / 5 Google Rating</span></div>
       <div class="trust-item"><i class="fas fa-users"></i><span>10,000+ Students Placed</span></div>
@@ -354,7 +382,7 @@
       </div>
       <div class="award-item">
         <div class="award-icon"><i class="fas fa-user-graduate"></i></div>
-        <div class="award-text"><strong>10,000+ Alumni</strong><span>Across 6 Countries</span></div>
+        <div class="award-text"><strong>10,000+ Alumni</strong><span>Across 11 Countries</span></div>
       </div>
       <div class="award-item">
         <div class="award-icon"><i class="fas fa-shield-halved"></i></div>
@@ -452,7 +480,7 @@
       <div class="why-card reveal-on-scroll delay-2"><div class="why-icon"><i class="fas fa-check-circle"></i></div><h3>99% Visa Success Rate</h3><p>Thorough documentation, daily mock interviews and expert guidance ensure near-perfect approval rates.</p></div>
       <div class="why-card reveal-on-scroll delay-3"><div class="why-icon"><i class="fas fa-users"></i></div><h3>10,000+ Students Placed</h3><p>Thousands of students from Hyderabad have achieved their global education dreams through us.</p></div>
       <div class="why-card reveal-on-scroll delay-1"><div class="why-icon"><i class="fas fa-comments"></i></div><h3>Free Expert Counselling</h3><p>Personalized career guidance completely free. No hidden fees, no pressure — just honest advice.</p></div>
-      <div class="why-card reveal-on-scroll delay-2"><div class="why-icon"><i class="fas fa-earth-americas"></i></div><h3>6 Countries · 500+ Universities</h3><p>Comprehensive coverage: USA, UK, Canada, Australia, Europe and Dubai with 500+ university ties.</p></div>
+      <div class="why-card reveal-on-scroll delay-2"><div class="why-icon"><i class="fas fa-earth-americas"></i></div><h3>11 Countries · 500+ Universities</h3><p>Comprehensive coverage: USA, UK, Canada, Australia, Europe and Dubai with 500+ university ties.</p></div>
       <div class="why-card reveal-on-scroll delay-3"><div class="why-icon"><i class="fas fa-handshake"></i></div><h3>True End-to-End Support</h3><p>Test prep, applications, loans, visa, flights and accommodation — we handle everything.</p></div>
     </div>
   </div>
@@ -491,7 +519,7 @@
     </div>
     <div class="about-grid">
       <div class="about-text">
-        <p>Abbacy Global Group is one of <strong>India's most trusted and student-friendly</strong> overseas education consultancies, headquartered at <strong>Himayatnagar, Hyderabad</strong>. With over 15 years of expertise, we have successfully guided more than 10,000 students to top universities across 6 countries.</p>
+        <p>Abbacy Global Group is one of <strong>India's most trusted and student-friendly</strong> overseas education consultancies, headquartered at <strong>Himayatnagar, Hyderabad</strong>. With over 15 years of expertise, we have successfully guided more than 10,000 students to top universities across 11 countries.</p>
         <p>Our philosophy is simple — <em>students come first</em>. Every student gets personalized attention, honest guidance and full support from their first counselling session right up to landing on campus. We build relationships, not just process applications.</p>
         <p>Whether USA, UK, Canada, Australia, Europe or Dubai — our experienced counselors, test prep trainers and visa experts are here to make your dream happen. 99% visa success rate. 4.9/5 Google rating. 15+ years of trust.</p>
         <div class="about-pillars">
@@ -533,7 +561,7 @@
           </div>
           <p>"My goal of pursuing Master's in USA became a reality thanks to Abbacy Global. They conducted face-to-face mock interviews every single day. Always available beyond office hours, guiding me through visa FAQs. Their commitment resulted in my visa approval!"</p>
           <div class="t-author" style="border-top: 1px solid var(--gray-100); padding-top: 14px; margin-top: 10px; display: flex; align-items: center; gap: 12px;">
-            <img src="./images/avatar_female.png" alt="Tanaz Virani" class="t-avatar-img" width="38" height="38">
+            <img src="./images/student_tanaz.png" alt="Tanaz Virani" class="t-avatar-img" width="38" height="38">
             <div>
               <h4 style="margin-bottom: 2px;">Tanaz Virani</h4>
               <p style="font-size: 0.76rem; margin: 0; color: var(--navy-light); font-weight: 600;"><i class="fas fa-university"></i> Dallas Baptist University, USA</p>
@@ -548,7 +576,7 @@
           </div>
           <p>"Abbacy Global made my dream of studying in Australia come true. From the first counselling session they understood my needs and guided me through every step. Their scholarship assistance saved me a lot of money. Highly recommend to anyone in Hyderabad!"</p>
           <div class="t-author" style="border-top: 1px solid var(--gray-100); padding-top: 14px; margin-top: 10px; display: flex; align-items: center; gap: 12px;">
-            <img src="./images/avatar_female2.png" alt="Nargish Memdani" class="t-avatar-img" width="38" height="38">
+            <img src="./images/student_nargish.png" alt="Nargish Memdani" class="t-avatar-img" width="38" height="38">
             <div>
               <h4 style="margin-bottom: 2px;">Nargish Memdani</h4>
               <p style="font-size: 0.76rem; margin: 0; color: var(--navy-light); font-weight: 600;"><i class="fas fa-university"></i> University of Melbourne, Australia</p>
@@ -563,7 +591,7 @@
           </div>
           <p>"The team at Abbacy Global is phenomenal. They handled everything — IELTS coaching, university application, visa processing. Their 15+ years of experience shows in how smoothly everything went. Best study abroad consultants in Hyderabad, hands down!"</p>
           <div class="t-author" style="border-top: 1px solid var(--gray-100); padding-top: 14px; margin-top: 10px; display: flex; align-items: center; gap: 12px;">
-            <img src="./images/avatar_male.png" alt="Bisoyi Tarun" class="t-avatar-img" width="38" height="38">
+            <img src="./images/student_tarun.png" alt="Bisoyi Tarun" class="t-avatar-img" width="38" height="38">
             <div>
               <h4 style="margin-bottom: 2px;">Bisoyi Tarun</h4>
               <p style="font-size: 0.76rem; margin: 0; color: var(--navy-light); font-weight: 600;"><i class="fas fa-university"></i> University of Chester, UK</p>
@@ -578,7 +606,7 @@
           </div>
           <p>"I was confused about which country to choose for my MBA. Abbacy Global's counselors spent hours understanding my goals and budget. They recommended the perfect university in Canada, helped with my loan, and my visa was approved on the first attempt!"</p>
           <div class="t-author" style="border-top: 1px solid var(--gray-100); padding-top: 14px; margin-top: 10px; display: flex; align-items: center; gap: 12px;">
-            <img src="./images/avatar_female.png" alt="Priya Sharma" class="t-avatar-img" width="38" height="38">
+            <img src="./images/student_priya.png" alt="Priya Sharma" class="t-avatar-img" width="38" height="38">
             <div>
               <h4 style="margin-bottom: 2px;">Priya Sharma</h4>
               <p style="font-size: 0.76rem; margin: 0; color: var(--navy-light); font-weight: 600;"><i class="fas fa-university"></i> University of Toronto, Canada</p>
@@ -593,7 +621,7 @@
           </div>
           <p>"From Himayatnagar to Europe — Abbacy made it possible! The team helped me get into a tuition-free program in Germany. Their knowledge of European universities is unmatched. I saved lakhs thanks to their scholarship guidance. Truly grateful!"</p>
           <div class="t-author" style="border-top: 1px solid var(--gray-100); padding-top: 14px; margin-top: 10px; display: flex; align-items: center; gap: 12px;">
-            <img src="./images/avatar_male2.png" alt="Mohammed Arif" class="t-avatar-img" width="38" height="38">
+            <img src="./images/student_arif.png" alt="Mohammed Arif" class="t-avatar-img" width="38" height="38">
             <div>
               <h4 style="margin-bottom: 2px;">Mohammed Arif</h4>
               <p style="font-size: 0.76rem; margin: 0; color: var(--navy-light); font-weight: 600;"><i class="fas fa-university"></i> TU Munich, Germany</p>
@@ -608,7 +636,7 @@
           </div>
           <p>"As a working professional wanting to switch careers, I was nervous about studying abroad. Abbacy Global made the entire journey stress-free. SOP writing, document prep, mock interviews — everything was handled professionally. Best consultants in Hyderabad!"</p>
           <div class="t-author" style="border-top: 1px solid var(--gray-100); padding-top: 14px; margin-top: 10px; display: flex; align-items: center; gap: 12px;">
-            <img src="./images/avatar_female2.png" alt="Sneha Reddy" class="t-avatar-img" width="38" height="38">
+            <img src="./images/student_sneha.png" alt="Sneha Reddy" class="t-avatar-img" width="38" height="38">
             <div>
               <h4 style="margin-bottom: 2px;">Sneha Reddy</h4>
               <p style="font-size: 0.76rem; margin: 0; color: var(--navy-light); font-weight: 600;"><i class="fas fa-university"></i> University of Bristol, UK</p>
@@ -721,7 +749,7 @@
     <div class="faq-list">
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span>Why choose Abbacy Global Group for studying abroad from Hyderabad?</span><i class="fas fa-chevron-down"></i></button>
-        <div class="faq-a"><div class="faq-a-inner"><p>Abbacy Global is Hyderabad's most trusted overseas education consultancy for 15+ years:</p><ul><li>99% visa success rate</li><li>10,000+ students placed in 6 countries</li><li>Free career counselling — no hidden fees</li><li>500+ university partnerships worldwide</li><li>4.9 / 5 Google rating from verified students</li><li>End-to-end support from counselling to campus</li></ul></div></div>
+        <div class="faq-a"><div class="faq-a-inner"><p>Abbacy Global is Hyderabad's most trusted overseas education consultancy for 15+ years:</p><ul><li>99% visa success rate</li><li>10,000+ students placed in 11 countries</li><li>Free career counselling — no hidden fees</li><li>500+ university partnerships worldwide</li><li>4.9 / 5 Google rating from verified students</li><li>End-to-end support from counselling to campus</li></ul></div></div>
       </div>
       <div class="faq-item">
         <button class="faq-q" aria-expanded="false"><span>How much does it cost to study abroad for Indian students?</span><i class="fas fa-chevron-down"></i></button>

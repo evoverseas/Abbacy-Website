@@ -156,7 +156,7 @@ if (heroTyping) {
     'Global Career Success',
     'Your Dream University',
     'A Brighter Future',
-    'Study Abroad from Hyderabad'
+    'Study Abroad'
   ];
   let phraseIndex = 0;
   let charIndex = 0;
@@ -1309,7 +1309,6 @@ document.querySelectorAll('.finput, .qform input, .qform select').forEach(input 
     }
   });
 });
-
 /* ── Staggered Scroll Reveal System ───────────────────────── */
 (function() {
   document.addEventListener('DOMContentLoaded', () => {
@@ -1333,4 +1332,623 @@ document.querySelectorAll('.finput, .qform input, .qform select').forEach(input 
 
     revealElements.forEach(el => observer.observe(el));
   });
+})();
+
+/* ─── 3D ROTATING INTERACTIVE GLOBE ───────────────────────── */
+(function() {
+  const canvas = document.getElementById('globeCanvas');
+  if (!canvas) return;
+
+  const ctx = canvas.getContext('2d');
+  const overlayCard = document.getElementById('globeOverlayCard');
+  const overlayFlag = document.getElementById('overlayFlag');
+  const overlayTitle = document.getElementById('overlayTitle');
+  const overlayDesc = document.getElementById('overlayDesc');
+  const closeOverlay = document.getElementById('closeOverlay');
+  const legendTags = document.querySelectorAll('.legend-tag');
+
+  const destinations = {
+    USA: { lat: 39.8283, lon: -98.5795, name: 'USA', flag: 'https://flagcdn.com/w40/us.png', desc: 'USA: Top destination for MS & MBA. STEM graduates enjoy a 3-year OPT work permit, high-paying jobs, and generous university scholarships.' },
+    UK: { lat: 55.3781, lon: -3.4360, name: 'United Kingdom', flag: 'https://flagcdn.com/w40/gb.png', desc: 'UK: Fast-track 1-year Masters, 2-year Graduate Route work visa, and numerous options to study without IELTS. Excellent global repute.' },
+    Canada: { lat: 56.1304, lon: -106.3468, name: 'Canada', flag: 'https://flagcdn.com/w40/ca.png', desc: 'Canada: Popular destination offering up to 3 years PGWP (work permit) and clear pathways to Permanent Residency (PR). High standard of living.' },
+    Australia: { lat: -25.2744, lon: 133.7751, name: 'Australia', flag: 'https://flagcdn.com/w40/au.png', desc: 'Australia: Study at world-famous Group of Eight (Go8) universities with up to 4 years post-study work rights. Sun-kissed cities.' },
+    Europe: { lat: 51.1657, lon: 10.4515, name: 'Germany', flag: 'https://flagcdn.com/w40/de.png', desc: 'Germany: Access €0 tuition public universities and live in Europe’s economic powerhouse. 18-month stayback job-search visa.' },
+    Dubai: { lat: 23.4241, lon: 53.8478, name: 'Dubai', flag: 'https://flagcdn.com/w40/ae.png', desc: 'Dubai: Study at renowned branch campuses close to home. 100% tax-free employment, fast visa approvals, and vibrant lifestyle.' },
+    Malaysia: { lat: 3.1390, lon: 101.6869, name: 'Malaysia', flag: 'https://flagcdn.com/w40/my.png', desc: 'Malaysia: Highly affordable tuition, low living costs, and branch campuses of top UK/Australian universities. Safe & multicultural.' },
+    Singapore: { lat: 1.3521, lon: 103.8198, name: 'Singapore', flag: 'https://flagcdn.com/w40/sg.png', desc: 'Singapore: Asia’s premier financial hub. Home to world-class universities like NUS & NTU, and exceptional global career opportunities.' },
+    NewZealand: { lat: -40.9006, lon: 174.8860, name: 'New Zealand', flag: 'https://flagcdn.com/w40/nz.png', desc: 'New Zealand: Excellent work rights, up to 3 years post-study work visa, and pristine quality of life. Highly welcoming to students.' },
+    SouthKorea: { lat: 35.9078, lon: 127.7669, name: 'South Korea', flag: 'https://flagcdn.com/w40/kr.png', desc: 'South Korea: Global leader in tech and innovation. Affordable tuition, extensive scholarships, and booming employment opportunities.' },
+    China: { lat: 35.8617, lon: 104.1954, name: 'China', flag: 'https://flagcdn.com/w40/cn.png', desc: 'China: Highly affordable medicine (MBBS) & engineering programs. World-class infrastructure and growing global influence.' }
+  };
+  const origin = { lat: 17.3850, lon: 78.4867, name: 'Hyderabad (India)' };
+
+  // Generate uniform sphere mesh coordinates
+  const spherePoints = [];
+  for (let lat = -80; lat <= 80; lat += 5.5) {
+    for (let lon = -180; lon <= 180; lon += 6.5) {
+      spherePoints.push({ phi: lat * Math.PI / 180, theta: lon * Math.PI / 180 });
+    }
+  }
+
+  // landPoints loop removed
+
+  let width, height, R, cx, cy;
+  const dpr = window.devicePixelRatio || 1;
+  let initialized = false;
+
+  function resize() {
+    width = canvas.offsetWidth;
+    height = canvas.offsetHeight;
+    if (width > 0 && height > 0) {
+      canvas.width = width * dpr;
+      canvas.height = height * dpr;
+      ctx.scale(dpr, dpr);
+      R = Math.min(width, height) * 0.47;
+      cx = width / 2;
+      cy = height / 2 - 10;
+      initialized = true;
+    }
+  }
+  resize();
+
+  let rotationX = -0.3, rotationY = -4.25, autoRotateSpeed = 0.002, isDragging = false;
+  let startMouseX = 0, startMouseY = 0, startRotationY = 0, startRotationX = 0;
+  let targetRotationY = null, targetRotationX = -0.3, activeDestKey = null;
+  let vx = 0, vy = 0, mouseX = -999, mouseY = -999;
+
+  const connections = Object.keys(destinations).map(key => ({
+    key, dest: destinations[key], t: Math.random(), speed: 0.004 + Math.random() * 0.003
+  }));
+
+  function latLonToXYZ(lat, lon, radius) {
+    const phi = lat * Math.PI / 180, theta = (lon + 180) * Math.PI / 180;
+    return { x: -radius * Math.cos(phi) * Math.sin(theta), y: radius * Math.sin(phi), z: radius * Math.cos(phi) * Math.cos(theta) };
+  }
+
+  function project(p, rotX, rotY) {
+    const x1 = p.x * Math.cos(rotY) - p.z * Math.sin(rotY);
+    const z1 = p.x * Math.sin(rotY) + p.z * Math.cos(rotY);
+    const y2 = p.y * Math.cos(rotX) - z1 * Math.sin(rotX);
+    const z2 = p.y * Math.sin(rotX) + z1 * Math.cos(rotX);
+    return { x: cx + x1, y: cy - y2, z: z2 };
+  }
+
+  function generatePath(pt1, pt2, R, numSegments = 40) {
+    const p1 = latLonToXYZ(pt1.lat, pt1.lon, R), p2 = latLonToXYZ(pt2.lat, pt2.lon, R);
+    const midX = (p1.x + p2.x) / 2, midY = (p1.y + p2.y) / 2, midZ = (p1.z + p2.z) / 2;
+    const len = Math.sqrt(midX**2 + midY**2 + midZ**2), elev = R * 1.32;
+    const ctrl = { x: (midX/len)*elev, y: (midY/len)*elev, z: (midZ/len)*elev };
+    const path = [];
+    for (let i = 0; i <= numSegments; i++) {
+      const t = i / numSegments, mt = 1 - t;
+      path.push({ x: mt**2*p1.x + 2*mt*t*ctrl.x + t**2*p2.x, y: mt**2*p1.y + 2*mt*t*ctrl.y + t**2*p2.y, z: mt**2*p1.z + 2*mt*t*ctrl.z + t**2*p2.z });
+    }
+    return path;
+  }
+
+  function selectDestination(key) {
+    activeDestKey = key;
+    legendTags.forEach(tag => tag.classList.toggle('active', tag.getAttribute('data-dest') === key));
+    
+    const dest = destinations[key];
+    if (!dest) return;
+    
+    const theta = (dest.lon + 180) * Math.PI / 180;
+    const phi = dest.lat * Math.PI / 180;
+    targetRotationY = -theta + Math.PI/12; 
+    targetRotationX = Math.max(-0.3, Math.min(0.5, -phi));
+
+    overlayFlag.src = dest.flag;
+    overlayFlag.alt = dest.name + ' Flag';
+    overlayTitle.textContent = dest.name;
+    overlayDesc.textContent = dest.desc;
+    overlayCard.classList.add('active');
+  }
+
+  // Interactivity Dragging
+  canvas.addEventListener('mousedown', e => {
+    isDragging = true;
+    startMouseX = e.clientX;
+    startMouseY = e.clientY;
+    startRotationY = rotationY;
+    startRotationX = rotationX;
+    vx = 0;
+    vy = 0;
+    targetRotationY = null;
+    canvas.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('mousemove', e => {
+    // Coordinate tracking for hover highlights
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.clientX - rect.left;
+    mouseY = e.clientY - rect.top;
+
+    if (!isDragging) return;
+    const dx = e.clientX - startMouseX;
+    const dy = e.clientY - startMouseY;
+    
+    const newRotY = startRotationY - dx * 0.005;
+    const newRotX = Math.max(-0.6, Math.min(0.6, startRotationX + dy * 0.005));
+    
+    vx = newRotY - rotationY;
+    vy = newRotX - rotationX;
+    
+    rotationY = newRotY;
+    rotationX = newRotX;
+  });
+
+  canvas.addEventListener('mouseleave', () => {
+    mouseX = -999;
+    mouseY = -999;
+  });
+
+  window.addEventListener('mouseup', () => {
+    if (isDragging) {
+      isDragging = false;
+      canvas.style.cursor = 'grab';
+    }
+  });
+
+  canvas.addEventListener('touchstart', e => {
+    if (e.touches.length !== 1) return;
+    isDragging = true;
+    startMouseX = e.touches[0].clientX;
+    startMouseY = e.touches[0].clientY;
+    startRotationY = rotationY;
+    startRotationX = rotationX;
+    vx = 0;
+    vy = 0;
+    targetRotationY = null;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', e => {
+    if (e.touches.length !== 1) return;
+    
+    const rect = canvas.getBoundingClientRect();
+    mouseX = e.touches[0].clientX - rect.left;
+    mouseY = e.touches[0].clientY - rect.top;
+
+    if (!isDragging) return;
+    const dx = e.touches[0].clientX - startMouseX;
+    const dy = e.touches[0].clientY - startMouseY;
+    
+    const newRotY = startRotationY - dx * 0.006;
+    const newRotX = Math.max(-0.6, Math.min(0.6, startRotationX + dy * 0.006));
+    
+    vx = newRotY - rotationY;
+    vy = newRotX - rotationX;
+    
+    rotationY = newRotY;
+    rotationX = newRotX;
+  }, { passive: true });
+
+  window.addEventListener('touchend', () => {
+    isDragging = false;
+    mouseX = -999;
+    mouseY = -999;
+  });
+
+  // Clicking nodes on Canvas
+  canvas.addEventListener('click', e => {
+    if (Math.abs(e.clientX - startMouseX) > 5 || Math.abs(e.clientY - startMouseY) > 5) return;
+    const rect = canvas.getBoundingClientRect();
+    const clickX = e.clientX - rect.left;
+    const clickY = e.clientY - rect.top;
+
+    let clickedDest = null;
+    let minDist = 20;
+
+    Object.keys(destinations).forEach(key => {
+      const dest = destinations[key];
+      const xyz = latLonToXYZ(dest.lat, dest.lon, R);
+      const proj = project(xyz, rotationX, rotationY);
+      if (proj.z > 0) {
+        const dist = Math.hypot(clickX - proj.x, clickY - proj.y);
+        if (dist < minDist) {
+          minDist = dist;
+          clickedDest = key;
+        }
+      }
+    });
+
+    if (clickedDest) {
+      selectDestination(clickedDest);
+    }
+  });
+
+  // Legend Clicking
+  legendTags.forEach(tag => {
+    tag.addEventListener('click', e => {
+      e.preventDefault();
+      const destKey = tag.getAttribute('data-dest');
+      selectDestination(destKey);
+    });
+  });
+
+  // Close Overlay
+  if (closeOverlay) {
+    closeOverlay.addEventListener('click', e => {
+      e.stopPropagation();
+      overlayCard.classList.remove('active');
+      activeDestKey = null;
+      legendTags.forEach(tag => tag.classList.remove('active'));
+      targetRotationY = null;
+    });
+  }
+
+  // Animation Loop
+  function animate() {
+    if (!initialized) {
+      resize();
+      if (!initialized) {
+        requestAnimationFrame(animate);
+        return;
+      }
+    }
+
+    ctx.clearRect(0, 0, width, height);
+
+    // Auto rotate & targeting interpolation
+    if (!isDragging) {
+      if (targetRotationY !== null) {
+        let diffY = targetRotationY - rotationY;
+        diffY = Math.atan2(Math.sin(diffY), Math.cos(diffY));
+        rotationY += diffY * 0.05;
+        let diffX = targetRotationX - rotationX;
+        rotationX += diffX * 0.05;
+        vx = 0;
+        vy = 0;
+      } else {
+        // Dragging inertia
+        rotationY += vx;
+        rotationX += vy;
+        vx *= 0.94;
+        vy *= 0.94;
+
+        // Auto spin blends back in as inertia dies down
+        const inertiaAmt = Math.abs(vx) * 20;
+        rotationY += autoRotateSpeed * Math.max(0, 1 - inertiaAmt);
+        rotationX += (0.25 - rotationX) * 0.01; 
+      }
+    }
+
+    // 0.5. Draw Outer Atmospheric Halo Glow
+    const haloGrad = ctx.createRadialGradient(cx, cy, R - 10, cx, cy, R + 25);
+    haloGrad.addColorStop(0, 'rgba(6, 182, 212, 0.15)');
+    haloGrad.addColorStop(0.5, 'rgba(6, 182, 212, 0.06)');
+    haloGrad.addColorStop(1, 'rgba(6, 182, 212, 0)');
+    ctx.fillStyle = haloGrad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R + 25, 0, Math.PI * 2);
+    ctx.fill();
+
+    // 1. Draw Globe Shader background
+    const grad = ctx.createRadialGradient(cx - R/3, cy - R/3, R/10, cx, cy, R);
+    grad.addColorStop(0, 'rgba(27, 58, 92, 0.45)');
+    grad.addColorStop(0.6, 'rgba(10, 25, 47, 0.75)');
+    grad.addColorStop(1, 'rgba(5, 19, 34, 0.95)');
+    ctx.fillStyle = grad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fill();
+    ctx.strokeStyle = 'rgba(255, 255, 255, 0.07)';
+    ctx.lineWidth = 1.5;
+    ctx.stroke();
+
+    // 1.5. Draw Rotating Graticule Grid (faint wireframe lines)
+    ctx.lineWidth = 0.8;
+    ctx.strokeStyle = 'rgba(100, 210, 255, 0.07)';
+    
+    // Latitude grid lines
+    for (let lat = -60; lat <= 60; lat += 30) {
+      ctx.beginPath();
+      let first = true;
+      for (let lon = -180; lon <= 180; lon += 6) {
+        const xyz = latLonToXYZ(lat, lon, R);
+        const proj = project(xyz, rotationX, rotationY);
+        if (proj.z > 0) {
+          if (first) {
+            ctx.moveTo(proj.x, proj.y);
+            first = false;
+          } else {
+            ctx.lineTo(proj.x, proj.y);
+          }
+        } else {
+          first = true;
+        }
+      }
+      ctx.stroke();
+    }
+    
+    // Longitude grid lines
+    for (let lon = -180; lon < 180; lon += 30) {
+      ctx.beginPath();
+      let first = true;
+      for (let lat = -80; lat <= 80; lat += 6) {
+        const xyz = latLonToXYZ(lat, lon, R);
+        const proj = project(xyz, rotationX, rotationY);
+        if (proj.z > 0) {
+          if (first) {
+            ctx.moveTo(proj.x, proj.y);
+            first = false;
+          } else {
+            ctx.lineTo(proj.x, proj.y);
+          }
+        } else {
+          first = true;
+        }
+      }
+      ctx.stroke();
+    }
+
+    // 2. Draw uniform sphere mesh dots (adds a high-tech glowing mesh structure across the entire sphere)
+    spherePoints.forEach(p => {
+      const theta = p.theta;
+      const phi = p.phi;
+      const xyz = {
+        x: -R * Math.cos(phi) * Math.sin(theta + Math.PI),
+        y: R * Math.sin(phi),
+        z: R * Math.cos(phi) * Math.cos(theta + Math.PI)
+      };
+      const proj = project(xyz, rotationX, rotationY);
+      if (proj.z > 0) {
+        ctx.fillStyle = 'rgba(100, 215, 255, 0.28)'; // increased opacity for front mesh visibility
+        ctx.beginPath();
+        ctx.arc(proj.x, proj.y, 1.1, 0, Math.PI * 2);
+        ctx.fill();
+      } else {
+        ctx.fillStyle = 'rgba(100, 215, 255, 0.08)'; // increased opacity for back mesh visibility
+        ctx.beginPath();
+        ctx.arc(proj.x, proj.y, 0.7, 0, Math.PI * 2);
+        ctx.fill();
+      }
+    });
+
+    // 2.5. Draw Specular Gloss & Shadow Overlay (adds 3D spherical depth)
+    const glassGrad = ctx.createRadialGradient(cx - R/3, cy - R/3, R/10, cx, cy, R);
+    glassGrad.addColorStop(0, 'rgba(255, 255, 255, 0.12)');
+    glassGrad.addColorStop(0.5, 'rgba(255, 255, 255, 0)');
+    glassGrad.addColorStop(0.8, 'rgba(0, 0, 0, 0)');
+    glassGrad.addColorStop(1, 'rgba(0, 0, 0, 0.45)');
+    ctx.fillStyle = glassGrad;
+    ctx.beginPath();
+    ctx.arc(cx, cy, R, 0, Math.PI * 2);
+    ctx.fill();
+
+    // Project origin (Hyderabad)
+    const originXYZ = latLonToXYZ(origin.lat, origin.lon, R);
+    const projOrigin = project(originXYZ, rotationX, rotationY);
+
+    // 3. Draw connection routes
+    connections.forEach(conn => {
+      const isActive = (conn.key === activeDestKey);
+      const path = generatePath(origin, conn.dest, R, 40);
+
+      ctx.lineWidth = isActive ? 2.25 : 1.0;
+      ctx.lineCap = 'round';
+
+      const baseColor = isActive ? '201, 151, 58' : '6, 182, 212'; 
+
+      for (let i = 0; i < path.length - 1; i++) {
+        const p1 = project(path[i], rotationX, rotationY);
+        const p2 = project(path[i+1], rotationX, rotationY);
+
+        const avgZ = (p1.z + p2.z) / 2;
+        if (avgZ > 0) {
+          if (isActive) {
+            ctx.shadowColor = 'rgba(201, 151, 58, 0.8)';
+            ctx.shadowBlur = 6;
+          }
+          ctx.strokeStyle = `rgba(${baseColor}, ${isActive ? 0.9 : 0.4})`;
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+          if (isActive) {
+            ctx.shadowBlur = 0;
+            ctx.shadowColor = 'transparent';
+          }
+        } else {
+          ctx.strokeStyle = 'rgba(255, 255, 255, 0.05)';
+          ctx.beginPath();
+          ctx.moveTo(p1.x, p1.y);
+          ctx.lineTo(p2.x, p2.y);
+          ctx.stroke();
+        }
+      }
+
+      // Draw particle
+      conn.t += conn.speed * (isActive ? 1.5 : 1.0);
+      if (conn.t > 1) {
+        conn.t = 0;
+        conn.speed = 0.004 + Math.random() * 0.003;
+      }
+      const pIndex = Math.floor(conn.t * path.length);
+      const pNode = path[Math.min(pIndex, path.length - 1)];
+      const projNode = project(pNode, rotationX, rotationY);
+
+      if (projNode.z > 0) {
+        // Main particle
+        ctx.shadowColor = isActive ? 'rgba(240, 200, 80, 0.9)' : 'rgba(6, 182, 212, 0.8)';
+        ctx.shadowBlur = isActive ? 10 : 6;
+        ctx.fillStyle = isActive ? '#FFFFFF' : 'rgba(100, 245, 255, 1)';
+        ctx.beginPath();
+        ctx.arc(projNode.x, projNode.y, isActive ? 3.5 : 2.2, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = 'transparent';
+
+        // 3-dot meteor trail
+        const trailLength = 3;
+        for (let j = 1; j <= trailLength; j++) {
+          const trailIndex = pIndex - j * 2;
+          if (trailIndex >= 0) {
+            const trailNode = path[trailIndex];
+            const projTrailNode = project(trailNode, rotationX, rotationY);
+            if (projTrailNode.z > 0) {
+              const trailOpacity = (1 - j / (trailLength + 1)) * (isActive ? 0.7 : 0.4);
+              ctx.fillStyle = isActive ? `rgba(240, 200, 80, ${trailOpacity})` : `rgba(6, 182, 212, ${trailOpacity})`;
+              ctx.beginPath();
+              ctx.arc(projTrailNode.x, projTrailNode.y, (isActive ? 2.5 : 1.5) * (1 - j/5), 0, Math.PI * 2);
+              ctx.fill();
+            }
+          }
+        }
+      }
+    });
+
+    // 4. Draw origin (Hyderabad) node
+    if (projOrigin.z > 0) {
+      const pulseRad = 3.5 + Math.sin(Date.now() / 150) * 1.2;
+
+      ctx.strokeStyle = 'rgba(74, 222, 128, 0.45)';
+      ctx.lineWidth = 1.5;
+      ctx.beginPath();
+      ctx.arc(projOrigin.x, projOrigin.y, pulseRad * 2.2, 0, Math.PI * 2);
+      ctx.stroke();
+
+      ctx.fillStyle = '#4ADE80'; 
+      ctx.beginPath();
+      ctx.arc(projOrigin.x, projOrigin.y, 4.5, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.strokeStyle = '#FFFFFF';
+      ctx.lineWidth = 1.2;
+      ctx.stroke();
+
+      ctx.fillStyle = '#FFFFFF';
+      ctx.font = 'bold 9px var(--font-body), sans-serif';
+      ctx.textAlign = 'center';
+      ctx.shadowColor = 'rgba(0,0,0,0.8)';
+      ctx.shadowBlur = 4;
+      ctx.fillText('Hyderabad', projOrigin.x, projOrigin.y - 10);
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
+    }
+
+    // 5. Draw destination nodes
+    let hoveredDest = null;
+    Object.keys(destinations).forEach(key => {
+      const dest = destinations[key];
+      const xyz = latLonToXYZ(dest.lat, dest.lon, R);
+      const proj = project(xyz, rotationX, rotationY);
+
+      if (proj.z > 0) {
+        const isActive = (key === activeDestKey);
+        
+        // Calculate hover distance
+        const distToMouse = Math.hypot(mouseX - proj.x, mouseY - proj.y);
+        const isHovered = distToMouse < 18;
+
+        if (isHovered) {
+          hoveredDest = { key, name: dest.name, projX: proj.x, projY: proj.y };
+        }
+
+        if (isActive || isHovered) {
+          // Inner pulsing concentric ripple 1
+          const pct1 = (Date.now() % 1200) / 1200;
+          ctx.strokeStyle = isActive ? `rgba(201, 151, 58, ${1 - pct1})` : `rgba(6, 182, 212, ${0.7 - pct1 * 0.7})`;
+          ctx.lineWidth = 1.2;
+          ctx.beginPath();
+          ctx.arc(proj.x, proj.y, 4 + pct1 * (isActive ? 14 : 10), 0, Math.PI * 2);
+          ctx.stroke();
+
+          // Outer pulsing concentric ripple 2 (offset by 50%)
+          const pct2 = (pct1 + 0.5) % 1.0;
+          ctx.strokeStyle = isActive ? `rgba(201, 151, 58, ${1 - pct2})` : `rgba(6, 182, 212, ${0.7 - pct2 * 0.7})`;
+          ctx.lineWidth = 0.8;
+          ctx.beginPath();
+          ctx.arc(proj.x, proj.y, 4 + pct2 * (isActive ? 14 : 10), 0, Math.PI * 2);
+          ctx.stroke();
+        }
+
+        ctx.fillStyle = isActive ? '#F0C850' : (isHovered ? '#64F0FF' : '#06B6D4'); 
+        ctx.beginPath();
+        ctx.arc(proj.x, proj.y, isActive ? 5.5 : (isHovered ? 4.8 : 4), 0, Math.PI * 2);
+        ctx.fill();
+        ctx.strokeStyle = '#FFFFFF';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+
+        ctx.fillStyle = isActive ? '#F0C850' : (isHovered ? '#64F0FF' : 'rgba(255,255,255,0.95)');
+        ctx.font = isActive ? 'bold 9.5px var(--font-body), sans-serif' : '600 8.5px var(--font-body), sans-serif';
+        ctx.textAlign = 'center';
+        ctx.shadowColor = 'rgba(0,0,0,0.85)';
+        ctx.shadowBlur = 4;
+        ctx.fillText(dest.name === 'United Kingdom' ? 'UK' : (dest.name === 'New Zealand' ? 'NZ' : (dest.name === 'South Korea' ? 'S. Korea' : dest.name)), proj.x, proj.y - (isActive ? 11 : 8));
+        ctx.shadowBlur = 0;
+        ctx.shadowColor = 'transparent';
+      }
+    });
+
+    // 6. Draw floating tooltip capsule on top of everything when hovered
+    if (hoveredDest) {
+      const isHoveredActive = (hoveredDest.key === activeDestKey);
+      const titleText = hoveredDest.name;
+      const subText = isHoveredActive ? "Selected" : "Click to Explore";
+      
+      ctx.font = 'bold 9.5px var(--font-body), sans-serif';
+      const w1 = ctx.measureText(titleText).width;
+      ctx.font = '500 7.5px var(--font-body), sans-serif';
+      const w2 = ctx.measureText(subText).width;
+      
+      const boxWidth = Math.max(w1, w2) + 20;
+      const boxHeight = 27;
+      const bx = hoveredDest.projX - boxWidth / 2;
+      const by = hoveredDest.projY - (boxHeight + 14);
+      
+      ctx.shadowColor = 'rgba(0, 0, 0, 0.4)';
+      ctx.shadowBlur = 6;
+      ctx.fillStyle = 'rgba(10, 25, 47, 0.96)';
+      ctx.strokeStyle = isHoveredActive ? 'rgba(201, 151, 58, 0.75)' : 'rgba(6, 182, 212, 0.65)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      if (ctx.roundRect) {
+        ctx.roundRect(bx, by, boxWidth, boxHeight, 5);
+      } else {
+        ctx.rect(bx, by, boxWidth, boxHeight);
+      }
+      ctx.fill();
+      ctx.stroke();
+      ctx.shadowBlur = 0;
+      ctx.shadowColor = 'transparent';
+      
+      // Little triangle pointer under the tooltip
+      ctx.fillStyle = 'rgba(10, 25, 47, 0.96)';
+      ctx.strokeStyle = isHoveredActive ? 'rgba(201, 151, 58, 0.75)' : 'rgba(6, 182, 212, 0.65)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(hoveredDest.projX - 4, by + boxHeight);
+      ctx.lineTo(hoveredDest.projX, by + boxHeight + 4);
+      ctx.lineTo(hoveredDest.projX + 4, by + boxHeight);
+      ctx.closePath();
+      ctx.fill();
+      
+      ctx.beginPath();
+      ctx.moveTo(hoveredDest.projX - 4, by + boxHeight);
+      ctx.lineTo(hoveredDest.projX, by + boxHeight + 4);
+      ctx.lineTo(hoveredDest.projX + 4, by + boxHeight);
+      ctx.stroke();
+
+      // Tooltip texts
+      ctx.textAlign = 'center';
+      ctx.fillStyle = isHoveredActive ? '#F0C850' : '#FFFFFF';
+      ctx.font = 'bold 9.5px var(--font-body), sans-serif';
+      ctx.fillText(titleText, hoveredDest.projX, by + 11.5);
+      
+      ctx.fillStyle = 'rgba(255, 255, 255, 0.65)';
+      ctx.font = '500 7.5px var(--font-body), sans-serif';
+      ctx.fillText(subText, hoveredDest.projX, by + 21);
+    }
+
+    requestAnimationFrame(animate);
+  }
+
+  // Handle Resize
+  window.addEventListener('resize', () => {
+    initialized = false;
+  });
+
+  // Start Animation
+  requestAnimationFrame(animate);
 })();
