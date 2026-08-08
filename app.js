@@ -359,7 +359,7 @@ if (carouselTrack && carouselDots) {
 
     let loadText = "Analyzing Background...";
     if (currentStep === 1) loadText = "Analyzing academic profile compatibility...";
-    else if (currentStep === 2) loadText = "Analyzing global visa stayback matrices...";
+    else if (currentStep === 2) loadText = "Analyzing global travel document stayback matrices...";
     else if (currentStep === 3) loadText = "Optimizing educational budget & scholarships...";
     else if (currentStep === 4) loadText = "Generating personalized Overseas Blueprint...";
 
@@ -530,7 +530,7 @@ if (carouselTrack && carouselDots) {
     if (ielts === 'without') {
       langStep = 'Procure Medium of Instruction (MOI) verification letter from your Hyd university to waive IELTS exam.';
     } else if (ielts === 'preparing') {
-      langStep = 'Submit existing IELTS/PTE/Duolingo scorecard to lock in fast-track visa processing.';
+      langStep = 'Submit existing IELTS/PTE/Duolingo scorecard to lock in fast-track Travel Documentation.';
     }
 
     // Determine Ideal Course level
@@ -583,7 +583,7 @@ if (carouselTrack && carouselDots) {
 
       checklistHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
-          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">US Admission &amp; F-1 Visa Steps:</p>
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">US Admission &amp; F-1 Travel Document Steps:</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
@@ -609,7 +609,7 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">F-1 Visa Slot &amp; Interview Prep</strong>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">F-1 Travel Document Slot &amp; Interview Prep</strong>
                 <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Fill DS-160, pay SEVIS fee, secure slots in Hyderabad/Chennai, and attend mock interview prep sessions.</span>
               </div>
             </div>
@@ -648,7 +648,7 @@ if (carouselTrack && carouselDots) {
 
       checklistHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
-          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">UK Admissions &amp; Student Visa Steps:</p>
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">UK Admissions &amp; Student Travel Document Steps:</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
@@ -674,8 +674,8 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">UK Student Visa Assembly</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Secure your financial proofs (28-day rule for funds in bank), book TB medical test, and submit your UK student visa file.</span>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">UK Student Travel Document Assembly</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Secure your financial proofs (28-day rule for funds in bank), book TB medical test, and submit your UK student travel document file.</span>
               </div>
             </div>
           </div>
@@ -692,7 +692,7 @@ if (carouselTrack && carouselDots) {
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Target Country:</strong> Germany Public Tuition-free pathway matched.</span></li>
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>€0 Tuition Fees:</strong> Pay nothing at Public German Universities (save up to ₹35 Lakhs).</span></li>
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Stayback Visa:</strong> 18-Month generous post-study work search visa across Germany and EU.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Stayback Travel Document:</strong> 18-Month generous post-study work search travel document across Germany and EU.</span></li>
           </ul>
         </div>
       `;
@@ -706,20 +706,20 @@ if (carouselTrack && carouselDots) {
           <p style="margin: 0 0 10px; color: rgba(255,255,255,0.8); font-size: 0.82rem;">Since public universities charge zero tuition fees, your major expense is only the living cost blocked account deposit (€11,904).</p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-wallet" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Blocked Account Loans:</strong> Process blocked funds (€11,904) easily via our education loan partners.</span></li>
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-shield-alt" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>APS Support:</strong> Abbacy handles your complete document verification processing for APS certification.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-shield-alt" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>APS Support:</strong> Abbacy handles your complete document verification guidance for APS certification.</span></li>
           </ul>
         </div>
       `;
 
       checklistHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
-          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">Germany Public Admission &amp; Visa Steps:</p>
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">Germany Public Admission &amp; Travel Document Steps:</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Mandatory APS Verification</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Submit academic transcripts to APS India immediately. An APS certificate is mandatory for any German student visa.</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Submit academic transcripts to APS India immediately. An APS certificate is mandatory for any German student travel document.</span>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
@@ -739,8 +739,8 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Germany Student Visa Slot</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Book national visa appointment slots via VFS, compile enrollment letter, and submit complete documents.</span>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Germany Student Travel Document Slot</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Book national travel document appointment slots via VFS, compile enrollment letter, and submit complete documents.</span>
               </div>
             </div>
           </div>
@@ -790,7 +790,7 @@ if (carouselTrack && carouselDots) {
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">2</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Language Score Strategy</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">${ielts === 'without' ? 'Procure Duolingo/PTE scorecards as Canada requires academic exam scores for SDS student visa processing.' : langStep}</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">${ielts === 'without' ? 'Procure Duolingo/PTE scorecards as Canada requires academic exam scores for SDS student Travel Documentation.' : langStep}</span>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
@@ -804,7 +804,7 @@ if (carouselTrack && carouselDots) {
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Study Permit Submission</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Attend upfront medical exams, compile a solid Letter of Explanation (LOE), and submit your visa application via the IRCC portal.</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Attend upfront medical exams, compile a solid Letter of Explanation (LOE), and submit your travel document application via the IRCC portal.</span>
               </div>
             </div>
           </div>
@@ -821,7 +821,7 @@ if (carouselTrack && carouselDots) {
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Target Country:</strong> Australian Group of Eight (Go8) &amp; CRICOS pathways matched.</span></li>
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Generous Work Rights:</strong> Part-time work permitted up to 48 hours per fortnight, and full-time on breaks.</span></li>
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Post-study visas:</strong> Up to 2-4 years stays in high-growth regional employment hubs.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Post-study travel documents:</strong> Up to 2-4 years stays in high-growth regional employment hubs.</span></li>
           </ul>
         </div>
       `;
@@ -867,8 +867,8 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Subclass 500 Visa Submission</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Compile liquid asset proofs, book upfront medical checks, and submit study visa via ImmiAccount.</span>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Subclass 500 Travel Document Submission</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Compile liquid asset proofs, book upfront medical checks, and submit study travel document via ImmiAccount.</span>
               </div>
             </div>
           </div>
@@ -925,7 +925,7 @@ if (carouselTrack && carouselDots) {
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">3</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Admissions Offer Acceptance</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Confirm branch campus offer letter to trigger university-sponsored 1-year student visa entry permit.</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Confirm branch campus offer letter to trigger university-sponsored 1-year student travel document entry permit.</span>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
@@ -1349,14 +1349,14 @@ document.querySelectorAll('.finput, .qform input, .qform select').forEach(input 
 
   const destinations = {
     USA: { lat: 39.8283, lon: -98.5795, name: 'USA', flag: 'https://flagcdn.com/w40/us.png', desc: 'USA: Top destination for MS & MBA. STEM graduates enjoy a 3-year OPT work permit, high-paying jobs, and generous university scholarships.' },
-    UK: { lat: 55.3781, lon: -3.4360, name: 'United Kingdom', flag: 'https://flagcdn.com/w40/gb.png', desc: 'UK: Fast-track 1-year Masters, 2-year Graduate Route work visa, and numerous options to study without IELTS. Excellent global repute.' },
+    UK: { lat: 55.3781, lon: -3.4360, name: 'United Kingdom', flag: 'https://flagcdn.com/w40/gb.png', desc: 'UK: Fast-track 1-year Masters, 2-year Graduate Route work travel document, and numerous options to study without IELTS. Excellent global repute.' },
     Canada: { lat: 56.1304, lon: -106.3468, name: 'Canada', flag: 'https://flagcdn.com/w40/ca.png', desc: 'Canada: Popular destination offering up to 3 years PGWP (work permit) and clear pathways to Permanent Residency (PR). High standard of living.' },
     Australia: { lat: -25.2744, lon: 133.7751, name: 'Australia', flag: 'https://flagcdn.com/w40/au.png', desc: 'Australia: Study at world-famous Group of Eight (Go8) universities with up to 4 years post-study work rights. Sun-kissed cities.' },
-    Europe: { lat: 51.1657, lon: 10.4515, name: 'Germany', flag: 'https://flagcdn.com/w40/de.png', desc: 'Germany: Access €0 tuition public universities and live in Europe’s economic powerhouse. 18-month stayback job-search visa.' },
-    Dubai: { lat: 23.4241, lon: 53.8478, name: 'Dubai', flag: 'https://flagcdn.com/w40/ae.png', desc: 'Dubai: Study at renowned branch campuses close to home. 100% tax-free employment, fast visa approvals, and vibrant lifestyle.' },
+    Europe: { lat: 51.1657, lon: 10.4515, name: 'Germany', flag: 'https://flagcdn.com/w40/de.png', desc: 'Germany: Access €0 tuition public universities and live in Europe’s economic powerhouse. 18-month stayback job-search travel document.' },
+    Dubai: { lat: 23.4241, lon: 53.8478, name: 'Dubai', flag: 'https://flagcdn.com/w40/ae.png', desc: 'Dubai: Study at renowned branch campuses close to home. 100% tax-free employment, fast travel document approvals, and vibrant lifestyle.' },
     Malaysia: { lat: 3.1390, lon: 101.6869, name: 'Malaysia', flag: 'https://flagcdn.com/w40/my.png', desc: 'Malaysia: Highly affordable tuition, low living costs, and branch campuses of top UK/Australian universities. Safe & multicultural.' },
     Singapore: { lat: 1.3521, lon: 103.8198, name: 'Singapore', flag: 'https://flagcdn.com/w40/sg.png', desc: 'Singapore: Asia’s premier financial hub. Home to world-class universities like NUS & NTU, and exceptional global career opportunities.' },
-    NewZealand: { lat: -40.9006, lon: 174.8860, name: 'New Zealand', flag: 'https://flagcdn.com/w40/nz.png', desc: 'New Zealand: Excellent work rights, up to 3 years post-study work visa, and pristine quality of life. Highly welcoming to students.' },
+    NewZealand: { lat: -40.9006, lon: 174.8860, name: 'New Zealand', flag: 'https://flagcdn.com/w40/nz.png', desc: 'New Zealand: Excellent work rights, up to 3 years post-study work travel document, and pristine quality of life. Highly welcoming to students.' },
     SouthKorea: { lat: 35.9078, lon: 127.7669, name: 'South Korea', flag: 'https://flagcdn.com/w40/kr.png', desc: 'South Korea: Global leader in tech and innovation. Affordable tuition, extensive scholarships, and booming employment opportunities.' },
     China: { lat: 35.8617, lon: 104.1954, name: 'China', flag: 'https://flagcdn.com/w40/cn.png', desc: 'China: Highly affordable medicine (MBBS) & engineering programs. World-class infrastructure and growing global influence.' }
   };
