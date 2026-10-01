@@ -26,6 +26,17 @@
     gtag('js', new Date());
     gtag('config', 'G-F8BD5FD268');
     gtag('config', 'AW-18184235814');
+
+    // Fire immediate conversion events upon landing on thank-you page
+    gtag('event', 'generate_lead', {
+      'event_category': 'Leads',
+      'event_label': 'Study Abroad Lead Conversion',
+      'value': 1.0,
+      'currency': 'INR'
+    });
+    gtag('event', 'conversion', {
+      'send_to': 'AW-18184235814'
+    });
   </script>
 
   <style>
@@ -277,16 +288,23 @@
           <li><a href="index.html#services">Free Counselling</a></li>
           <li><a href="index.html#services">IELTS & Test Prep</a></li>
           <li><a href="index.html#services">University Admissions</a></li>
-          <li><a href="index.html#services">Travel Documentation</a></li>
+          <li><a href="index.html#services">Visa Assistance</a></li>
+          <li><a href="guide-scholarships.html">Scholarships (₹20L)</a></li>
+          <li><a href="guide-loans.html">Education Loans</a></li>
         </ul>
       </div>
       <div>
         <h4>Destinations</h4>
         <ul class="footer-links">
-          <li><a href="index.html#destinations">Study in USA</a></li>
-          <li><a href="index.html#destinations">Study in UK</a></li>
-          <li><a href="index.html#destinations">Study in Canada</a></li>
-          <li><a href="index.html#destinations">Study in Australia</a></li>
+          <li><a href="study-in-usa.html">Study in USA</a></li>
+          <li><a href="study-in-uk.html">Study in UK</a></li>
+          <li><a href="study-in-germany.html">Study in Germany</a></li>
+          <li><a href="study-in-france.html">Study in France</a></li>
+          <li><a href="study-in-canada.html">Study in Canada</a></li>
+          <li><a href="study-in-australia.html">Study in Australia</a></li>
+          <li><a href="study-in-dubai.html">Study in Dubai</a></li>
+          <li><a href="study-in-ireland.html">Study in Ireland</a></li>
+          <li><a href="study-in-netherlands.html">Study in Netherlands</a></li>
         </ul>
       </div>
       <div class="footer-contact">
@@ -295,12 +313,106 @@
         <p><i class="fas fa-phone-alt"></i> +91 83097 13212</p>
       </div>
     </div>
+
+    <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.82rem; color: rgba(255,255,255,0.6); display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
+      <strong style="color: var(--gold-light);">Hyderabad Student Hubs:</strong>
+      <a href="study-abroad-consultants-ameerpet.html" style="color: rgba(255,255,255,0.85); text-decoration: underline;">Ameerpet</a> ·
+      <a href="study-abroad-consultants-kukatpally.html" style="color: rgba(255,255,255,0.85); text-decoration: underline;">Kukatpally &amp; KPHB</a> ·
+      <a href="study-abroad-consultants-dilsukhnagar.html" style="color: rgba(255,255,255,0.85); text-decoration: underline;">Dilsukhnagar &amp; LB Nagar</a> ·
+      <span>Himayatnagar (Head Office)</span>
+    </div>
+
     <div class="footer-bar">
       <p>&copy; 2026 Abbacy Global Group. All rights reserved. | Best Overseas Education Consultants in Hyderabad</p>
     </div>
   </div>
 </footer>
 
+<!-- Dynamic Personalization & Fallback Lead Capture -->
+<script>
+  (function() {
+    try {
+      var params = new URLSearchParams(window.location.search);
+      var name = params.get('name') || '';
+      var phone = params.get('phone') || '';
+      var destination = params.get('destination') || '';
+      var course = params.get('course') || '';
+
+      // Check sessionStorage fallback if query params were trimmed
+      if (!name && sessionStorage.getItem('abbacy_last_lead')) {
+        try {
+          var last = JSON.parse(sessionStorage.getItem('abbacy_last_lead'));
+          if (last) {
+            name = name || last.name || '';
+            destination = destination || last.destination || '';
+            course = course || last.course || '';
+            phone = phone || last.phone || '';
+          }
+        } catch(e) {}
+      }
+
+      // Dynamic Greeting Personalization
+      if (name) {
+        var h2 = document.querySelector('.thank-you-box h2');
+        if (h2) {
+          var firstName = name.trim().split(' ')[0];
+          h2.innerHTML = "We're On It, <span style='color: var(--gold);'>" + firstName + "</span>!";
+        }
+      }
+
+      if (destination || course) {
+        var p = document.querySelector('.thank-you-box > p');
+        if (p) {
+          var destStr = destination ? (' for <strong>' + destination + (course ? ' (' + course + ')' : '') + '</strong>') : '';
+          p.innerHTML = "Thank you for choosing Abbacy Global Group. We have successfully logged your enquiry" + destStr + " and assigned it to our senior overseas education counselors at our Himayatnagar, Hyderabad office.";
+        }
+      }
+
+      // Dynamic WhatsApp button link
+      var waBtn = document.querySelector('.thank-you-box .cta-row a[href*="wa.me"]');
+      if (waBtn && (name || destination)) {
+        var waMsg = "Hi Abbacy Global, I just submitted my application" + (destination ? (" for " + destination) : "") + (name ? (" (" + name + ")") : "") + " and would like to connect!";
+        waBtn.href = "https://wa.me/918309713212?text=" + encodeURIComponent(waMsg);
+      }
+
+      // Fallback submission if previous fetch was cut short by aggressive mobile browser
+      if (name && phone) {
+        var leadKey = 'abbacy_thankyou_lead_' + phone;
+        if (!sessionStorage.getItem(leadKey)) {
+          sessionStorage.setItem(leadKey, 'submitted');
+          var payload = {
+            name: name,
+            phone: phone,
+            destination: destination || 'General Enquiry',
+            course: course || 'Study Abroad',
+            source: params.get('source') || 'thank-you-query-fallback',
+            utm_source: params.get('utm_source') || '',
+            utm_medium: params.get('utm_medium') || '',
+            utm_campaign: params.get('utm_campaign') || '',
+            source_page: document.referrer || window.location.href,
+            timestamp: new Date().toISOString()
+          };
+
+          var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF96iTb5oh81VK5Z6TWtS9eNxSVWYm6nwPkOK5N0Be_56ga6c/exec';
+          var payloadStr = JSON.stringify(payload);
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(SCRIPT_URL, new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' }));
+          }
+          fetch(SCRIPT_URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'text/plain' },
+            body: payloadStr,
+            keepalive: true
+          }).catch(function(err) {
+            console.warn('Fallback lead capture error:', err);
+          });
+        }
+      }
+    } catch(e) {
+      console.warn('Thank you script error:', e);
+    }
+  })();
+</script>
 <script src="app.js" defer></script>
 </body>
 </html>

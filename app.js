@@ -152,16 +152,16 @@ if (faqList) {
 const heroTyping = document.getElementById('heroTyping');
 if (heroTyping) {
   const phrases = [
-    'World-Class Education',
-    'Global Career Success',
-    'Your Dream University',
-    'A Brighter Future',
-    'Study Abroad'
+    'Overseas Education Consultants',
+    'Study Abroad Consultants',
+    'Foreign Education Experts',
+    'Student Visa Consultants',
+    'Global Admissions Partners'
   ];
   let phraseIndex = 0;
-  let charIndex = 0;
-  let isDeleting = false;
-  let typeSpeed = 80;
+  let charIndex = phrases[0].length;
+  let isDeleting = true;
+  let typeSpeed = 2500;
 
   function typeEffect() {
     const current = phrases[phraseIndex];
@@ -188,7 +188,7 @@ if (heroTyping) {
     setTimeout(typeEffect, typeSpeed);
   }
 
-  // Start after 2s delay
+  // Start backspacing after initial 2.5s display of static HTML text
   setTimeout(typeEffect, 2500);
 }
 
@@ -359,7 +359,7 @@ if (carouselTrack && carouselDots) {
 
     let loadText = "Analyzing Background...";
     if (currentStep === 1) loadText = "Analyzing academic profile compatibility...";
-    else if (currentStep === 2) loadText = "Analyzing global travel document stayback matrices...";
+    else if (currentStep === 2) loadText = "Analyzing global student visa and stayback matrices...";
     else if (currentStep === 3) loadText = "Optimizing educational budget & scholarships...";
     else if (currentStep === 4) loadText = "Generating personalized Overseas Blueprint...";
 
@@ -530,7 +530,7 @@ if (carouselTrack && carouselDots) {
     if (ielts === 'without') {
       langStep = 'Procure Medium of Instruction (MOI) verification letter from your Hyd university to waive IELTS exam.';
     } else if (ielts === 'preparing') {
-      langStep = 'Submit existing IELTS/PTE/Duolingo scorecard to lock in fast-track Travel Documentation.';
+      langStep = 'Submit existing IELTS/PTE/Duolingo scorecard to lock in fast-track visa processing.';
     }
 
     // Determine Ideal Course level
@@ -583,7 +583,7 @@ if (carouselTrack && carouselDots) {
 
       checklistHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
-          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">US Admission &amp; F-1 Travel Document Steps:</p>
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">US Admission &amp; F-1 Visa Steps:</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
@@ -609,7 +609,7 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">F-1 Travel Document Slot &amp; Interview Prep</strong>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">F-1 Visa Slot &amp; Interview Prep</strong>
                 <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Fill DS-160, pay SEVIS fee, secure slots in Hyderabad/Chennai, and attend mock interview prep sessions.</span>
               </div>
             </div>
@@ -648,7 +648,7 @@ if (carouselTrack && carouselDots) {
 
       checklistHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
-          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">UK Admissions &amp; Student Travel Document Steps:</p>
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">UK Admissions &amp; Student Visa Steps:</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
@@ -674,8 +674,8 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">UK Student Travel Document Assembly</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Secure your financial proofs (28-day rule for funds in bank), book TB medical test, and submit your UK student travel document file.</span>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">UK Student Visa Assembly</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Secure your financial proofs (28-day rule for funds in bank), book TB medical test, and submit your UK student visa file.</span>
               </div>
             </div>
           </div>
@@ -692,7 +692,7 @@ if (carouselTrack && carouselDots) {
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Target Country:</strong> Germany Public Tuition-free pathway matched.</span></li>
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>€0 Tuition Fees:</strong> Pay nothing at Public German Universities (save up to ₹35 Lakhs).</span></li>
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Stayback Travel Document:</strong> 18-Month generous post-study work search travel document across Germany and EU.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Stayback Work Visa:</strong> 18-Month generous post-study work search visa across Germany and EU.</span></li>
           </ul>
         </div>
       `;
@@ -713,13 +713,13 @@ if (carouselTrack && carouselDots) {
 
       checklistHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
-          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">Germany Public Admission &amp; Travel Document Steps:</p>
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">Germany Public Admission &amp; Visa Steps:</p>
           <div style="display: flex; flex-direction: column; gap: 12px;">
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Mandatory APS Verification</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Submit academic transcripts to APS India immediately. An APS certificate is mandatory for any German student travel document.</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Submit academic transcripts to APS India immediately. An APS certificate is mandatory for any German student visa.</span>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
@@ -739,8 +739,8 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Germany Student Travel Document Slot</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Book national travel document appointment slots via VFS, compile enrollment letter, and submit complete documents.</span>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Germany Student Visa Slot</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Book national student visa appointment slots via VFS, compile enrollment letter, and submit complete documents.</span>
               </div>
             </div>
           </div>
@@ -790,7 +790,7 @@ if (carouselTrack && carouselDots) {
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">2</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Language Score Strategy</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">${ielts === 'without' ? 'Procure Duolingo/PTE scorecards as Canada requires academic exam scores for SDS student Travel Documentation.' : langStep}</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">${ielts === 'without' ? 'Procure Duolingo/PTE scorecards as Canada requires academic exam scores for SDS student visa applications.' : langStep}</span>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
@@ -804,7 +804,7 @@ if (carouselTrack && carouselDots) {
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Study Permit Submission</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Attend upfront medical exams, compile a solid Letter of Explanation (LOE), and submit your travel document application via the IRCC portal.</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Attend upfront medical exams, compile a solid Letter of Explanation (LOE), and submit your student visa application via the IRCC portal.</span>
               </div>
             </div>
           </div>
@@ -821,7 +821,7 @@ if (carouselTrack && carouselDots) {
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Target Country:</strong> Australian Group of Eight (Go8) &amp; CRICOS pathways matched.</span></li>
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Generous Work Rights:</strong> Part-time work permitted up to 48 hours per fortnight, and full-time on breaks.</span></li>
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Post-study travel documents:</strong> Up to 2-4 years stays in high-growth regional employment hubs.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Post-study work visas:</strong> Up to 2-4 years stays in high-growth regional employment hubs.</span></li>
           </ul>
         </div>
       `;
@@ -867,14 +867,143 @@ if (carouselTrack && carouselDots) {
             <div style="display: flex; gap: 10px; align-items: flex-start;">
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
               <div>
-                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Subclass 500 Travel Document Submission</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Compile liquid asset proofs, book upfront medical checks, and submit study travel document via ImmiAccount.</span>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Subclass 500 Visa Submission</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Compile liquid asset proofs, book upfront medical checks, and submit student visa via ImmiAccount.</span>
               </div>
             </div>
           </div>
         </div>
       `;
-    } else { // Dubai
+    } else if (dest === 'Ireland') {
+      pathwayHtml = `
+        <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
+            <span>Pre-Screening Match Status:</span>
+            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+          </div>
+          <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Target Country:</strong> Ireland Silicon Docks tech &amp; 1-year Master's pathway matched.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>2-Year Stay Back:</strong> Automatic Stamp 1G post-study work authorization to join Google, Meta, Microsoft &amp; Amazon.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Fast-track PR:</strong> Critical Skills Employment Permit transitions to European PR in 21 months.</span></li>
+          </ul>
+        </div>
+      `;
+
+      scholarshipHtml = `
+        <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
+          <div style="background: rgba(201,151,58,0.12); border-left: 4px solid var(--gold); padding: 12px; border-radius: 6px; margin-bottom: 14px;">
+            <strong style="color: var(--gold-light); font-size: 0.72rem; text-transform: uppercase; display: block; margin-bottom: 4px;">Ireland Funding Strategy:</strong>
+            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">€2,000 to €5,000 Global Excellence Awards</span>
+          </div>
+          <p style="margin: 0 0 10px; color: rgba(255,255,255,0.8); font-size: 0.82rem;">Merit fee waivers pre-screened based on UG CGPA (65%+). Combined with part-time earnings at €12.70/hr.</p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-coins" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Non-Collateral Loans:</strong> Approved banks provide up to ₹45 Lakhs to cover €10,000 living funds and 1-year fees.</span></li>
+          </ul>
+        </div>
+      `;
+
+      checklistHtml = `
+        <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">Ireland Admissions &amp; Stamp 1G Steps:</p>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">University Application</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Apply to Trinity, UCD, DCU, Galway, or NCI for high-demand Level 9 Master's programs.</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">2</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">English Proficiency Assessment</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">${ielts === 'without' ? 'Target Duolingo (115+) or MOI evaluation at partner institutions in Dublin.' : langStep}</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">3</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Fee Payment &amp; INIS Financial Audit</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Audit proof of €10,000 living funds and remit tuition deposit via TransferMate.</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">VFS Hyderabad Visa Biometrics</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Submit Long Stay 'D' visa file at VFS Hyderabad with Abbacy's 99% approval documentation.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else if (dest === 'France') {
+      pathwayHtml = `
+        <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
+          <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
+            <span>Pre-Screening Match Status:</span>
+            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+          </div>
+          <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Target Country:</strong> France Public University &amp; Grandes Écoles pathway matched.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Subsidized Public Fees:</strong> €2,770–€3,770/yr at top French public universities (Sorbonne, Lyon, Aix-Marseille).</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>5-Year Schengen Visa:</strong> Indian Master's graduates qualify for a 5-year short-stay Schengen visa + 2-year APS / RECE stay-back authorization.</span></li>
+          </ul>
+        </div>
+      `;
+
+      scholarshipHtml = `
+        <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
+          <div style="background: rgba(201,151,58,0.12); border-left: 4px solid var(--gold); padding: 12px; border-radius: 6px; margin-bottom: 14px;">
+            <strong style="color: var(--gold-light); font-size: 0.72rem; text-transform: uppercase; display: block; margin-bottom: 4px;">France Funding Strategy:</strong>
+            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">CAF 40% Housing Aid + EIFFEL Scholarships</span>
+          </div>
+          <p style="margin: 0 0 10px; color: rgba(255,255,255,0.8); font-size: 0.82rem;">French government Caisse d'Allocations Familiales (CAF) covers up to 40% of accommodation rent for international students.</p>
+          <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-home" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>CAF Housing Aid:</strong> Receive €150–€300 monthly direct rent reimbursement from the French government.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-award" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Eiffel &amp; Charpak Grants:</strong> Pre-screened for prestigious French government scholarship programs.</span></li>
+          </ul>
+        </div>
+      `;
+
+      checklistHtml = `
+        <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
+          <p style="margin: 0 0 12px; font-weight: 700; color: var(--gold-light); font-size: 0.82rem; text-transform: uppercase; letter-spacing: 0.03em;">France Admission &amp; Visa Steps:</p>
+          <div style="display: flex; flex-direction: column; gap: 12px;">
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">1</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">University Application</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Shortlist top institutions (HEC Paris, Sorbonne, INSA Lyon, ESSEC) with English-taught options.</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">2</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Campus France Hyderabad Interview</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Complete Études en France registration and attend the mandatory Campus France academic interview at Alliance Française Hyderabad.</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">3</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">Financial Proof &amp; Housing Reservation</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Demonstrate minimum €615/month living costs via education loan sanction and secure student housing confirmation.</span>
+              </div>
+            </div>
+            <div style="display: flex; gap: 10px; align-items: flex-start;">
+              <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">4</span>
+              <div>
+                <strong style="display: block; font-size: 0.82rem; color: var(--white);">VFS Hyderabad Visa Biometrics</strong>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Submit long-stay student visa application at VFS Hyderabad with Abbacy's 99% visa approval documentation.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      `;
+    } else { // Dubai & other destinations
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
@@ -925,7 +1054,7 @@ if (carouselTrack && carouselDots) {
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">3</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">Admissions Offer Acceptance</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Confirm branch campus offer letter to trigger university-sponsored 1-year student travel document entry permit.</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Confirm branch campus offer letter to trigger university-sponsored 1-year student visa entry permit.</span>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
@@ -983,9 +1112,10 @@ if (carouselTrack && carouselDots) {
 
       const submitBtn = document.getElementById('eligSubmitBtn');
       if (submitBtn) {
-        submitBtn.textContent = 'Securing Profile... ⏳';
+        submitBtn.innerHTML = 'Securing Profile &amp; Redirecting... <i class="fas fa-spinner fa-spin"></i>';
         submitBtn.disabled = true;
       }
+      if (leadForm) leadForm.style.pointerEvents = 'none';
 
       // Merge selections into final submission payload
       const combinedPayload = {
@@ -993,34 +1123,50 @@ if (carouselTrack && carouselDots) {
         academic_background: answers[1] || 'Unknown',
         dream_destination: answers[2] || 'Unknown',
         funding_preference: answers[3] || 'Unknown',
-        english_test_status: answers[4] || 'Unknown'
+        english_test_status: answers[4] || 'Unknown',
+        source_page: window.location.pathname,
+        page_title: document.title,
+        timestamp: new Date().toISOString()
       };
+
+      try {
+        sessionStorage.setItem('abbacy_last_lead', JSON.stringify(combinedPayload));
+        sessionStorage.setItem('abbacy_thankyou_lead_' + combinedPayload.phone, 'submitted');
+      } catch(err) {}
 
       // Send to sheets
       if (typeof submitToGoogleSheets === 'function') {
         submitToGoogleSheets(combinedPayload);
       } else {
-        console.warn('submitToGoogleSheets was not defined globally, attempting direct background submission.');
         try {
+          const payloadStr = JSON.stringify(combinedPayload);
+          if (navigator.sendBeacon) {
+            navigator.sendBeacon(SCRIPT_URL, new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' }));
+          }
           fetch(SCRIPT_URL, {
             method: 'POST',
             headers: { 'Content-Type': 'text/plain' },
-            body: JSON.stringify(combinedPayload),
+            body: payloadStr,
             keepalive: true
           });
         } catch(err) {}
       }
 
-      // Smooth visual transition to success state
+      // Build immediate redirect URL
+      const redirectParams = new URLSearchParams();
+      if (combinedPayload.name) redirectParams.set('name', combinedPayload.name);
+      if (combinedPayload.phone) redirectParams.set('phone', combinedPayload.phone);
+      if (combinedPayload.dream_destination) redirectParams.set('destination', combinedPayload.dream_destination);
+      if (combinedPayload.academic_background) redirectParams.set('course', combinedPayload.academic_background);
+      if (combinedPayload.email) redirectParams.set('email', combinedPayload.email);
+      redirectParams.set('source', 'eligibility-assessment');
+
+      const thankYouUrl = 'thank-you.html?' + redirectParams.toString();
+
+      // Immediate redirect to ensure pixel fires without user navigation cancellation
       setTimeout(function() {
-        if (leadCard) leadCard.style.display = 'none';
-        if (successState) successState.style.display = 'block';
-        
-        // Redirect to thank-you page after 3 seconds for pixel conversion tracking
-        setTimeout(function() {
-          window.location.href = 'thank-you.html';
-        }, 3000);
-      }, 250);
+        window.location.href = thankYouUrl;
+      }, 60);
     });
   }
 })();
@@ -1042,11 +1188,10 @@ const stickyMobileCta = document.getElementById('stickyMobileCta');
 if (stickyMobileCta) {
   let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero');
+    const hero = document.querySelector('.hero, .lp-hero, .guide-hero');
     if (!hero) return;
     const heroBottom = hero.offsetTop + hero.offsetHeight;
-    const pastHero = window.scrollY > heroBottom;
-    const scrollingDown = window.scrollY > lastScroll;
+    const pastHero = window.scrollY > (heroBottom - 100);
     lastScroll = window.scrollY;
 
     if (pastHero && window.innerWidth <= 768) {
@@ -1057,115 +1202,215 @@ if (stickyMobileCta) {
   }, { passive: true });
 }
 
-/* ── Phone Validation Helper ───────────────────────────── */
+// Prevent sticky CTA and FABs from obscuring inputs when mobile keyboard opens across all pages
+window.addEventListener('focusin', (e) => {
+  if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) {
+    if (stickyMobileCta) stickyMobileCta.classList.add('hide-keyboard');
+    document.body.classList.add('keyboard-open');
+  }
+});
+window.addEventListener('focusout', (e) => {
+  if (['INPUT', 'SELECT', 'TEXTAREA'].includes(e.target.tagName)) {
+    if (stickyMobileCta) stickyMobileCta.classList.remove('hide-keyboard');
+    document.body.classList.remove('keyboard-open');
+  }
+});
+
+/* ── Universal Phone Validation Helper ─────────────────── */
 function isValidPhone(phone) {
-  const cleaned = phone.replace(/[\s\-\(\)\+]/g, '');
-  return /^(91)?[6-9]\d{9}$/.test(cleaned);
+  if (!phone) return false;
+  const cleaned = phone.replace(/[\s\-\(\)\+]/g, '').replace(/^0+/, '');
+  return /^(91)?[6-9]\d{9}$/.test(cleaned) || (cleaned.length >= 7 && cleaned.length <= 15 && /^\d+$/.test(cleaned));
 }
 
-/* ── Hero Quick Form ───────────────────────────────────── */
-const heroForm = document.getElementById('heroForm');
-if (heroForm) {
-  heroForm.addEventListener('submit', e => {
-    e.preventDefault();
-    
-    // Refresh hidden UTM values from sessionStorage
-    populateHiddenUtmFields();
-    
-    const data = Object.fromEntries(new FormData(heroForm));
-    if (!data.name.trim() || !data.phone.trim()) {
-      alert('Please fill in your name and phone number.');
-      return;
-    }
-    if (!isValidPhone(data.phone)) {
-      alert('Please enter a valid 10-digit phone number.');
-      return;
-    }
+/* ── Universal Form Error & Feedback Helpers ───────────── */
+function markFormFieldError(field, msg) {
+  if (!field) return;
+  field.style.borderColor = '#DC2626';
+  field.style.boxShadow = '0 0 0 3px rgba(220, 38, 38, 0.15)';
+  const err = document.createElement('p');
+  err.className = 'field-err';
+  err.style.cssText = 'color:#DC2626;font-size:0.78rem;margin-top:4px;font-weight:600;display:flex;align-items:center;gap:4px;';
+  err.innerHTML = '<i class="fas fa-exclamation-circle"></i> ' + msg;
+  field.parentNode.appendChild(err);
+}
 
-    const btn = heroForm.querySelector('button[type="submit"]');
-    if (btn) {
-      btn.textContent = 'Submitting... ⏳';
-      btn.disabled = true;
-    }
-
-    // Send data in background using keepalive
-    submitToGoogleSheets(data);
-
-    // Redirect to thank-you page after a tiny visual delay for optimal UX
-    setTimeout(() => {
-      window.location.href = 'thank-you.html';
-    }, 150);
+function clearFormErrors(form) {
+  const container = form || document;
+  container.querySelectorAll('.field-err').forEach(e => e.remove());
+  container.querySelectorAll('.finput, input, select, textarea').forEach(f => {
+    f.style.borderColor = '';
+    f.style.boxShadow = '';
   });
 }
 
-/* â”€â”€ Contact Form â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
-const contactForm = document.getElementById('contactForm');
-const formMsg = document.getElementById('formMsg');
-
-if (contactForm) {
-  contactForm.addEventListener('submit', e => {
-    e.preventDefault();
-    
-    // Refresh hidden UTM values from sessionStorage
-    populateHiddenUtmFields();
-    
-    if (!validateContactForm()) return;
-
-    const data = Object.fromEntries(new FormData(contactForm));
-    const btn = document.getElementById('submitBtn');
-    
-    if (btn) {
-      btn.textContent = 'Submitting... ⏳';
-      btn.disabled = true;
-    }
-
-    // Send data in background using keepalive
-    submitToGoogleSheets(data);
-
-    // Redirect to thank-you page after a tiny visual delay for optimal UX
-    setTimeout(() => {
-      window.location.href = 'thank-you.html';
-    }, 150);
-  });
-}
-
-function validateContactForm() {
-  clearErrors();
-  const name = document.getElementById('name');
-  const email = document.getElementById('email');
-  const phone = document.getElementById('phone');
+function validateUniversalForm(form) {
+  clearFormErrors(form);
   let valid = true;
+  let firstInvalid = null;
 
-  if (name && !name.value.trim()) { markError(name, 'Name is required'); valid = false; }
-  if (email && !email.value.trim()) { markError(email, 'Email is required'); valid = false; }
-  else if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email.value)) { markError(email, 'Enter a valid email'); valid = false; }
-  if (phone && !phone.value.trim()) { markError(phone, 'Phone number is required'); valid = false; }
-  else if (phone && !isValidPhone(phone.value)) { markError(phone, 'Enter a valid 10-digit phone number'); valid = false; }
+  const nameInput = form.querySelector('[name="name"]') || form.querySelector('#name');
+  const emailInput = form.querySelector('[name="email"]') || form.querySelector('#email');
+  const phoneInput = form.querySelector('[name="phone"]') || form.querySelector('#phone');
+
+  if (nameInput) {
+    if (!nameInput.value.trim()) {
+      markFormFieldError(nameInput, 'Full Name is required');
+      valid = false;
+      if (!firstInvalid) firstInvalid = nameInput;
+    }
+  }
+
+  if (emailInput && (emailInput.hasAttribute('required') || emailInput.value.trim())) {
+    const val = emailInput.value.trim();
+    if (!val) {
+      markFormFieldError(emailInput, 'Email Address is required');
+      valid = false;
+      if (!firstInvalid) firstInvalid = emailInput;
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(val)) {
+      markFormFieldError(emailInput, 'Enter a valid email address');
+      valid = false;
+      if (!firstInvalid) firstInvalid = emailInput;
+    }
+  }
+
+  if (phoneInput) {
+    const val = phoneInput.value.trim();
+    if (!val) {
+      markFormFieldError(phoneInput, 'Mobile / WhatsApp Number is required');
+      valid = false;
+      if (!firstInvalid) firstInvalid = phoneInput;
+    } else if (!isValidPhone(val)) {
+      markFormFieldError(phoneInput, 'Enter a valid 10-digit mobile number');
+      valid = false;
+      if (!firstInvalid) firstInvalid = phoneInput;
+    }
+  }
+
+  if (firstInvalid) {
+    firstInvalid.focus();
+    firstInvalid.scrollIntoView({ behavior: 'smooth', block: 'center' });
+  }
 
   return valid;
 }
 
-function markError(field, msg) {
-  field.style.borderColor = '#DC2626';
-  const err = document.createElement('p');
-  err.className = 'field-err';
-  err.style.cssText = 'color:#DC2626;font-size:.78rem;margin-top:4px;';
-  err.textContent = msg;
-  field.parentNode.appendChild(err);
+function showUniversalFormMsg(form, type, text) {
+  let msgEl = form.parentNode.querySelector('.form-msg') ||
+              form.querySelector('.form-msg') ||
+              document.getElementById('formMsg');
+  
+  if (!msgEl) {
+    msgEl = document.createElement('div');
+    msgEl.className = 'form-msg';
+    form.parentNode.insertBefore(msgEl, form);
+  }
+
+  msgEl.className = 'form-msg ' + type;
+  msgEl.innerHTML = text;
+  msgEl.style.display = 'block';
+  msgEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+  
+  if (type !== 'success') {
+    setTimeout(() => {
+      msgEl.style.display = 'none';
+      msgEl.textContent = '';
+    }, 8000);
+  }
 }
 
-function clearErrors() {
-  document.querySelectorAll('.field-err').forEach(e => e.remove());
-  document.querySelectorAll('.finput').forEach(f => f.style.borderColor = '');
+/* ── Universal Lead & Contact Form Submission Engine ──── */
+function attachUniversalFormHandler(form) {
+  if (!form || form.dataset.attachedUniversal === 'true') return;
+  form.dataset.attachedUniversal = 'true';
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    // Populate UTM fields before reading FormData
+    populateHiddenUtmFields();
+
+    if (!validateUniversalForm(form)) return;
+
+    const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.lp-submit-btn');
+
+    if (submitBtn) {
+      submitBtn.innerHTML = 'Securing Offer &amp; Redirecting... <i class="fas fa-spinner fa-spin"></i>';
+      submitBtn.disabled = true;
+    }
+
+    // Freeze form interaction to prevent accidental double-submission or navigation disruption
+    form.style.pointerEvents = 'none';
+
+    const payload = Object.fromEntries(new FormData(form));
+    
+    // Ensure all critical fields are captured
+    const nameVal = (form.querySelector('[name="name"]') || form.querySelector('#name') || {}).value || payload.name || '';
+    const phoneVal = (form.querySelector('[name="phone"]') || form.querySelector('#phone') || {}).value || payload.phone || '';
+    const emailVal = (form.querySelector('[name="email"]') || form.querySelector('#email') || {}).value || payload.email || '';
+    const courseVal = (form.querySelector('[name="course"]') || form.querySelector('#course') || {}).value || payload.course || '';
+    const destVal = (form.querySelector('[name="destination"]') || form.querySelector('#destination') || {}).value || payload.destination || '';
+
+    payload.name = nameVal.trim();
+    payload.phone = phoneVal.trim();
+    payload.email = emailVal.trim();
+    payload.course = courseVal || 'Overseas Career Counselling';
+    payload.destination = destVal || document.title.split('|')[0].replace('Study in', '').trim();
+    payload.source_page = window.location.pathname;
+    payload.page_title = document.title;
+    payload.timestamp = new Date().toISOString();
+
+    // Offline & resilience backup
+    try {
+      sessionStorage.setItem('abbacy_last_lead', JSON.stringify(payload));
+      sessionStorage.setItem('abbacy_thankyou_lead_' + payload.phone, 'submitted');
+      const stored = JSON.parse(localStorage.getItem('abbacy_leads_db') || '[]');
+      stored.push(payload);
+      localStorage.setItem('abbacy_leads_db', JSON.stringify(stored));
+    } catch(err) {}
+
+    // Transmit directly to Google Apps Script endpoint via Beacon + Fetch
+    submitToGoogleSheets(payload);
+
+    // Build immediate redirection target URL with query params
+    const redirectParams = new URLSearchParams();
+    if (payload.name) redirectParams.set('name', payload.name);
+    if (payload.phone) redirectParams.set('phone', payload.phone);
+    if (payload.destination) redirectParams.set('destination', payload.destination);
+    if (payload.course) redirectParams.set('course', payload.course);
+    if (payload.email) redirectParams.set('email', payload.email);
+    redirectParams.set('source', payload.source_page || window.location.pathname);
+    ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'].forEach(function(k) {
+      if (payload[k]) redirectParams.set(k, payload[k]);
+    });
+
+    const thankYouUrl = 'thank-you.html?' + redirectParams.toString();
+
+    // Fire conversion event to dataLayer before navigation
+    try {
+      if (typeof window.gtag === 'function') {
+        window.gtag('event', 'generate_lead', {
+          event_category: 'Leads',
+          event_label: payload.destination || 'Study Abroad'
+        });
+      }
+    } catch(gtagErr) {}
+
+    // REDIRECT IMMEDIATELY (no 2.5s delay) to guarantee conversion capture on thank-you page
+    setTimeout(function() {
+      window.location.href = thankYouUrl;
+    }, 60);
+  });
 }
 
-function showMsg(type, text) {
-  if (!formMsg) return;
-  formMsg.textContent = text;
-  formMsg.className = 'form-msg ' + type;
-  formMsg.scrollIntoView({ behavior: 'smooth', block: 'center' });
-  setTimeout(() => { formMsg.className = 'form-msg'; formMsg.textContent = ''; }, 10000);
-}
+// Bind all candidate forms across the DOM
+document.addEventListener('DOMContentLoaded', () => {
+  const formsToBind = document.querySelectorAll('#contactForm, #leadForm, #heroForm, .lead-card form, .lp-form-box form, .lead-form');
+  formsToBind.forEach(attachUniversalFormHandler);
+});
+// Immediate bind in case DOM is already loaded
+const immediateForms = document.querySelectorAll('#contactForm, #leadForm, #heroForm, .lead-card form, .lp-form-box form, .lead-form');
+immediateForms.forEach(attachUniversalFormHandler);
 
 /* ── Google Sheets Integration ─────────────────────────── */
 /*
@@ -1199,10 +1444,23 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF
 
 function submitToGoogleSheets(data) {
   try {
+    const dataStr = JSON.stringify(data);
+
+    // 1. W3C sendBeacon API: browser guarantees delivery even during immediate page unload
+    if (navigator.sendBeacon) {
+      try {
+        const blob = new Blob([dataStr], { type: 'text/plain;charset=UTF-8' });
+        navigator.sendBeacon(SCRIPT_URL, blob);
+      } catch (beaconErr) {
+        console.warn('sendBeacon notice:', beaconErr);
+      }
+    }
+
+    // 2. Fetch with keepalive: true for modern background persistence
     fetch(SCRIPT_URL, {
       method: 'POST',
       headers: { 'Content-Type': 'text/plain' },
-      body: JSON.stringify(data),
+      body: dataStr,
       keepalive: true
     }).catch(err => {
       console.warn('Background Google Sheet submission error:', err);
@@ -1249,6 +1507,15 @@ function populateHiddenUtmFields() {
         if (contactField) {
           contactField.value = val;
         }
+        // For Landing Page form
+        const lpField = document.getElementById('lp_' + param);
+        if (lpField) {
+          lpField.value = val;
+        }
+        // Universal fallback for any hidden field with matching name
+        document.querySelectorAll('input[name="' + param + '"]').forEach(fld => {
+          if (!fld.value) fld.value = val;
+        });
       }
     });
   } catch (err) {
@@ -1278,37 +1545,48 @@ if (document.readyState === 'loading') {
 })();
 
 /* ── Interactive Input Fields Feedback ──────────────────── */
-document.querySelectorAll('.finput, .qform input, .qform select').forEach(input => {
-  input.addEventListener('blur', () => {
-    if (input.required) {
-      if (!input.value.trim()) {
-        input.style.borderColor = 'var(--red)';
-      } else {
-        if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          input.style.borderColor = 'var(--red)';
-        } else if (input.type === 'tel' && !isValidPhone(input.value)) {
+function initInteractiveInputFeedback() {
+  document.querySelectorAll('.finput, .qform input, .qform select, input.calc-input').forEach(input => {
+    if (input.dataset.feedbackBound === 'true') return;
+    input.dataset.feedbackBound = 'true';
+
+    input.addEventListener('blur', () => {
+      if (input.required) {
+        if (!input.value.trim()) {
           input.style.borderColor = 'var(--red)';
         } else {
-          input.style.borderColor = 'var(--green)';
+          if (input.type === 'email' && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            input.style.borderColor = 'var(--red)';
+          } else if (input.type === 'tel' && !isValidPhone(input.value)) {
+            input.style.borderColor = 'var(--red)';
+          } else {
+            input.style.borderColor = 'var(--green)';
+          }
         }
       }
-    }
-  });
+    });
 
-  input.addEventListener('input', () => {
-    if (input.style.borderColor === 'var(--red)' || input.style.borderColor === 'rgb(220, 38, 38)') {
-      if (input.value.trim()) {
-        if (input.type === 'email' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
-          input.style.borderColor = '';
-        } else if (input.type === 'tel' && isValidPhone(input.value)) {
-          input.style.borderColor = '';
-        } else if (input.type !== 'email' && input.type !== 'tel') {
-          input.style.borderColor = '';
+    input.addEventListener('input', () => {
+      if (input.style.borderColor === 'var(--red)' || input.style.borderColor === 'rgb(220, 38, 38)') {
+        if (input.value.trim()) {
+          if (input.type === 'email' && /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(input.value)) {
+            input.style.borderColor = '';
+          } else if (input.type === 'tel' && isValidPhone(input.value)) {
+            input.style.borderColor = '';
+          } else if (input.type !== 'email' && input.type !== 'tel') {
+            input.style.borderColor = '';
+          }
         }
       }
-    }
+    });
   });
-});
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', initInteractiveInputFeedback);
+} else {
+  initInteractiveInputFeedback();
+}
 /* ── Staggered Scroll Reveal System ───────────────────────── */
 (function() {
   document.addEventListener('DOMContentLoaded', () => {
@@ -1349,14 +1627,17 @@ document.querySelectorAll('.finput, .qform input, .qform select').forEach(input 
 
   const destinations = {
     USA: { lat: 39.8283, lon: -98.5795, name: 'USA', flag: 'https://flagcdn.com/w40/us.png', desc: 'USA: Top destination for MS & MBA. STEM graduates enjoy a 3-year OPT work permit, high-paying jobs, and generous university scholarships.' },
-    UK: { lat: 55.3781, lon: -3.4360, name: 'United Kingdom', flag: 'https://flagcdn.com/w40/gb.png', desc: 'UK: Fast-track 1-year Masters, 2-year Graduate Route work travel document, and numerous options to study without IELTS. Excellent global repute.' },
+    UK: { lat: 55.3781, lon: -3.4360, name: 'United Kingdom', flag: 'https://flagcdn.com/w40/gb.png', desc: 'UK: Fast-track 1-year Masters, 2-year Graduate Route work visa, and numerous options to study without IELTS. Excellent global repute.' },
     Canada: { lat: 56.1304, lon: -106.3468, name: 'Canada', flag: 'https://flagcdn.com/w40/ca.png', desc: 'Canada: Popular destination offering up to 3 years PGWP (work permit) and clear pathways to Permanent Residency (PR). High standard of living.' },
     Australia: { lat: -25.2744, lon: 133.7751, name: 'Australia', flag: 'https://flagcdn.com/w40/au.png', desc: 'Australia: Study at world-famous Group of Eight (Go8) universities with up to 4 years post-study work rights. Sun-kissed cities.' },
-    Europe: { lat: 51.1657, lon: 10.4515, name: 'Germany', flag: 'https://flagcdn.com/w40/de.png', desc: 'Germany: Access €0 tuition public universities and live in Europe’s economic powerhouse. 18-month stayback job-search travel document.' },
-    Dubai: { lat: 23.4241, lon: 53.8478, name: 'Dubai', flag: 'https://flagcdn.com/w40/ae.png', desc: 'Dubai: Study at renowned branch campuses close to home. 100% tax-free employment, fast travel document approvals, and vibrant lifestyle.' },
+    Germany: { lat: 51.1657, lon: 10.4515, name: 'Germany', flag: 'https://flagcdn.com/w40/de.png', desc: 'Germany: Access €0 tuition public universities and live in Europe’s economic powerhouse. 18-month stayback job-search visa.' },
+    Europe: { lat: 51.1657, lon: 10.4515, name: 'Germany', flag: 'https://flagcdn.com/w40/de.png', desc: 'Germany: Access €0 tuition public universities and live in Europe’s economic powerhouse. 18-month stayback job-search visa.' },
+    France: { lat: 46.2276, lon: 2.2137, name: 'France', flag: 'https://flagcdn.com/w40/fr.png', desc: 'France: Subsidized public university tuition (€2,770–€3,770/yr), elite Grandes Écoles, CAF 40% housing aid, and 5-year post-study Schengen visa for Indian Master\'s graduates.' },
+    Dubai: { lat: 23.4241, lon: 53.8478, name: 'Dubai', flag: 'https://flagcdn.com/w40/ae.png', desc: 'Dubai: Study at renowned branch campuses close to home. 100% tax-free employment, fast visa approvals, and vibrant lifestyle.' },
+    Ireland: { lat: 53.1424, lon: -7.6921, name: 'Ireland', flag: 'https://flagcdn.com/w40/ie.png', desc: 'Ireland: Europe’s Silicon Docks. 1-year Masters, 2-year Stamp 1G stay-back visa, and direct tech employment pathways in Dublin.' },
     Malaysia: { lat: 3.1390, lon: 101.6869, name: 'Malaysia', flag: 'https://flagcdn.com/w40/my.png', desc: 'Malaysia: Highly affordable tuition, low living costs, and branch campuses of top UK/Australian universities. Safe & multicultural.' },
     Singapore: { lat: 1.3521, lon: 103.8198, name: 'Singapore', flag: 'https://flagcdn.com/w40/sg.png', desc: 'Singapore: Asia’s premier financial hub. Home to world-class universities like NUS & NTU, and exceptional global career opportunities.' },
-    NewZealand: { lat: -40.9006, lon: 174.8860, name: 'New Zealand', flag: 'https://flagcdn.com/w40/nz.png', desc: 'New Zealand: Excellent work rights, up to 3 years post-study work travel document, and pristine quality of life. Highly welcoming to students.' },
+    NewZealand: { lat: -40.9006, lon: 174.8860, name: 'New Zealand', flag: 'https://flagcdn.com/w40/nz.png', desc: 'New Zealand: Excellent work rights, up to 3 years post-study work visa, and pristine quality of life. Highly welcoming to students.' },
     SouthKorea: { lat: 35.9078, lon: 127.7669, name: 'South Korea', flag: 'https://flagcdn.com/w40/kr.png', desc: 'South Korea: Global leader in tech and innovation. Affordable tuition, extensive scholarships, and booming employment opportunities.' },
     China: { lat: 35.8617, lon: 104.1954, name: 'China', flag: 'https://flagcdn.com/w40/cn.png', desc: 'China: Highly affordable medicine (MBBS) & engineering programs. World-class infrastructure and growing global influence.' }
   };
@@ -1951,4 +2232,255 @@ document.querySelectorAll('.finput, .qform input, .qform select').forEach(input 
 
   // Start Animation
   requestAnimationFrame(animate);
+})();
+
+/* =========================================================
+   STUDY ABROAD COST & EDUCATION LOAN EMI CALCULATOR
+   ========================================================= */
+(function initStudyAbroadCalculator() {
+  const countryCosts = {
+    usa: {
+      currency: '$ (USD)',
+      rate: 86.5,
+      mastersTuition: 28000,
+      bachelorsTuition: 32000,
+      livingMonthly: 1250,
+      proofFunds: '₹35–45 Lakhs (I-20 Form)',
+      workPermit: '3 Years STEM OPT / 1 Year'
+    },
+    uk: {
+      currency: '£ (GBP)',
+      rate: 110.0,
+      mastersTuition: 17500,
+      bachelorsTuition: 19000,
+      livingMonthly: 1050,
+      proofFunds: '₹22–30 Lakhs (28-day rule)',
+      workPermit: '2 Years Graduate Route'
+    },
+    canada: {
+      currency: 'C$ (CAD)',
+      rate: 61.5,
+      mastersTuition: 22000,
+      bachelorsTuition: 25000,
+      livingMonthly: 1720,
+      proofFunds: 'C$ 20,635 (GIC) + 1st Year Tuition',
+      workPermit: 'Up to 3 Years PGWP'
+    },
+    australia: {
+      currency: 'A$ (AUD)',
+      rate: 55.5,
+      mastersTuition: 34000,
+      bachelorsTuition: 36000,
+      livingMonthly: 2000,
+      proofFunds: 'A$ 29,710 + 1st Year Tuition',
+      workPermit: '2 to 4 Years Post-Study'
+    },
+    germany: {
+      currency: '€ (EUR)',
+      rate: 93.0,
+      mastersTuition: 0,
+      bachelorsTuition: 0,
+      livingMonthly: 992,
+      proofFunds: '€11,904/yr (Blocked Account)',
+      workPermit: '18 Months Job Search Visa'
+    },
+    france: {
+      currency: '€ (EUR)',
+      rate: 93.0,
+      mastersTuition: 3770,
+      bachelorsTuition: 2770,
+      livingMonthly: 850,
+      proofFunds: '€7,380/yr (Campus France)',
+      workPermit: '5-Year Schengen Post-Study'
+    },
+    dubai: {
+      currency: 'AED',
+      rate: 23.5,
+      mastersTuition: 55000,
+      bachelorsTuition: 60000,
+      livingMonthly: 3500,
+      proofFunds: '₹12–18 Lakhs (Bank Statement)',
+      workPermit: 'Renewable Work / Golden Visa'
+    },
+    ireland: {
+      currency: '€ (EUR)',
+      rate: 93.0,
+      mastersTuition: 15500,
+      bachelorsTuition: 16000,
+      livingMonthly: 1100,
+      proofFunds: '€10,000 + Fees (≈ ₹18–25 Lakhs)',
+      workPermit: '2 Years Stay Back (Stamp 1G)'
+    }
+  };
+
+  function updateCostEstimates() {
+    const destEl = document.getElementById('calcDest');
+    const degreeEl = document.getElementById('calcDegree');
+    if (!destEl || !degreeEl) return;
+
+    const dest = destEl.value;
+    const degree = degreeEl.value;
+    const data = countryCosts[dest] || countryCosts.usa;
+
+    const annualTuition = degree === 'masters' ? data.mastersTuition : data.bachelorsTuition;
+    const annualTuitionINR = Math.round(annualTuition * data.rate);
+    const monthlyLivingINR = Math.round(data.livingMonthly * data.rate);
+
+    const tuitionEl = document.getElementById('calcOutputTuition');
+    const livingEl = document.getElementById('calcOutputLiving');
+    const proofEl = document.getElementById('calcOutputProof');
+    const pswEl = document.getElementById('calcOutputPSW');
+
+    if (tuitionEl) {
+      if (annualTuition === 0) {
+        tuitionEl.innerHTML = `<span style="color:#10B981;">€0 Tuition</span> (Free at Public Universities)`;
+      } else {
+        const formattedLakhs = (annualTuitionINR / 100000).toFixed(1);
+        tuitionEl.textContent = `${data.currency.split(' ')[0]} ${annualTuition.toLocaleString('en-IN')} (≈ ₹${formattedLakhs} Lakhs/yr)`;
+      }
+    }
+
+    if (livingEl) {
+      livingEl.textContent = `${data.currency.split(' ')[0]} ${data.livingMonthly.toLocaleString('en-IN')} (≈ ₹${monthlyLivingINR.toLocaleString('en-IN')}/mo)`;
+    }
+
+    if (proofEl) proofEl.textContent = data.proofFunds;
+    if (pswEl) pswEl.textContent = data.workPermit;
+  }
+
+  function updateLoanEMI() {
+    const loanAmtInput = document.getElementById('loanAmount');
+    const loanRateInput = document.getElementById('loanRate');
+    const loanTenureInput = document.getElementById('loanTenure');
+
+    if (!loanAmtInput || !loanRateInput || !loanTenureInput) return;
+
+    const P = parseFloat(loanAmtInput.value);
+    const annualRate = parseFloat(loanRateInput.value);
+    const years = parseFloat(loanTenureInput.value);
+
+    // Update range labels
+    const amtLabel = document.getElementById('loanAmountVal');
+    const rateLabel = document.getElementById('loanRateVal');
+    const tenureLabel = document.getElementById('loanTenureVal');
+
+    if (amtLabel) amtLabel.textContent = `₹${(P / 100000).toFixed(1)} Lakhs`;
+    if (rateLabel) rateLabel.textContent = `${annualRate.toFixed(1)}% p.a.`;
+    if (tenureLabel) tenureLabel.textContent = `${years} Years`;
+
+    const r = annualRate / (12 * 100);
+    const n = years * 12;
+
+    const emi = (P * r * Math.pow(1 + r, n)) / (Math.pow(1 + r, n) - 1);
+    const totalPayment = emi * n;
+    const totalInterest = totalPayment - P;
+
+    const emiEl = document.getElementById('calcOutputEMI');
+    const interestEl = document.getElementById('calcOutputInterest');
+    const totalPayEl = document.getElementById('calcOutputTotalPay');
+
+    if (emiEl) emiEl.textContent = `₹${Math.round(emi).toLocaleString('en-IN')}`;
+    if (interestEl) interestEl.textContent = `₹${(totalInterest / 100000).toFixed(2)} Lakhs`;
+    if (totalPayEl) totalPayEl.textContent = `₹${(totalPayment / 100000).toFixed(2)} Lakhs`;
+  }
+
+  function setupCalculator() {
+    const destEl = document.getElementById('calcDest');
+    const degreeEl = document.getElementById('calcDegree');
+    if (destEl) destEl.addEventListener('change', updateCostEstimates);
+    if (degreeEl) degreeEl.addEventListener('change', updateCostEstimates);
+
+    const loanAmtInput = document.getElementById('loanAmount');
+    const loanRateInput = document.getElementById('loanRate');
+    const loanTenureInput = document.getElementById('loanTenure');
+
+    if (loanAmtInput) loanAmtInput.addEventListener('input', updateLoanEMI);
+    if (loanRateInput) loanRateInput.addEventListener('input', updateLoanEMI);
+    if (loanTenureInput) loanTenureInput.addEventListener('input', updateLoanEMI);
+
+    // Initial triggers
+    updateCostEstimates();
+    updateLoanEMI();
+
+    // Lead capture handler
+    const leadForm = document.getElementById('calcLeadForm');
+    if (leadForm) {
+      leadForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const nameInput = document.getElementById('calcLeadName');
+        const phoneInput = document.getElementById('calcLeadPhone');
+        const name = nameInput ? nameInput.value.trim() : '';
+        const phone = phoneInput ? phoneInput.value.trim() : '';
+        const dest = document.getElementById('calcDest')?.value || 'USA';
+        const loanAmt = document.getElementById('loanAmount')?.value || '3000000';
+        const loanRate = document.getElementById('loanRate')?.value || '10.5';
+        const loanTenure = document.getElementById('loanTenure')?.value || '10';
+        const emiText = document.getElementById('calcOutputEMI')?.textContent || '';
+        const successBox = document.getElementById('calcLeadSuccess');
+
+        if (!name || !phone) {
+          alert('Please enter your name and phone number.');
+          return;
+        }
+
+        if (!isValidPhone(phone)) {
+          alert('Please enter a valid 10-digit mobile number.');
+          if (phoneInput) phoneInput.focus();
+          return;
+        }
+
+        const leadPayload = {
+          name,
+          phone,
+          destination: dest.toUpperCase(),
+          course: `Education Loan: ₹${(parseFloat(loanAmt)/100000).toFixed(1)} Lakhs @ ${loanRate}% (${loanTenure} yrs, EMI ${emiText})`,
+          message: `Study Abroad Calculator Lead: Destination ${dest.toUpperCase()}, Loan ₹${(parseFloat(loanAmt)/100000).toFixed(1)}L, Est. EMI ${emiText}`,
+          source_page: window.location.pathname,
+          timestamp: new Date().toISOString()
+        };
+
+        // Store lead info locally
+        try {
+          const storedLeads = JSON.parse(localStorage.getItem('abbacy_calculator_leads') || '[]');
+          storedLeads.push(leadPayload);
+          localStorage.setItem('abbacy_calculator_leads', JSON.stringify(storedLeads));
+        } catch (err) {
+          // ignore storage errors
+        }
+
+        const calcSubmitBtn = leadForm.querySelector('button[type="submit"]');
+        if (calcSubmitBtn) {
+          calcSubmitBtn.innerHTML = 'Securing Loan Offer &amp; Redirecting... <i class="fas fa-spinner fa-spin"></i>';
+          calcSubmitBtn.disabled = true;
+        }
+        leadForm.style.pointerEvents = 'none';
+
+        try {
+          sessionStorage.setItem('abbacy_last_lead', JSON.stringify(leadPayload));
+          sessionStorage.setItem('abbacy_thankyou_lead_' + leadPayload.phone, 'submitted');
+        } catch(err) {}
+
+        // Transmit to Google Sheets backend
+        submitToGoogleSheets(leadPayload);
+
+        const redirectParams = new URLSearchParams();
+        redirectParams.set('name', leadPayload.name);
+        redirectParams.set('phone', leadPayload.phone);
+        redirectParams.set('destination', leadPayload.destination);
+        redirectParams.set('course', leadPayload.course);
+        redirectParams.set('source', 'cost-loan-calculator');
+
+        // Immediate redirect to thank-you page for conversion tracking
+        setTimeout(() => {
+          window.location.href = 'thank-you.html?' + redirectParams.toString();
+        }, 60);
+      });
+    }
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', setupCalculator);
+  } else {
+    setupCalculator();
+  }
 })();

@@ -4,49 +4,115 @@
         xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
   <url>
     <loc>https://abbacy.in/</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
     <loc>https://abbacy.in/eligibility.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-usa.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-canada.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-australia.html</loc>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.95</priority>
   </url>
   <url>
     <loc>https://abbacy.in/study-in-uk.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-germany.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-france.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-dubai.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-ireland.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-in-netherlands.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/guide-scholarships.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.95</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-abroad-consultants-ameerpet.html</loc>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
-    <loc>https://abbacy.in/study-in-germany.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <loc>https://abbacy.in/study-abroad-consultants-kukatpally.html</loc>
+    <lastmod>2026-10-01</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.90</priority>
+  </url>
+  <url>
+    <loc>https://abbacy.in/study-abroad-consultants-dilsukhnagar.html</loc>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.90</priority>
   </url>
   <url>
     <loc>https://abbacy.in/guide-usa.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.90</priority>
+    <priority>0.85</priority>
   </url>
   <url>
     <loc>https://abbacy.in/guide-loans.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://abbacy.in/guide-ielts.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.85</priority>
   </url>
   <url>
     <loc>https://abbacy.in/contact.html</loc>
-    <lastmod>2026-05-30</lastmod>
+    <lastmod>2026-10-01</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.80</priority>
   </url>
