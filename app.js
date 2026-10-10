@@ -152,11 +152,11 @@ if (faqList) {
 const heroTyping = document.getElementById('heroTyping');
 if (heroTyping) {
   const phrases = [
-    'Overseas Education Consultants',
     'Study Abroad Consultants',
+    'Overseas Study Experts',
     'Foreign Education Experts',
     'Student Visa Consultants',
-    'Global Admissions Partners'
+    'Global Education Partners'
   ];
   let phraseIndex = 0;
   let charIndex = phrases[0].length;

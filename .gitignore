@@ -20,7 +20,14 @@ node_modules/
 
 # AI Agent Skills & Tooling (Local development only, not for GitHub Pages)
 .agents/
+.agent/
 .claude/
 .skills/
 skills-lock.json
+
+# Audit Reports & Analysis Outputs (Local only)
+audit-results.json
+SEO-REPORT.html
+FULL-AUDIT-REPORT.md
+ACTION-PLAN.md
 

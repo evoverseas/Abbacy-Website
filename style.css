@@ -428,12 +428,12 @@ section { padding: 96px 0; position: relative; }
   max-width: 100%;
 }
 .hero h1 {
-  font-size: clamp(2.1rem,4.5vw,3.4rem); color: var(--white); font-weight: 900;
-  margin-bottom: 20px; line-height: 1.15;
+  font-size: clamp(1.85rem, 3.4vw, 2.65rem); color: var(--white); font-weight: 900;
+  margin-bottom: 20px; line-height: 1.22;
   overflow-wrap: break-word; word-wrap: break-word;
 }
 .hero h1 .accent {
-  display: block; min-height: 1.15em;
+  display: inline-block; min-height: 1.2em; vertical-align: bottom;
   overflow-wrap: break-word; word-wrap: break-word; word-break: normal;
   background: linear-gradient(135deg, var(--gold-light), #F0C850, var(--gold));
   background-size: 200% auto;

@@ -15,11 +15,16 @@ User-agent: YandexBot
 Allow: /
 
 # AI Search Discovery & Real-Time Answer Engine Crawlers
-# Powers citations in Google AI Overviews, ChatGPT Search, Perplexity, Claude, and Apple Intelligence
+# Powers citations in Google AI Overviews, ChatGPT Search, Perplexity, Claude, and Gemini
+User-agent: GPTBot
 User-agent: OAI-SearchBot
-User-agent: PerplexityBot
+User-agent: ClaudeBot
 User-agent: Claude-SearchBot
+User-agent: PerplexityBot
+User-agent: Google-Extended
 User-agent: Applebot-Extended
+User-agent: Bytespider
+User-agent: CCBot
 User-agent: ChatGPT-User
 User-agent: Claude-User
 User-agent: Perplexity-User
