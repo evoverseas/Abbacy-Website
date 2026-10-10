@@ -375,14 +375,36 @@
         waBtn.href = "https://wa.me/918309713212?text=" + encodeURIComponent(waMsg);
       }
 
-      // Fallback submission if previous fetch was cut short by aggressive mobile browser
+      // Fallback submission ONLY if lead was not already transmitted by the originating form
       if (name && phone) {
-        var leadKey = 'abbacy_thankyou_lead_' + phone;
-        if (!sessionStorage.getItem(leadKey)) {
-          sessionStorage.setItem(leadKey, 'submitted');
+        var cleanPhone = String(phone || '').replace(/\D/g, '');
+        var alreadySubmitted = false;
+
+        if (cleanPhone) {
+          if (sessionStorage.getItem('abbacy_lead_submitted_' + cleanPhone) ||
+              sessionStorage.getItem('abbacy_thankyou_lead_' + cleanPhone) ||
+              sessionStorage.getItem('abbacy_sub_' + cleanPhone)) {
+            alreadySubmitted = true;
+          }
+        }
+        if (phone && (sessionStorage.getItem('abbacy_lead_submitted_' + phone) ||
+                      sessionStorage.getItem('abbacy_thankyou_lead_' + phone) ||
+                      sessionStorage.getItem('abbacy_sub_' + phone))) {
+          alreadySubmitted = true;
+        }
+
+        if (!alreadySubmitted) {
+          if (cleanPhone) {
+            sessionStorage.setItem('abbacy_lead_submitted_' + cleanPhone, 'true');
+            sessionStorage.setItem('abbacy_sub_' + cleanPhone, String(Date.now()));
+          }
+          if (phone) {
+            sessionStorage.setItem('abbacy_thankyou_lead_' + phone, 'submitted');
+          }
+
           var payload = {
             name: name,
-            phone: phone,
+            phone: cleanPhone || phone,
             destination: destination || 'General Enquiry',
             course: course || 'Study Abroad',
             source: params.get('source') || 'thank-you-query-fallback',
@@ -395,17 +417,28 @@
 
           var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF96iTb5oh81VK5Z6TWtS9eNxSVWYm6nwPkOK5N0Be_56ga6c/exec';
           var payloadStr = JSON.stringify(payload);
-          if (navigator.sendBeacon) {
-            navigator.sendBeacon(SCRIPT_URL, new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' }));
+          var sent = false;
+
+          // Dispatch exactly ONE request
+          if (window.fetch) {
+            try {
+              fetch(SCRIPT_URL, {
+                method: 'POST',
+                headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+                body: payloadStr,
+                keepalive: true
+              }).catch(function(err) {
+                console.warn('Fallback lead capture fetch error:', err);
+              });
+              sent = true;
+            } catch (fetchErr) {}
           }
-          fetch(SCRIPT_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain' },
-            body: payloadStr,
-            keepalive: true
-          }).catch(function(err) {
-            console.warn('Fallback lead capture error:', err);
-          });
+
+          if (!sent && navigator.sendBeacon) {
+            try {
+              navigator.sendBeacon(SCRIPT_URL, new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' }));
+            } catch (beaconErr) {}
+          }
         }
       }
     } catch(e) {

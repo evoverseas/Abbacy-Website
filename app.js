@@ -1081,6 +1081,10 @@ if (carouselTrack && carouselDots) {
   /* ── Form Capture & Submission to Sheets ── */
   if (leadForm) {
     leadForm.addEventListener('submit', function(e) {
+      if (leadForm.dataset.submitting === 'true') {
+        e.preventDefault();
+        return;
+      }
       e.preventDefault();
 
       // Refresh hidden UTM values from sessionStorage
@@ -1110,6 +1114,9 @@ if (carouselTrack && carouselDots) {
         return;
       }
 
+      // Lock form against concurrent double submissions
+      leadForm.dataset.submitting = 'true';
+
       const submitBtn = document.getElementById('eligSubmitBtn');
       if (submitBtn) {
         submitBtn.innerHTML = 'Securing Profile &amp; Redirecting... <i class="fas fa-spinner fa-spin"></i>';
@@ -1129,33 +1136,43 @@ if (carouselTrack && carouselDots) {
         timestamp: new Date().toISOString()
       };
 
+      const cleanPhone = String(combinedPayload.phone || '').replace(/\D/g, '');
+
       try {
         sessionStorage.setItem('abbacy_last_lead', JSON.stringify(combinedPayload));
-        sessionStorage.setItem('abbacy_thankyou_lead_' + combinedPayload.phone, 'submitted');
+        if (cleanPhone) {
+          sessionStorage.setItem('abbacy_thankyou_lead_' + cleanPhone, 'submitted');
+          sessionStorage.setItem('abbacy_lead_submitted_' + cleanPhone, 'true');
+        }
+        if (combinedPayload.phone) {
+          sessionStorage.setItem('abbacy_thankyou_lead_' + combinedPayload.phone, 'submitted');
+          sessionStorage.setItem('abbacy_lead_submitted_' + combinedPayload.phone, 'true');
+        }
       } catch(err) {}
 
-      // Send to sheets
+      // Send to sheets via single transmission pipeline
       if (typeof submitToGoogleSheets === 'function') {
         submitToGoogleSheets(combinedPayload);
       } else {
         try {
           const payloadStr = JSON.stringify(combinedPayload);
-          if (navigator.sendBeacon) {
+          if (window.fetch) {
+            fetch(SCRIPT_URL, {
+              method: 'POST',
+              headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+              body: payloadStr,
+              keepalive: true
+            }).catch(function() {});
+          } else if (navigator.sendBeacon) {
             navigator.sendBeacon(SCRIPT_URL, new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' }));
           }
-          fetch(SCRIPT_URL, {
-            method: 'POST',
-            headers: { 'Content-Type': 'text/plain' },
-            body: payloadStr,
-            keepalive: true
-          });
         } catch(err) {}
       }
 
       // Build immediate redirect URL
       const redirectParams = new URLSearchParams();
       if (combinedPayload.name) redirectParams.set('name', combinedPayload.name);
-      if (combinedPayload.phone) redirectParams.set('phone', combinedPayload.phone);
+      if (combinedPayload.phone) redirectParams.set('phone', cleanPhone || combinedPayload.phone);
       if (combinedPayload.dream_destination) redirectParams.set('destination', combinedPayload.dream_destination);
       if (combinedPayload.academic_background) redirectParams.set('course', combinedPayload.academic_background);
       if (combinedPayload.email) redirectParams.set('email', combinedPayload.email);
@@ -1325,12 +1342,19 @@ function attachUniversalFormHandler(form) {
   form.dataset.attachedUniversal = 'true';
 
   form.addEventListener('submit', function(e) {
+    // Atomic debounce lock: prevent concurrent / rapid-fire submissions
+    if (form.dataset.submitting === 'true') {
+      e.preventDefault();
+      return;
+    }
     e.preventDefault();
 
     // Populate UTM fields before reading FormData
     populateHiddenUtmFields();
 
     if (!validateUniversalForm(form)) return;
+
+    form.dataset.submitting = 'true';
 
     const submitBtn = form.querySelector('button[type="submit"]') || form.querySelector('.lp-submit-btn');
 
@@ -1360,22 +1384,31 @@ function attachUniversalFormHandler(form) {
     payload.page_title = document.title;
     payload.timestamp = new Date().toISOString();
 
+    const cleanPhone = String(payload.phone || '').replace(/\D/g, '');
+
     // Offline & resilience backup
     try {
       sessionStorage.setItem('abbacy_last_lead', JSON.stringify(payload));
-      sessionStorage.setItem('abbacy_thankyou_lead_' + payload.phone, 'submitted');
+      if (cleanPhone) {
+        sessionStorage.setItem('abbacy_thankyou_lead_' + cleanPhone, 'submitted');
+        sessionStorage.setItem('abbacy_lead_submitted_' + cleanPhone, 'true');
+      }
+      if (payload.phone) {
+        sessionStorage.setItem('abbacy_thankyou_lead_' + payload.phone, 'submitted');
+        sessionStorage.setItem('abbacy_lead_submitted_' + payload.phone, 'true');
+      }
       const stored = JSON.parse(localStorage.getItem('abbacy_leads_db') || '[]');
       stored.push(payload);
       localStorage.setItem('abbacy_leads_db', JSON.stringify(stored));
     } catch(err) {}
 
-    // Transmit directly to Google Apps Script endpoint via Beacon + Fetch
+    // Transmit directly to Google Apps Script endpoint via single network request
     submitToGoogleSheets(payload);
 
     // Build immediate redirection target URL with query params
     const redirectParams = new URLSearchParams();
     if (payload.name) redirectParams.set('name', payload.name);
-    if (payload.phone) redirectParams.set('phone', payload.phone);
+    if (payload.phone) redirectParams.set('phone', cleanPhone || payload.phone);
     if (payload.destination) redirectParams.set('destination', payload.destination);
     if (payload.course) redirectParams.set('course', payload.course);
     if (payload.email) redirectParams.set('email', payload.email);
@@ -1444,29 +1477,64 @@ const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF
 
 function submitToGoogleSheets(data) {
   try {
-    const dataStr = JSON.stringify(data);
+    const cleanPhone = String(data.phone || '').replace(/\D/g, '');
+    const dedupeKey = 'abbacy_sub_' + (cleanPhone || (data.email ? String(data.email).toLowerCase() : 'lead_' + Date.now()));
 
-    // 1. W3C sendBeacon API: browser guarantees delivery even during immediate page unload
-    if (navigator.sendBeacon) {
+    // Client-side deduplication guard: prevent duplicate submission within 60 seconds
+    const lastSubmitTime = sessionStorage.getItem(dedupeKey);
+    const now = Date.now();
+    if (lastSubmitTime && (now - parseInt(lastSubmitTime, 10)) < 60000) {
+      console.warn('Duplicate Google Sheet submission prevented for:', cleanPhone || data.email);
+      return false;
+    }
+
+    try {
+      sessionStorage.setItem(dedupeKey, String(now));
+      if (cleanPhone) {
+        sessionStorage.setItem('abbacy_thankyou_lead_' + cleanPhone, 'submitted');
+        sessionStorage.setItem('abbacy_lead_submitted_' + cleanPhone, 'true');
+      }
+      if (data.phone) {
+        sessionStorage.setItem('abbacy_thankyou_lead_' + data.phone, 'submitted');
+        sessionStorage.setItem('abbacy_lead_submitted_' + data.phone, 'true');
+      }
+    } catch (storageErr) {}
+
+    const dataStr = JSON.stringify(data);
+    let sent = false;
+
+    // 1. Fetch with keepalive: true for modern browsers (guarantees delivery across page navigation)
+    if (window.fetch) {
       try {
-        const blob = new Blob([dataStr], { type: 'text/plain;charset=UTF-8' });
-        navigator.sendBeacon(SCRIPT_URL, blob);
-      } catch (beaconErr) {
-        console.warn('sendBeacon notice:', beaconErr);
+        fetch(SCRIPT_URL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
+          body: dataStr,
+          keepalive: true
+        }).catch(err => {
+          console.warn('Background Google Sheet submission error:', err);
+        });
+        sent = true;
+      } catch (fetchErr) {
+        console.warn('Fetch keepalive initialization failed, falling back to sendBeacon:', fetchErr);
       }
     }
 
-    // 2. Fetch with keepalive: true for modern background persistence
-    fetch(SCRIPT_URL, {
-      method: 'POST',
-      headers: { 'Content-Type': 'text/plain' },
-      body: dataStr,
-      keepalive: true
-    }).catch(err => {
-      console.warn('Background Google Sheet submission error:', err);
-    });
+    // 2. Only if fetch was unavailable or threw synchronous initialization error, use sendBeacon
+    if (!sent && navigator.sendBeacon) {
+      try {
+        const blob = new Blob([dataStr], { type: 'text/plain;charset=UTF-8' });
+        navigator.sendBeacon(SCRIPT_URL, blob);
+        sent = true;
+      } catch (beaconErr) {
+        console.warn('sendBeacon fallback notice:', beaconErr);
+      }
+    }
+
+    return sent;
   } catch (err) {
     console.error('Failed to initiate background submission:', err);
+    return false;
   }
 }
 
@@ -2406,6 +2474,10 @@ if (document.readyState === 'loading') {
     const leadForm = document.getElementById('calcLeadForm');
     if (leadForm) {
       leadForm.addEventListener('submit', (e) => {
+        if (leadForm.dataset.submitting === 'true') {
+          e.preventDefault();
+          return;
+        }
         e.preventDefault();
         const nameInput = document.getElementById('calcLeadName');
         const phoneInput = document.getElementById('calcLeadPhone');
@@ -2429,6 +2501,8 @@ if (document.readyState === 'loading') {
           return;
         }
 
+        leadForm.dataset.submitting = 'true';
+
         const leadPayload = {
           name,
           phone,
@@ -2438,6 +2512,8 @@ if (document.readyState === 'loading') {
           source_page: window.location.pathname,
           timestamp: new Date().toISOString()
         };
+
+        const cleanPhone = String(leadPayload.phone || '').replace(/\D/g, '');
 
         // Store lead info locally
         try {
@@ -2457,15 +2533,22 @@ if (document.readyState === 'loading') {
 
         try {
           sessionStorage.setItem('abbacy_last_lead', JSON.stringify(leadPayload));
-          sessionStorage.setItem('abbacy_thankyou_lead_' + leadPayload.phone, 'submitted');
+          if (cleanPhone) {
+            sessionStorage.setItem('abbacy_thankyou_lead_' + cleanPhone, 'submitted');
+            sessionStorage.setItem('abbacy_lead_submitted_' + cleanPhone, 'true');
+          }
+          if (leadPayload.phone) {
+            sessionStorage.setItem('abbacy_thankyou_lead_' + leadPayload.phone, 'submitted');
+            sessionStorage.setItem('abbacy_lead_submitted_' + leadPayload.phone, 'true');
+          }
         } catch(err) {}
 
-        // Transmit to Google Sheets backend
+        // Transmit to Google Sheets backend (guaranteed single request)
         submitToGoogleSheets(leadPayload);
 
         const redirectParams = new URLSearchParams();
         redirectParams.set('name', leadPayload.name);
-        redirectParams.set('phone', leadPayload.phone);
+        redirectParams.set('phone', cleanPhone || leadPayload.phone);
         redirectParams.set('destination', leadPayload.destination);
         redirectParams.set('course', leadPayload.course);
         redirectParams.set('source', 'cost-loan-calculator');

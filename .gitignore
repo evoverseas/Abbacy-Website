@@ -1,0 +1,26 @@
+# Operating System & Environment
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
+
+# Python & Node Caches
+__pycache__/
+*.py[cod]
+node_modules/
+
+# Logs & Environment Files
+*.log
+.env
+.env.*
+
+# Local Editor Settings
+.vscode/
+.idea/
+
+# AI Agent Skills & Tooling (Local development only, not for GitHub Pages)
+.agents/
+.claude/
+.skills/
+skills-lock.json
+
