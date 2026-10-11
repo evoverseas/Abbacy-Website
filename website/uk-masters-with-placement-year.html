@@ -269,6 +269,33 @@
       .content-section { padding: 48px 0 !important; }
       .info-card-grid { grid-template-columns: 1fr; gap: 16px; }
     }
+  
+    /* INPUT & TEXTAREA STYLES */
+    .finput,
+    .lead-form input,
+    .lead-form textarea,
+    .lead-card input,
+    .lead-card textarea {
+      width: 100% !important;
+      border: 1.5px solid #d1d5db !important;
+      border-radius: 10px !important;
+      padding: 12px 14px !important;
+      font-size: 0.92rem !important;
+      font-family: var(--font-body, 'Inter', sans-serif) !important;
+      color: #1f2937 !important;
+      background: #ffffff !important;
+      box-sizing: border-box !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    .finput:focus,
+    .lead-form input:focus,
+    .lead-form textarea:focus,
+    .lead-card input:focus,
+    .lead-card textarea:focus {
+      outline: none !important;
+      border-color: var(--gold, #c9973a) !important;
+      box-shadow: 0 0 0 3px rgba(201, 151, 58, 0.2) !important;
+    }
   </style>
 </head>
 <body>
@@ -355,41 +382,49 @@
           
           <div class="form-msg" id="formMsg"></div>
 
-          <form id="contactForm" novalidate>
-            <input type="hidden" name="utm_source" id="lp_utm_source" value="website">
-            <input type="hidden" name="utm_medium" id="lp_utm_medium" value="uk_placement_masters">
-            <input type="hidden" name="utm_campaign" id="lp_utm_campaign" value="uk_admissions">
-            <input type="hidden" name="destination" value="UK Placement Masters">
-            
+          <form id="leadForm" class="lead-form" action="https://formsubmit.co/ajax/info@abbacy.in" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="New Lead: Get UK Placement Master's Shortlist">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="source" value="uk-masters-with-placement-year.html">
+            <input type="hidden" name="destination" value="UK Master's with Placement">
+            <input type="hidden" name="utm_source" id="utm_source" value="website">
+            <input type="hidden" name="utm_medium" id="utm_medium" value="">
+            <input type="hidden" name="utm_campaign" id="utm_campaign" value="">
+            <input type="hidden" name="utm_content" id="utm_content" value="">
+            <input type="hidden" name="utm_term" id="utm_term" value="">
+            <input type="hidden" name="gclid" id="gclid" value="">
+
             <div class="form-group" style="margin-bottom: 12px;">
-              <label class="flabel" for="name" style="font-size: 0.82rem; font-weight: 700; color: var(--navy);">Full Name *</label>
-              <input type="text" id="name" name="name" class="finput" placeholder="e.g. Vikram Reddy" required style="width: 100%; border: 1px solid var(--gray-300); padding: 10px 12px; border-radius: var(--radius);">
-            </div>
-            
-            <div class="form-group" style="margin-bottom: 12px;">
-              <label class="flabel" for="email" style="font-size: 0.82rem; font-weight: 700; color: var(--navy);">Email Address *</label>
-              <input type="email" id="email" name="email" class="finput" placeholder="e.g. vikram@example.com" required style="width: 100%; border: 1px solid var(--gray-300); padding: 10px 12px; border-radius: var(--radius);">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Full Name *</label>
+              <input type="text" id="name" name="name" class="finput" placeholder="e.g. Sai Teja Reddy" required style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
             </div>
 
             <div class="form-group" style="margin-bottom: 12px;">
-              <label class="flabel" for="phone" style="font-size: 0.82rem; font-weight: 700; color: var(--navy);">Mobile / WhatsApp Number *</label>
-              <input type="tel" id="phone" name="phone" class="finput" placeholder="e.g. +91 98765 43210" required style="width: 100%; border: 1px solid var(--gray-300); padding: 10px 12px; border-radius: var(--radius);">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Email Address *</label>
+              <input type="email" id="email" name="email" class="finput" placeholder="e.g. saiteja@example.com" required style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
             </div>
 
-            <div class="form-group" style="margin-bottom: 14px;">
-              <label class="flabel" for="course" style="font-size: 0.82rem; font-weight: 700; color: var(--navy);">Field of Study with Placement</label>
-              <select id="course" name="course" class="finput" style="width: 100%; border: 1px solid var(--gray-300); padding: 10px 12px; border-radius: var(--radius);">
-                <option value="MSc Computer Science / Software (Placement)">MSc Computer Science / Software Engineering (with Placement)</option>
-                <option value="MSc Data Science / Artificial Intelligence">MSc Data Science &amp; Artificial Intelligence (with Placement)</option>
-                <option value="MBA / International Business with Placement">MBA / International Business Management (with Placement)</option>
-                <option value="MSc Cybersecurity / Networks with Placement">MSc Cybersecurity &amp; Cloud (with Placement)</option>
-                <option value="Engineering (Mechanical / Automotive) Placement">MSc Mechanical / Automotive Engineering (with Placement)</option>
-              </select>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Mobile / WhatsApp Number *</label>
+              <input type="tel" id="phone" name="phone" class="finput" placeholder="e.g. +91 98765 43210" required style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
             </div>
 
-            <button type="submit" class="btn btn-shimmer btn-full btn-lg lp-submit-btn" id="submitBtn">Get Free UK Placement Guidance →</button>
-            <div style="text-align: center; margin-top: 10px; font-size: 0.74rem; color: var(--gray-500);">
-              <i class="fas fa-lock"></i> 100% Free · Confidential Counseling at Himayatnagar, Hyderabad
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Intended Placement Program in UK</label>
+              <input type="text" id="course" name="course" class="finput" placeholder="e.g. MSc Advanced Computer Science, AI, Cyber Security, MBA..." style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
+            </div>
+
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Additional Message / Notes (Optional)</label>
+              <textarea id="message" name="message" rows="2" placeholder="Tell us your B.Tech stream, GPA, or target companies (optional)..." style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 10px 14px; font-size: 0.88rem; font-family: var(--font-body, 'Inter', sans-serif); color: #1f2937; background: #fff; resize: vertical; box-sizing: border-box;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-shimmer" style="padding: 13px 20px; font-size: 0.98rem; font-weight: 700; border-radius: 10px; width: 100%;">
+              Get Free UK Placement Guidance →
+            </button>
+            <div style="text-align: center; margin-top: 10px; font-size: 0.74rem; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fas fa-lock" style="color: var(--gold, #c9973a);"></i> 100% Free · No Spam · Himayatnagar Office Walk-in
             </div>
           </form>
         </div>

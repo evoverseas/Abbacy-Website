@@ -378,6 +378,33 @@
         grid-template-columns: 1fr !important;
       }
     }
+  
+    /* INPUT & TEXTAREA STYLES */
+    .finput,
+    .lead-form input,
+    .lead-form textarea,
+    .lead-card input,
+    .lead-card textarea {
+      width: 100% !important;
+      border: 1.5px solid #d1d5db !important;
+      border-radius: 10px !important;
+      padding: 12px 14px !important;
+      font-size: 0.92rem !important;
+      font-family: var(--font-body, 'Inter', sans-serif) !important;
+      color: #1f2937 !important;
+      background: #ffffff !important;
+      box-sizing: border-box !important;
+      transition: border-color 0.2s, box-shadow 0.2s !important;
+    }
+    .finput:focus,
+    .lead-form input:focus,
+    .lead-form textarea:focus,
+    .lead-card input:focus,
+    .lead-card textarea:focus {
+      outline: none !important;
+      border-color: var(--gold, #c9973a) !important;
+      box-shadow: 0 0 0 3px rgba(201, 151, 58, 0.2) !important;
+    }
   </style>
 </head>
 <body>
@@ -467,74 +494,51 @@
         <h3 style="font-size: 1.3rem; color: var(--navy); margin-bottom: 6px; font-weight: 800;">Get a Free UK vs Dubai Profile Evaluation</h3>
         <p style="font-size: 0.85rem; color: #555; margin-bottom: 18px;">Our Senior Counsellors at Himayatnagar will assess your budget, IELTS status &amp; career goals to pick your ideal destination.</p>
         
-        <form id="leadForm" class="lead-form" action="https://formsubmit.co/ajax/info@abbacy.in" method="POST">
-          <input type="hidden" name="utm_source" id="lp_utm_source" value="">
-          <input type="hidden" name="utm_medium" id="lp_utm_medium" value="">
-          <input type="hidden" name="utm_campaign" id="lp_utm_campaign" value="">
-          <input type="hidden" name="utm_content" id="lp_utm_content" value="">
-          <input type="hidden" name="utm_term" id="lp_utm_term" value="">
-          <input type="hidden" name="gclid" id="lp_gclid" value="">
-          <input type="hidden" name="destination" value="UK vs Dubai">
-          <input type="hidden" name="course" value="UK vs Dubai Comparative Profile Evaluation">
-          <input type="hidden" name="_subject" value="New UK vs Dubai Comparison Lead">
-          <input type="hidden" name="_template" value="table">
-          <input type="hidden" name="_captcha" value="false">
-          <input type="hidden" name="source" value="study-in-uk-vs-study-in-dubai.html">
+        <form id="leadForm" class="lead-form" action="https://formsubmit.co/ajax/info@abbacy.in" method="POST" novalidate>
+            <input type="hidden" name="_subject" value="New Lead: Compare UK vs Dubai for Your Profile">
+            <input type="hidden" name="_template" value="table">
+            <input type="hidden" name="_captcha" value="false">
+            <input type="hidden" name="source" value="study-in-uk-vs-study-in-dubai.html">
+            <input type="hidden" name="destination" value="UK vs Dubai Admissions">
+            <input type="hidden" name="utm_source" id="utm_source" value="website">
+            <input type="hidden" name="utm_medium" id="utm_medium" value="">
+            <input type="hidden" name="utm_campaign" id="utm_campaign" value="">
+            <input type="hidden" name="utm_content" id="utm_content" value="">
+            <input type="hidden" name="utm_term" id="utm_term" value="">
+            <input type="hidden" name="gclid" id="gclid" value="">
 
-          <div style="margin-bottom: 12px;">
-            <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 4px;">Full Name *</label>
-            <input type="text" name="name" required placeholder="e.g. Rahul Reddy" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem;">
-          </div>
-
-          <div style="margin-bottom: 12px;">
-            <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 4px;">Email Address *</label>
-            <input type="email" name="email" required placeholder="e.g. rahul.reddy@gmail.com" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem;">
-          </div>
-
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-            <div>
-              <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 4px;">Phone Number *</label>
-              <input type="tel" name="phone" required placeholder="e.g. 9876543210" pattern="[0-9]{10}" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem;">
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Full Name *</label>
+              <input type="text" id="name" name="name" class="finput" placeholder="e.g. Sai Teja Reddy" required style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
             </div>
-            <div>
-              <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 4px;">City / Locality *</label>
-              <input type="text" name="city" required placeholder="e.g. Hyderabad / Himayatnagar" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.9rem;">
-            </div>
-          </div>
 
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin-bottom: 12px;">
-            <div>
-              <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 4px;">Preferred Intake</label>
-              <select name="intake" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.88rem; background: #fff;">
-                <option value="Sept-Oct 2026">Sept / Oct 2026</option>
-                <option value="Jan-Feb 2027">Jan / Feb 2027</option>
-                <option value="May-June 2027">May / June 2027</option>
-              </select>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Email Address *</label>
+              <input type="email" id="email" name="email" class="finput" placeholder="e.g. saiteja@example.com" required style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
             </div>
-            <div>
-              <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 4px;">Estimated Budget</label>
-              <select name="budget" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.88rem; background: #fff;">
-                <option value="₹15L to ₹22L">₹15L to ₹22L</option>
-                <option value="₹22L to ₹30L">₹22L to ₹30L</option>
-                <option value="₹30L+">₹30L+</option>
-              </select>
+
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Mobile / WhatsApp Number *</label>
+              <input type="tel" id="phone" name="phone" class="finput" placeholder="e.g. +91 98765 43210" required style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
             </div>
-          </div>
 
-          <div style="margin-bottom: 14px;">
-            <label style="display: block; font-size: 0.8rem; font-weight: 600; color: #333; margin-bottom: 4px;">Interested Destination</label>
-            <select name="destination_interest" style="width: 100%; padding: 10px 12px; border: 1px solid #ccc; border-radius: 6px; font-size: 0.88rem; background: #fff;">
-              <option value="Confused / Need Advice">Help me choose between UK and Dubai</option>
-              <option value="United Kingdom">Leaning towards UK</option>
-              <option value="Dubai UAE">Leaning towards Dubai</option>
-              <option value="Dubai to UK Transfer">Dubai-to-UK Twinning Pathway</option>
-            </select>
-          </div>
+            <div class="form-group" style="margin-bottom: 12px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Preferred Course & Destination Interest</label>
+              <input type="text" id="course" name="course" class="finput" placeholder="e.g. UK Master's in CS or Dubai MBA..." style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 12px 14px; font-size: 0.92rem; box-sizing: border-box; background: #fff;">
+            </div>
 
-          <button type="submit" class="btn btn-primary btn-block btn-shimmer" style="padding: 12px; font-size: 0.98rem; font-weight: 700;">
-            Compare &amp; Get Expert Recommendation →
-          </button>
-        </form>
+            <div class="form-group" style="margin-bottom: 16px;">
+              <label style="display: block; font-size: 0.82rem; font-weight: 700; color: var(--navy); margin-bottom: 5px;">Additional Message / Notes (Optional)</label>
+              <textarea id="message" name="message" rows="2" placeholder="Tell us your budget, career goals, or any comparison questions (optional)..." style="width: 100%; border: 1.5px solid #d1d5db; border-radius: 10px; padding: 10px 14px; font-size: 0.88rem; font-family: var(--font-body, 'Inter', sans-serif); color: #1f2937; background: #fff; resize: vertical; box-sizing: border-box;"></textarea>
+            </div>
+
+            <button type="submit" class="btn btn-primary btn-block btn-shimmer" style="padding: 13px 20px; font-size: 0.98rem; font-weight: 700; border-radius: 10px; width: 100%;">
+              Compare & Get Expert Recommendation →
+            </button>
+            <div style="text-align: center; margin-top: 10px; font-size: 0.74rem; color: #64748b; display: flex; align-items: center; justify-content: center; gap: 6px;">
+              <i class="fas fa-lock" style="color: var(--gold, #c9973a);"></i> 100% Free · No Spam · Himayatnagar Office Walk-in
+            </div>
+          </form>
         <div id="formSuccess" style="display:none; margin-top: 12px; background: #E8F5E9; color: #2E7D32; padding: 12px; border-radius: 6px; text-align: center; font-size: 0.9rem; font-weight: 600;">
           <i class="fas fa-check-circle"></i> Profile received! Senior Counsellor Alisha/Laxmi will call you within 15 minutes.
         </div>
