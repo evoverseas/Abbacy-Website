@@ -61,7 +61,7 @@ if (navLinks.length) {
 
 /* ── Hamburger / Mobile Menu ───────────────────────────── */
 const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenu = document.getElementById('mobile-menu') || document.getElementById('mobileMenu');
 if (hamburger && mobileMenu) {
   hamburger.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('open');
@@ -128,17 +128,19 @@ if ('IntersectionObserver' in window && animEls.length) {
 }
 
 /* ── FAQ Accordion ─────────────────────────────────────── */
-const faqList = document.querySelector('.faq-list');
-if (faqList) {
-  faqList.addEventListener('click', e => {
+const faqContainers = document.querySelectorAll('.faq-list, .faq-accordion');
+faqContainers.forEach(container => {
+  container.addEventListener('click', e => {
     const btn = e.target.closest('.faq-q');
     if (!btn) return;
-    const item = btn.parentElement;
+    const item = btn.closest('.faq-item') || btn.parentElement;
+    if (!item) return;
     const isOpen = item.classList.contains('open');
 
-    faqList.querySelectorAll('.faq-item.open').forEach(i => {
+    container.querySelectorAll('.faq-item.open').forEach(i => {
       i.classList.remove('open');
-      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      const q = i.querySelector('.faq-q');
+      if (q) q.setAttribute('aria-expanded', 'false');
     });
 
     if (!isOpen) {
@@ -146,7 +148,7 @@ if (faqList) {
       btn.setAttribute('aria-expanded', 'true');
     }
   });
-}
+});
 
 /* ── Hero Typing Text Rotation ─────────────────────────── */
 const heroTyping = document.getElementById('heroTyping');
