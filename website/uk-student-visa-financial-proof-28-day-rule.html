@@ -155,8 +155,8 @@
   }
   </script>
   <style>
-    body { color: #1f2937 !important; font-size: 16px; word-wrap: break-word; overflow-x: hidden; }
-    h1, h2, h3, h4 { color: var(--navy-dark) !important; }
+    body { font-family: var(--font-body, 'Inter', sans-serif); color: #1f2937 !important; font-size: 16px; word-wrap: break-word; overflow-x: hidden; }
+    h1, h2, h3, h4 { font-family: var(--font-head, 'Plus Jakarta Sans', sans-serif) !important; color: var(--navy-dark); }
     .footer h3, .footer h4 { color: var(--white) !important; }
 
     /* LANDING PAGE HERO & LAYOUT */
@@ -166,6 +166,14 @@
       overflow: hidden;
       color: var(--white);
     }
+    .lp-hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 85% 20%, rgba(245,158,11,0.18) 0%, transparent 55%);
+      pointer-events: none !important;
+      z-index: 0 !important;
+    }
     .lp-grid {
       display: grid;
       grid-template-columns: 1.15fr 0.85fr;
@@ -174,12 +182,131 @@
       position: relative;
       z-index: 1;
     }
+
+    /* HERO BADGE */
+    .hero-badge, .lp-badge {
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      background: rgba(200, 149, 44, 0.2) !important;
+      border: 1px solid var(--gold, #c9973a) !important;
+      color: #fcd34d !important;
+      padding: 6px 14px !important;
+      border-radius: 20px !important;
+      font-family: var(--font-head, 'Plus Jakarta Sans', sans-serif) !important;
+      font-size: 0.85rem !important;
+      font-weight: 700 !important;
+      margin-bottom: 16px !important;
+    }
+
+    /* HERO HEADLINE - HIGH CONTRAST & BRAND TYPOGRAPHY */
+    .lp-hero h1,
+    .lp-hero .lp-title,
+    h1.lp-title {
+      font-family: var(--font-head, 'Plus Jakarta Sans', sans-serif) !important;
+      font-size: clamp(1.75rem, 4.4vw, 2.85rem) !important;
+      font-weight: 800 !important;
+      line-height: 1.22 !important;
+      margin-bottom: 18px !important;
+      color: #ffffff !important; /* CRISP PURE WHITE */
+      text-shadow: 0 2px 10px rgba(0, 0, 0, 0.45);
+      letter-spacing: -0.02em !important;
+    }
+    .lp-hero h1 em,
+    .lp-title em {
+      font-family: var(--font-display, 'Playfair Display', serif) !important;
+      font-style: italic !important;
+      font-weight: 700 !important;
+      color: #fcd34d !important;
+      background: linear-gradient(120deg, #fcd34d 0%, #fbbf24 100%) !important;
+      -webkit-background-clip: text !important;
+      -webkit-text-fill-color: transparent !important;
+      text-shadow: none !important;
+    }
+    .lp-hero p,
+    .lp-desc {
+      font-family: var(--font-body, 'Inter', sans-serif) !important;
+      font-size: 1.05rem !important;
+      color: rgba(255, 255, 255, 0.95) !important;
+      line-height: 1.6 !important;
+      margin-bottom: 24px !important;
+      text-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+    }
+
+    /* HERO STATS */
     .hero-stats {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 14px;
       margin-bottom: 24px;
     }
+    .hero-stats > div {
+      background: rgba(255, 255, 255, 0.1) !important;
+      border: 1px solid rgba(255, 255, 255, 0.18) !important;
+      backdrop-filter: blur(8px) !important;
+      -webkit-backdrop-filter: blur(8px) !important;
+      border-radius: 8px !important;
+      padding: 12px !important;
+    }
+    .hero-stats div[style*="font-size: 1.3rem"],
+    .hero-stats .stat-val {
+      color: #ffffff !important;
+      font-family: var(--font-head, 'Plus Jakarta Sans', sans-serif) !important;
+      font-weight: 800 !important;
+      font-size: 1.25rem !important;
+    }
+    .hero-stats div[style*="font-size: 0.78rem"],
+    .hero-stats .stat-lbl {
+      color: rgba(255, 255, 255, 0.85) !important;
+      font-family: var(--font-body, 'Inter', sans-serif) !important;
+      font-size: 0.78rem !important;
+    }
+
+    /* HERO CTA BUTTONS */
+    .btn-gold,
+    .btn.btn-gold {
+      background: linear-gradient(135deg, #c9973a, #e6b85c) !important;
+      color: #0b1a2d !important;
+      font-family: var(--font-head, 'Plus Jakarta Sans', sans-serif) !important;
+      font-weight: 700 !important;
+      padding: 13px 24px !important;
+      border-radius: 8px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      border: none !important;
+      box-shadow: 0 4px 15px rgba(201, 151, 58, 0.4) !important;
+      text-decoration: none !important;
+      transition: all 0.3s ease !important;
+    }
+    .btn-gold:hover {
+      transform: translateY(-2px) !important;
+      box-shadow: 0 6px 20px rgba(201, 151, 58, 0.6) !important;
+    }
+    .btn-outline-white,
+    .btn.btn-outline-white {
+      background: rgba(255, 255, 255, 0.12) !important;
+      border: 1px solid rgba(255, 255, 255, 0.45) !important;
+      color: #ffffff !important;
+      font-family: var(--font-head, 'Plus Jakarta Sans', sans-serif) !important;
+      font-weight: 600 !important;
+      padding: 13px 24px !important;
+      border-radius: 8px !important;
+      display: inline-flex !important;
+      align-items: center !important;
+      gap: 8px !important;
+      text-decoration: none !important;
+      backdrop-filter: blur(10px) !important;
+      -webkit-backdrop-filter: blur(10px) !important;
+      transition: all 0.3s ease !important;
+    }
+    .btn-outline-white:hover {
+      background: rgba(255, 255, 255, 0.22) !important;
+      border-color: #ffffff !important;
+      transform: translateY(-2px) !important;
+    }
+
+    /* LEAD CARD */
     .hero-form-card, .lead-card {
       background: var(--white);
       border-radius: var(--radius-lg, 14px);
@@ -238,7 +365,10 @@
     }
     @media (max-width: 768px) {
       .container { padding: 0 16px !important; }
-      .lp-title { font-size: clamp(1.45rem, 5.8vw, 2.1rem) !important; line-height: 1.22 !important; }
+      .lp-hero h1, .lp-hero .lp-title, h1.lp-title {
+        font-size: clamp(1.48rem, 5.8vw, 2.15rem) !important;
+        line-height: 1.22 !important;
+      }
       .lp-desc { font-size: 0.94rem !important; margin-bottom: 18px !important; }
       .hero-form-card, .lead-card { padding: 22px 16px !important; }
       .hero-stats { grid-template-columns: 1fr !important; gap: 10px !important; }
@@ -298,7 +428,7 @@
         <div class="hero-badge" style="display: inline-flex; align-items: center; gap: 8px; background: rgba(200,149,44,0.2); border: 1px solid var(--gold); color: var(--gold-light); padding: 6px 14px; border-radius: 20px; font-size: 0.85rem; font-weight: 700; margin-bottom: 16px;">
           <i class="fas fa-balance-scale"></i> UKVI Compliance Guide 2026–2027
         </div>
-        <h1 class="lp-title" style="color: #fff; font-size: clamp(2rem, 3.8vw, 3rem); font-family: 'Playfair Display', serif; line-height: 1.2; margin-bottom: 16px;">
+        <h1 class="lp-title">
           UK Student Visa Financial Proof: The 28-Day Bank Balance Rule Explained
         </h1>
         <p class="lp-desc aeo-text" style="color: rgba(255,255,255,0.9); font-size: 1.05rem; line-height: 1.6; margin-bottom: 24px;">
@@ -423,7 +553,7 @@
   <div class="container">
     <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
       <span class="section-tag" style="color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">The Exact Formula</span>
-      <h2 style="font-size: 2.2rem; color: var(--navy); font-family: 'Playfair Display', serif;">How to Calculate Total Funds Required by UKVI</h2>
+      <h2 style="font-size: 2.2rem; color: var(--navy);">How to Calculate Total Funds Required by UKVI</h2>
       <p style="color: #666;">Total Funds Required = Unpaid First Year Tuition Fees + Living Maintenance (for 9 months)</p>
     </div>
 
@@ -486,7 +616,7 @@
   <div class="container">
     <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
       <span class="section-tag" style="color: var(--navy); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">Document Verification</span>
-      <h2 style="font-size: 2.2rem; color: var(--navy); font-family: 'Playfair Display', serif;">Acceptable vs Non-Acceptable Financial Proof</h2>
+      <h2 style="font-size: 2.2rem; color: var(--navy);">Acceptable vs Non-Acceptable Financial Proof</h2>
       <p style="color: #666;">UKVI has strict rules on which Indian bank accounts and financial instruments can be accepted.</p>
     </div>
 
@@ -525,7 +655,7 @@
   <div class="container">
     <div class="section-header" style="text-align: center; max-width: 800px; margin: 0 auto 40px;">
       <span class="section-tag" style="color: #C62828; font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">Visa Refusal Traps</span>
-      <h2 style="font-size: 2.2rem; color: var(--navy); font-family: 'Playfair Display', serif;">5 Common Financial Mistakes Hyderabad Students Make</h2>
+      <h2 style="font-size: 2.2rem; color: var(--navy);">5 Common Financial Mistakes Hyderabad Students Make</h2>
       <p style="color: #666;">How Abbacy Global Group's pre-visa scrutiny protects you from 10-year bans and visa rejections.</p>
     </div>
 
@@ -558,7 +688,7 @@
   <div class="container">
     <div class="section-header" style="text-align: center; max-width: 850px; margin: 0 auto 36px;">
       <span class="section-tag" style="color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;"><i class="fas fa-table"></i> Official Financial Matrix</span>
-      <h2 style="font-size: 2.2rem; color: var(--navy); font-family: 'Playfair Display', serif;">UKVI Maintenance Proof Matrix: Outer vs Inner London (GBP &amp; INR)</h2>
+      <h2 style="font-size: 2.2rem; color: var(--navy);">UKVI Maintenance Proof Matrix: Outer vs Inner London (GBP &amp; INR)</h2>
       <p style="color: #666;">Exact calculation formula mandated under UKVI Student Route rules for Autumn 2026 and Spring 2027 intakes.</p>
     </div>
 
@@ -615,7 +745,7 @@
 
     <!-- Approved Banks Matrix -->
     <div style="background: #F8F9FA; border-radius: 14px; padding: 32px; border: 1.5px solid #E5E7EB;">
-      <h3 style="color: var(--navy); font-size: 1.35rem; margin-bottom: 12px; font-family: 'Playfair Display', serif;"><i class="fas fa-university" style="color: var(--gold);"></i> Indian Bank Verification: Which Banks Does UKVI Accept at VFS Hyderabad?</h3>
+      <h3 style="color: var(--navy); font-size: 1.35rem; margin-bottom: 12px;"><i class="fas fa-university" style="color: var(--gold);"></i> Indian Bank Verification: Which Banks Does UKVI Accept at VFS Hyderabad?</h3>
       <p style="color: #555; font-size: 0.92rem; line-height: 1.7; margin-bottom: 20px;">
         UKVI conducts direct automated and manual verification checks with Indian financial institutions. Use this compliance checklist vetted by our Himayatnagar filing officers:
       </p>
@@ -657,7 +787,7 @@
   <div class="container">
     <div class="section-header" style="text-align: center; max-width: 750px; margin: 0 auto 40px;">
       <span class="section-tag" style="color: var(--gold); font-weight: 700; text-transform: uppercase; font-size: 0.85rem;">FAQs</span>
-      <h2 style="font-size: 2.2rem; color: var(--navy); font-family: 'Playfair Display', serif;">UKVI 28-Day Rule: Frequently Asked Questions</h2>
+      <h2 style="font-size: 2.2rem; color: var(--navy);">UKVI 28-Day Rule: Frequently Asked Questions</h2>
       <p style="color: #666;">Clear answers straight from experienced UKVI visa filing experts.</p>
     </div>
 
