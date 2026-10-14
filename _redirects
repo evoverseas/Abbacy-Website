@@ -1,0 +1,11 @@
+# Netlify & Cloudflare Pages 301 Redirect Rules
+/study-abroad-consultants-himayat-nagar.html   /study-abroad-consultants-himayatnagar.html   301
+/study-abroad-consultants-himayat-nagar        /study-abroad-consultants-himayatnagar.html   301
+/study-abroad-consultants-himayathnagar.html   /study-abroad-consultants-himayatnagar.html   301
+/study-abroad-consultants-himayathnagar        /study-abroad-consultants-himayatnagar.html   301
+/himayat-nagar.html                           /study-abroad-consultants-himayatnagar.html   301
+/himayat-nagar                                /study-abroad-consultants-himayatnagar.html   301
+/himayatnagar.html                            /study-abroad-consultants-himayatnagar.html   301
+/himayatnagar                                 /study-abroad-consultants-himayatnagar.html   301
+/himayathnagar.html                           /study-abroad-consultants-himayatnagar.html   301
+/himayathnagar                                /study-abroad-consultants-himayatnagar.html   301

@@ -61,7 +61,7 @@ if (navLinks.length) {
 
 /* ── Hamburger / Mobile Menu ───────────────────────────── */
 const hamburger = document.getElementById('hamburger');
-const mobileMenu = document.getElementById('mobile-menu');
+const mobileMenu = document.getElementById('mobile-menu') || document.getElementById('mobileMenu');
 if (hamburger && mobileMenu) {
   hamburger.addEventListener('click', () => {
     const open = mobileMenu.classList.toggle('open');
@@ -128,17 +128,19 @@ if ('IntersectionObserver' in window && animEls.length) {
 }
 
 /* ── FAQ Accordion ─────────────────────────────────────── */
-const faqList = document.querySelector('.faq-list');
-if (faqList) {
-  faqList.addEventListener('click', e => {
+const faqContainers = document.querySelectorAll('.faq-list, .faq-accordion');
+faqContainers.forEach(container => {
+  container.addEventListener('click', e => {
     const btn = e.target.closest('.faq-q');
     if (!btn) return;
-    const item = btn.parentElement;
+    const item = btn.closest('.faq-item') || btn.parentElement;
+    if (!item) return;
     const isOpen = item.classList.contains('open');
 
-    faqList.querySelectorAll('.faq-item.open').forEach(i => {
+    container.querySelectorAll('.faq-item.open').forEach(i => {
       i.classList.remove('open');
-      i.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+      const q = i.querySelector('.faq-q');
+      if (q) q.setAttribute('aria-expanded', 'false');
     });
 
     if (!isOpen) {
@@ -146,51 +148,10 @@ if (faqList) {
       btn.setAttribute('aria-expanded', 'true');
     }
   });
-}
+});
 
-/* ── Hero Typing Text Rotation ─────────────────────────── */
-const heroTyping = document.getElementById('heroTyping');
-if (heroTyping) {
-  const phrases = [
-    'Study Abroad Consultants',
-    'Overseas Study Experts',
-    'Foreign Education Experts',
-    'Student Visa Consultants',
-    'Global Education Partners'
-  ];
-  let phraseIndex = 0;
-  let charIndex = phrases[0].length;
-  let isDeleting = true;
-  let typeSpeed = 2500;
-
-  function typeEffect() {
-    const current = phrases[phraseIndex];
-
-    if (isDeleting) {
-      heroTyping.textContent = current.substring(0, charIndex - 1);
-      charIndex--;
-      typeSpeed = 40;
-    } else {
-      heroTyping.textContent = current.substring(0, charIndex + 1);
-      charIndex++;
-      typeSpeed = 80;
-    }
-
-    if (!isDeleting && charIndex === current.length) {
-      typeSpeed = 2500; // Pause at full text
-      isDeleting = true;
-    } else if (isDeleting && charIndex === 0) {
-      isDeleting = false;
-      phraseIndex = (phraseIndex + 1) % phrases.length;
-      typeSpeed = 400; // Pause before new phrase
-    }
-
-    setTimeout(typeEffect, typeSpeed);
-  }
-
-  // Start backspacing after initial 2.5s display of static HTML text
-  setTimeout(typeEffect, 2500);
-}
+/* ── Static Crawlable Hero Subtitle (Zero H1 Mutation) ── */
+// Hero H1 is strictly static to ensure Googlebot indexes full text without character truncation.
 
 /* ── Testimonials Carousel ─────────────────────────────── */
 const carouselTrack = document.getElementById('testimonialsTrack');
@@ -307,8 +268,27 @@ if (carouselTrack && carouselDots) {
   /* ── Core: switch to a step using class toggling ── */
   function goTo(n) {
     if (n === 'result') {
+      const resultEl = card.querySelector('.eligibility-step[data-step="result"]');
+      const tpl = document.getElementById('eligibility-result-template');
+      if (resultEl && tpl && resultEl.children.length === 0) {
+        resultEl.appendChild(tpl.content.cloneNode(true));
+        const newRestartBtn = resultEl.querySelector('#eligRestart');
+        if (newRestartBtn) {
+          newRestartBtn.addEventListener('click', function() {
+            card.querySelectorAll('.elig-option.selected').forEach(o => o.classList.remove('selected'));
+            Object.keys(answers).forEach(k => delete answers[k]);
+            const rf = resultEl.querySelector('#eligForm');
+            const rc = resultEl.querySelector('#eligLeadCard');
+            const rs = resultEl.querySelector('#eligSuccessState');
+            if (rf) rf.reset();
+            if (rc) rc.style.display = 'block';
+            if (rs) rs.style.display = 'none';
+            goTo(1);
+          });
+        }
+      }
       card.querySelectorAll('.eligibility-step').forEach(s => s.classList.remove('active'));
-      card.querySelector('.eligibility-step[data-step="result"]').classList.add('active');
+      if (resultEl) resultEl.classList.add('active');
       navDiv.classList.add('elig-hidden');
       indicators.forEach(ind => { ind.classList.remove('active'); ind.classList.add('done'); });
       labels.forEach(lbl => { lbl.classList.remove('active'); lbl.classList.add('done'); });
@@ -504,16 +484,18 @@ if (carouselTrack && carouselDots) {
     else matchScore = Math.floor(Math.random() * (96 - 88 + 1)) + 88; // Sleek variance
 
     // 2. Animate Circular Match Gauge
-    if (gaugePct && gaugeFill) {
-      gaugePct.textContent = '0%';
+    const gPct = document.getElementById('eligGaugePct');
+    const gFill = document.getElementById('eligGaugeFill');
+    if (gPct && gFill) {
+      gPct.textContent = '0%';
       // Radius = 54, circumference = 2 * PI * r = ~339.29
       const circ = 339.29;
-      gaugeFill.style.strokeDashoffset = circ;
+      gFill.style.strokeDashoffset = circ;
       
       let count = 0;
       const interval = setInterval(function() {
         count++;
-        gaugePct.textContent = count + '%';
+        gPct.textContent = count + '%';
         if (count >= matchScore) {
           clearInterval(interval);
         }
@@ -521,7 +503,7 @@ if (carouselTrack && carouselDots) {
 
       setTimeout(function() {
         const offset = circ - (matchScore / 100) * circ;
-        gaugeFill.style.strokeDashoffset = offset;
+        gFill.style.strokeDashoffset = offset;
       }, 50);
     }
 
@@ -1169,16 +1151,19 @@ if (carouselTrack && carouselDots) {
         } catch(err) {}
       }
 
-      // Build immediate redirect URL
-      const redirectParams = new URLSearchParams();
-      if (combinedPayload.name) redirectParams.set('name', combinedPayload.name);
-      if (combinedPayload.phone) redirectParams.set('phone', cleanPhone || combinedPayload.phone);
-      if (combinedPayload.dream_destination) redirectParams.set('destination', combinedPayload.dream_destination);
-      if (combinedPayload.academic_background) redirectParams.set('course', combinedPayload.academic_background);
-      if (combinedPayload.email) redirectParams.set('email', combinedPayload.email);
-      redirectParams.set('source', 'eligibility-assessment');
+      // Store display state in sessionStorage (not in URL)
+      try {
+        sessionStorage.setItem('abbacy_lead_name', (combinedPayload.name || '').trim());
+        sessionStorage.setItem('abbacy_lead_dest', (combinedPayload.dream_destination || 'General').trim());
+      } catch (_) {}
 
-      const thankYouUrl = 'thank-you.html?' + redirectParams.toString();
+      // Redirect with zero PII in query string
+      const cleanParams = new URLSearchParams({
+        destination: combinedPayload.dream_destination || 'General',
+        source: 'eligibility-assessment'
+      });
+
+      const thankYouUrl = 'thank-you.html?' + cleanParams.toString();
 
       // Immediate redirect to ensure pixel fires without user navigation cancellation
       setTimeout(function() {
@@ -1205,13 +1190,11 @@ const stickyMobileCta = document.getElementById('stickyMobileCta');
 if (stickyMobileCta) {
   let lastScroll = 0;
   window.addEventListener('scroll', () => {
-    const hero = document.querySelector('.hero, .lp-hero, .guide-hero');
-    if (!hero) return;
-    const heroBottom = hero.offsetTop + hero.offsetHeight;
-    const pastHero = window.scrollY > (heroBottom - 100);
+    // On mobile devices, reveal sticky CTA promptly once scrolled past initial fold (400px)
+    const isPastThreshold = window.scrollY > 400;
     lastScroll = window.scrollY;
 
-    if (pastHero && window.innerWidth <= 768) {
+    if (isPastThreshold && window.innerWidth <= 768) {
       stickyMobileCta.classList.add('visible');
     } else {
       stickyMobileCta.classList.remove('visible');
@@ -1405,19 +1388,22 @@ function attachUniversalFormHandler(form) {
     // Transmit directly to Google Apps Script endpoint via single network request
     submitToGoogleSheets(payload);
 
-    // Build immediate redirection target URL with query params
-    const redirectParams = new URLSearchParams();
-    if (payload.name) redirectParams.set('name', payload.name);
-    if (payload.phone) redirectParams.set('phone', cleanPhone || payload.phone);
-    if (payload.destination) redirectParams.set('destination', payload.destination);
-    if (payload.course) redirectParams.set('course', payload.course);
-    if (payload.email) redirectParams.set('email', payload.email);
-    redirectParams.set('source', payload.source_page || window.location.pathname);
+    // Store display state in sessionStorage (not in URL)
+    try {
+      sessionStorage.setItem('abbacy_lead_name', (payload.name || '').trim());
+      sessionStorage.setItem('abbacy_lead_dest', (payload.destination || 'General').trim());
+    } catch (_) {}
+
+    // Redirect with zero PII in query string
+    const cleanParams = new URLSearchParams({
+      destination: payload.destination || 'General',
+      source: payload.source_page || window.location.pathname
+    });
     ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'].forEach(function(k) {
-      if (payload[k]) redirectParams.set(k, payload[k]);
+      if (payload[k]) cleanParams.set(k, payload[k]);
     });
 
-    const thankYouUrl = 'thank-you.html?' + redirectParams.toString();
+    const thankYouUrl = 'thank-you.html?' + cleanParams.toString();
 
     // Fire conversion event to dataLayer before navigation
     try {
@@ -2546,16 +2532,20 @@ if (document.readyState === 'loading') {
         // Transmit to Google Sheets backend (guaranteed single request)
         submitToGoogleSheets(leadPayload);
 
-        const redirectParams = new URLSearchParams();
-        redirectParams.set('name', leadPayload.name);
-        redirectParams.set('phone', cleanPhone || leadPayload.phone);
-        redirectParams.set('destination', leadPayload.destination);
-        redirectParams.set('course', leadPayload.course);
-        redirectParams.set('source', 'cost-loan-calculator');
+        // Store display state in sessionStorage (not in URL)
+        try {
+          sessionStorage.setItem('abbacy_lead_name', (leadPayload.name || '').trim());
+          sessionStorage.setItem('abbacy_lead_dest', (leadPayload.destination || 'General').trim());
+        } catch (_) {}
+
+        const cleanParams = new URLSearchParams({
+          destination: leadPayload.destination || 'General',
+          source: 'cost-loan-calculator'
+        });
 
         // Immediate redirect to thank-you page for conversion tracking
         setTimeout(() => {
-          window.location.href = 'thank-you.html?' + redirectParams.toString();
+          window.location.href = 'thank-you.html?' + cleanParams.toString();
         }, 60);
       });
     }

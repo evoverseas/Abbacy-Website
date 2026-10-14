@@ -1,0 +1,21 @@
+# Apache Server Configuration & 301 Redirect Rules
+<IfModule mod_rewrite.c>
+RewriteEngine On
+RewriteBase /
+
+# Force HTTPS (optional if handled by cloud provider)
+# RewriteCond %{HTTPS} off
+# RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Redirect Himayat Nagar variations (space/hyphen) to canonical page
+RewriteRule ^study-abroad-consultants-himayat-nagar(\.html)?$ /study-abroad-consultants-himayatnagar.html [R=301,L]
+RewriteRule ^study-abroad-consultants-himayathnagar(\.html)?$ /study-abroad-consultants-himayatnagar.html [R=301,L]
+RewriteRule ^himayat-nagar(\.html)?$ /study-abroad-consultants-himayatnagar.html [R=301,L]
+RewriteRule ^himayatnagar(\.html)?$ /study-abroad-consultants-himayatnagar.html [R=301,L]
+RewriteRule ^himayathnagar(\.html)?$ /study-abroad-consultants-himayatnagar.html [R=301,L]
+RewriteRule ^study-abroad-consultants-in-himayat-nagar(\.html)?$ /study-abroad-consultants-himayatnagar.html [R=301,L]
+RewriteRule ^study-abroad-consultants-in-himayatnagar(\.html)?$ /study-abroad-consultants-himayatnagar.html [R=301,L]
+</IfModule>
+
+# Custom Error Pages
+ErrorDocument 404 /404.html
