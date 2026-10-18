@@ -74,7 +74,7 @@ These fees are mandated by sovereign foreign governments, testing bodies, and cr
 
 - **Entity**: Abbacy Global Group
 - **HQ Address**: 302-A, 3rd Floor, Aaltos A&M Trade Centre, Himayatnagar, Hyderabad, Telangana 500029, India
-- **Phone**: +91 83097 13212 / +91 78932 34081
+- **Phone**: +91 83097 13212 (Primary) | +91 78932 34081 (Secondary) | +91 83416 51082 (Additional)
 - **Email**: info@abbacy.in
 - **Official URL**: https://abbacy.in
 - **Registration**: Registered Private Educational Consultancy, Telangana, India
