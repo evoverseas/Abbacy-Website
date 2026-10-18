@@ -8,6 +8,7 @@
   
   <!-- Expert SEO Strategy: Prevent search engines from indexing the conversion page to keep ad analytics clean -->
   <meta name="robots" content="noindex, nofollow">
+  <link rel="canonical" href="https://abbacy.in/thank-you.html">
   <meta name="theme-color" content="#1B3A5C">
 
   <link rel="icon" type="image/png" href="./images/favicon.png">
@@ -139,6 +140,42 @@
       }
     }
   </style>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "@id": "https://abbacy.in/#organization",
+    "name": "Abbacy Global Group",
+    "url": "https://abbacy.in",
+    "logo": "https://abbacy.in/images/logo.png",
+    "image": "https://abbacy.in/images/hero_students.png",
+    "telephone": "+91 83097 13212",
+    "priceRange": "Free Consultation (₹0)",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "302-A, 3rd Floor, Aalto's A&M Trade Centre, Above Subway",
+      "addressLocality": "Himayat Nagar, Hyderabad",
+      "addressRegion": "Telangana",
+      "postalCode": "500029",
+      "addressCountry": "IN"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 17.3955,
+      "longitude": 78.4867
+    },
+    "areaServed": [
+      { "@type": "City", "name": "Hyderabad" },
+      { "@type": "City", "name": "Himayatnagar" }
+    ],
+    "hasMap": "https://maps.google.com/?q=Abbacy+Global+Group+302-A+Aaltos+A%26M+Trade+Centre+Himayat+Nagar+Hyderabad+500029",
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.9",
+      "reviewCount": "217"
+    }
+  }
+  </script>
 </head>
 
 <body style="background: var(--gray-50);">
@@ -148,7 +185,7 @@
   <div class="container">
     <div class="nav-inner">
       <a href="index.html" class="brand" aria-label="Abbacy Global Group Home">
-        <img src="./images/logo.png" alt="Abbacy Global Group" width="42" height="42">
+        <img src="./images/logo.webp" alt="Abbacy Global Group" width="42" height="42">
         <div class="brand-text">
           <span class="brand-name">Abbacy Global Group</span>
           <span class="brand-sub">Overseas Education Consultants</span>
@@ -286,6 +323,7 @@
       <div>
         <h4>Our Services</h4>
         <ul class="footer-links">
+          <li><a href="about-our-team.html#editorial-policy">Editorial &amp; Review Policy</a></li>
           <li><a href="index.html#services">Free Counselling</a></li>
           <li><a href="index.html#services">IELTS & Test Prep</a></li>
           <li><a href="index.html#services">University Admissions</a></li>
@@ -309,10 +347,23 @@
         </ul>
       </div>
       <div class="footer-contact">
-        <h4>Office Location</h4>
-        <p><i class="fas fa-map-marker-alt"></i> 302-A, 3rd Floor, Aaltos A&M Trade Centre, Himayatnagar, Hyderabad 500029</p>
-        <p><i class="fas fa-phone-alt"></i> +91 83097 13212</p>
-      </div>
+    <h4>Contact Us</h4>
+    <address style="font-style: normal;">
+      302-A, 3rd Floor, Aalto's A&amp;M Trade Centre,<br />
+      Himayatnagar, Hyderabad, Telangana 500029
+    </address>
+    <p>
+      <a href="tel:+918309713212">+91 83097 13212</a> ·
+      <a href="tel:+917893234081">+91 78932 34081</a>
+    </p>
+    <p><a href="mailto:info@abbacy.in">info@abbacy.in</a></p>
+    <p>Mon – Sat: 9:00 AM – 7:30 PM · Sun: 10:00 AM – 4:00 PM</p>
+    <p>
+      <a href="https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM" target="_blank" rel="noopener noreferrer">
+        View on Google Maps (Himayatnagar HQ) →
+      </a>
+    </p>
+  </div>
     </div>
 
     <div style="margin-top: 24px; padding-top: 18px; border-top: 1px solid rgba(255,255,255,0.08); font-size: 0.82rem; color: rgba(255,255,255,0.6); display: flex; flex-wrap: wrap; gap: 8px; align-items: center;">
@@ -334,113 +385,28 @@
   (function() {
     try {
       var params = new URLSearchParams(window.location.search);
-      var name = params.get('name') || '';
-      var phone = params.get('phone') || '';
-      var destination = params.get('destination') || '';
-      var course = params.get('course') || '';
+      var name = (sessionStorage.getItem('abbacy_lead_name') || '').trim();
+      var destination = (sessionStorage.getItem('abbacy_lead_dest') || params.get('destination') || '').trim();
 
-      // Check sessionStorage fallback if query params were trimmed
-      if (!name && sessionStorage.getItem('abbacy_last_lead')) {
-        try {
-          var last = JSON.parse(sessionStorage.getItem('abbacy_last_lead'));
-          if (last) {
-            name = name || last.name || '';
-            destination = destination || last.destination || '';
-            course = course || last.course || '';
-            phone = phone || last.phone || '';
-          }
-        } catch(e) {}
+      // Dynamic Greeting Personalization (with zero PII in URL)
+      var displayName = name ? name.split(' ')[0] : 'Future Global Scholar';
+      var h2 = document.querySelector('.thank-you-box h2');
+      if (h2) {
+        h2.innerHTML = "We're On It, <span style='color: var(--gold);'>" + displayName + "</span>!";
       }
 
-      // Dynamic Greeting Personalization
-      if (name) {
-        var h2 = document.querySelector('.thank-you-box h2');
-        if (h2) {
-          var firstName = name.trim().split(' ')[0];
-          h2.innerHTML = "We're On It, <span style='color: var(--gold);'>" + firstName + "</span>!";
-        }
-      }
-
-      if (destination || course) {
+      if (destination) {
         var p = document.querySelector('.thank-you-box > p');
         if (p) {
-          var destStr = destination ? (' for <strong>' + destination + (course ? ' (' + course + ')' : '') + '</strong>') : '';
-          p.innerHTML = "Thank you for choosing Abbacy Global Group. We have successfully logged your enquiry" + destStr + " and assigned it to our senior overseas education counselors at our Himayatnagar, Hyderabad office.";
+          p.innerHTML = "Thank you for choosing Abbacy Global Group. We have successfully logged your enquiry for <strong>" + destination + "</strong> and assigned it to our senior overseas education counselors at our Himayatnagar, Hyderabad office.";
         }
       }
 
       // Dynamic WhatsApp button link
       var waBtn = document.querySelector('.thank-you-box .cta-row a[href*="wa.me"]');
-      if (waBtn && (name || destination)) {
+      if (waBtn) {
         var waMsg = "Hi Abbacy Global, I just submitted my application" + (destination ? (" for " + destination) : "") + (name ? (" (" + name + ")") : "") + " and would like to connect!";
         waBtn.href = "https://wa.me/918309713212?text=" + encodeURIComponent(waMsg);
-      }
-
-      // Fallback submission ONLY if lead was not already transmitted by the originating form
-      if (name && phone) {
-        var cleanPhone = String(phone || '').replace(/\D/g, '');
-        var alreadySubmitted = false;
-
-        if (cleanPhone) {
-          if (sessionStorage.getItem('abbacy_lead_submitted_' + cleanPhone) ||
-              sessionStorage.getItem('abbacy_thankyou_lead_' + cleanPhone) ||
-              sessionStorage.getItem('abbacy_sub_' + cleanPhone)) {
-            alreadySubmitted = true;
-          }
-        }
-        if (phone && (sessionStorage.getItem('abbacy_lead_submitted_' + phone) ||
-                      sessionStorage.getItem('abbacy_thankyou_lead_' + phone) ||
-                      sessionStorage.getItem('abbacy_sub_' + phone))) {
-          alreadySubmitted = true;
-        }
-
-        if (!alreadySubmitted) {
-          if (cleanPhone) {
-            sessionStorage.setItem('abbacy_lead_submitted_' + cleanPhone, 'true');
-            sessionStorage.setItem('abbacy_sub_' + cleanPhone, String(Date.now()));
-          }
-          if (phone) {
-            sessionStorage.setItem('abbacy_thankyou_lead_' + phone, 'submitted');
-          }
-
-          var payload = {
-            name: name,
-            phone: cleanPhone || phone,
-            destination: destination || 'General Enquiry',
-            course: course || 'Study Abroad',
-            source: params.get('source') || 'thank-you-query-fallback',
-            utm_source: params.get('utm_source') || '',
-            utm_medium: params.get('utm_medium') || '',
-            utm_campaign: params.get('utm_campaign') || '',
-            source_page: document.referrer || window.location.href,
-            timestamp: new Date().toISOString()
-          };
-
-          var SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF96iTb5oh81VK5Z6TWtS9eNxSVWYm6nwPkOK5N0Be_56ga6c/exec';
-          var payloadStr = JSON.stringify(payload);
-          var sent = false;
-
-          // Dispatch exactly ONE request
-          if (window.fetch) {
-            try {
-              fetch(SCRIPT_URL, {
-                method: 'POST',
-                headers: { 'Content-Type': 'text/plain;charset=UTF-8' },
-                body: payloadStr,
-                keepalive: true
-              }).catch(function(err) {
-                console.warn('Fallback lead capture fetch error:', err);
-              });
-              sent = true;
-            } catch (fetchErr) {}
-          }
-
-          if (!sent && navigator.sendBeacon) {
-            try {
-              navigator.sendBeacon(SCRIPT_URL, new Blob([payloadStr], { type: 'text/plain;charset=UTF-8' }));
-            } catch (beaconErr) {}
-          }
-        }
       }
     } catch(e) {
       console.warn('Thank you script error:', e);

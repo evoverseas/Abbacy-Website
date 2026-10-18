@@ -1,0 +1,18 @@
+# Netlify & Cloudflare Pages 301 Redirect Rules
+
+# Himayatnagar location page variants
+/study-abroad-consultants-himayat-nagar.html   /study-abroad-consultants-himayatnagar.html   301
+/study-abroad-consultants-himayat-nagar        /study-abroad-consultants-himayatnagar.html   301
+/study-abroad-consultants-himayathnagar.html   /study-abroad-consultants-himayatnagar.html   301
+/study-abroad-consultants-himayathnagar        /study-abroad-consultants-himayatnagar.html   301
+/himayat-nagar.html                           /study-abroad-consultants-himayatnagar.html   301
+/himayat-nagar                                /study-abroad-consultants-himayatnagar.html   301
+/himayatnagar.html                            /study-abroad-consultants-himayatnagar.html   301
+/himayatnagar                                 /study-abroad-consultants-himayatnagar.html   301
+/himayathnagar.html                           /study-abroad-consultants-himayatnagar.html   301
+/himayathnagar                                /study-abroad-consultants-himayatnagar.html   301
+
+# DAAD scholarship page variants
+/daad-scholarship.html                        /daad-scholarship-germany.html                301
+/daad-scholarship                             /daad-scholarship-germany.html                301
+/guide-daad-scholarship.html                  /daad-scholarship-germany.html                301
