@@ -13,6 +13,11 @@ User-agent: DuckDuckBot
 User-agent: Baiduspider
 User-agent: YandexBot
 Allow: /
+Disallow: /daad-scholarship.html
+Disallow: /himayatnagar.html
+Disallow: /himayat-nagar.html
+Disallow: /study-abroad-consultants-himayat-nagar.html
+Disallow: /study-abroad-consultants-himayathnagar.html
 
 # AI Search Discovery & Real-Time Answer Engine Crawlers
 # Powers citations in Google AI Overviews, ChatGPT Search, Perplexity, Claude, and Gemini
@@ -33,6 +38,11 @@ Allow: /
 # Default Policy for All Other Agents
 User-agent: *
 Allow: /
+Disallow: /daad-scholarship.html
+Disallow: /himayatnagar.html
+Disallow: /himayat-nagar.html
+Disallow: /study-abroad-consultants-himayat-nagar.html
+Disallow: /study-abroad-consultants-himayathnagar.html
 
 # Machine-Readable Discovery Files & Sitemaps
 Sitemap: https://abbacy.in/sitemap.xml

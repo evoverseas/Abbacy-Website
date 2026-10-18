@@ -312,6 +312,81 @@ section { padding: 96px 0; position: relative; }
 .nav-links a.active::after { width: 20px; }
 .nav-cta { margin-left: 6px; padding: 10px 18px; font-size: .84rem; flex-shrink: 0; white-space: nowrap; }
 
+/* Nav Dropdown for Hyderabad Hubs */
+.nav-dropdown { position: relative; }
+.nav-dropdown-toggle { display: inline-flex; align-items: center; gap: 4px; }
+.nav-dropdown-menu {
+  display: none;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  min-width: 220px;
+  background: #ffffff;
+  border-radius: 10px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12), 0 2px 6px rgba(0, 0, 0, 0.04);
+  padding: 8px 0;
+  list-style: none;
+  margin: 4px 0 0;
+  z-index: 1050;
+  border: 1px solid #e2e8f0;
+}
+.nav-dropdown:hover .nav-dropdown-menu,
+.nav-dropdown:focus-within .nav-dropdown-menu {
+  display: block;
+}
+.nav-dropdown-menu li { width: 100%; }
+.nav-dropdown-menu a {
+  display: block;
+  padding: 9px 16px;
+  color: var(--navy);
+  font-size: 0.85rem;
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background 0.15s ease, color 0.15s ease;
+  border-radius: 0;
+}
+.nav-dropdown-menu a::after { display: none !important; }
+.nav-dropdown-menu a:hover {
+  background: rgba(27, 58, 92, 0.06);
+  color: var(--gold);
+}
+
+/* Mobile Hubs Dropdown */
+.mobile-hubs-dropdown {
+  border-bottom: 1px solid var(--gray-100);
+  padding: 10px 0;
+}
+.mobile-hubs-dropdown summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-size: .95rem;
+  font-weight: 500;
+  color: var(--navy);
+  cursor: pointer;
+  list-style: none;
+  user-select: none;
+}
+.mobile-hubs-dropdown summary::-webkit-details-marker {
+  display: none;
+}
+.mobile-hubs-dropdown .mobile-hubs-links {
+  display: flex;
+  flex-direction: column;
+  padding-left: 12px;
+  margin-top: 6px;
+}
+.mobile-hubs-dropdown .mobile-hubs-links a {
+  padding: 8px 0;
+  font-size: 0.9rem;
+  color: var(--navy);
+  border-bottom: 1px dashed var(--gray-200);
+}
+.mobile-hubs-dropdown .mobile-hubs-links a:last-child {
+  border-bottom: none;
+}
+
 @media (max-width: 1320px) and (min-width: 1121px) {
   .navbar .container { padding: 0 14px; }
   .nav-inner { gap: 8px; }
@@ -1440,24 +1515,26 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
 .form-msg.error { background: #fef2f2; color: #991b1b; border: 1px solid #fecaca; display: block; }
 
 .contact-info-box { display: flex; flex-direction: column; gap: 14px; }
-.contact-info-box h3 { font-size: 1.4rem; margin-bottom: 6px; }
+.contact-info-box h3 { font-size: 1.4rem; margin-bottom: 6px; color: var(--navy-dark); font-weight: 800; }
 .cinfo-card {
   display: flex; align-items: flex-start; gap: 14px;
-  background: var(--gray-50); border: 1px solid var(--gray-200);
+  background: var(--white); border: 1.5px solid var(--gray-200);
   border-radius: var(--radius); padding: 20px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.04);
   transition: all var(--t);
 }
-.cinfo-card:hover { border-color: rgba(201,151,58,.4); transform: translateX(6px); box-shadow: 0 4px 16px rgba(0,0,0,.04); }
+.cinfo-card:hover { border-color: rgba(201,151,58,.6); transform: translateX(6px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
 .cinfo-icon {
   width: 44px; height: 44px;
   background: linear-gradient(135deg, var(--gold), var(--gold-light));
   color: var(--white); border-radius: 14px;
   display: flex; align-items: center; justify-content: center;
-  font-size: 1rem; flex-shrink: 0;
-  box-shadow: 0 4px 12px rgba(196,149,45,.2);
+  font-size: 1.1rem; flex-shrink: 0;
+  box-shadow: 0 4px 12px rgba(196,149,45,.25);
 }
-.cinfo-card h4 { font-size: .88rem; color: var(--navy); margin-bottom: 3px; }
-.cinfo-card p, .cinfo-card a { font-size: .85rem; color: var(--gray-500); line-height: 1.55; transition: color var(--t); }
+.cinfo-card h4 { font-size: 1rem; font-weight: 700; color: #0F2540; margin-bottom: 4px; }
+.cinfo-card p { font-size: 0.92rem; color: #1E293B; line-height: 1.6; margin: 0; font-weight: 500; }
+.cinfo-card a { font-size: 0.92rem; color: #0F2540; line-height: 1.6; font-weight: 700; text-decoration: underline; transition: color var(--t); }
 .cinfo-card a:hover { color: var(--gold); }
 
 /* ─── CONTACT PAGE HERO ─────────────────── */
@@ -1471,7 +1548,7 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
   background: radial-gradient(ellipse at 50% 120%, rgba(201,151,58,.1) 0%, transparent 60%);
 }
 .contact-page-hero h1 { color: var(--white); font-size: clamp(1.8rem,4vw,2.8rem); margin-bottom: 14px; position: relative; }
-.contact-page-hero p { color: rgba(255,255,255,.7); font-size: 1.05rem; max-width: 500px; margin: 0 auto; position: relative; }
+.contact-page-hero p { color: #F8FAFC; font-size: 1.05rem; max-width: 580px; margin: 0 auto; position: relative; font-weight: 400; }
 .contact-page-hero .urgency-badge {
   display: inline-flex; align-items: center; gap: 8px; margin-top: 18px;
   background: rgba(201,151,58,.15); border: 1px solid rgba(201,151,58,.3);
@@ -2034,18 +2111,18 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(201, 151, 58, 0.08);
-  border: 1px solid rgba(201, 151, 58, 0.2);
-  color: var(--gold);
-  font-size: 0.78rem;
+  background: #FEF3C7;
+  border: 1.5px solid #F59E0B;
+  color: #78350F;
+  font-size: 0.85rem;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: var(--radius-md, 8px);
   margin-top: 6px;
   margin-bottom: 18px;
 }
 .form-badge-micro i {
-  color: var(--gold);
+  color: #B45309;
   animation: micro-gift-pulse 2s infinite ease-in-out;
 }
 @keyframes micro-gift-pulse {
@@ -2249,12 +2326,12 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
   display: inline-flex;
   align-items: center;
   gap: 8px;
-  background: rgba(201, 151, 58, 0.08);
-  border: 1px solid rgba(201, 151, 58, 0.25);
-  color: var(--gold);
-  font-size: 0.78rem;
+  background: #FEF3C7;
+  border: 1.5px solid #F59E0B;
+  color: #78350F;
+  font-size: 0.85rem;
   font-weight: 700;
-  padding: 6px 12px;
+  padding: 8px 14px;
   border-radius: 8px;
   margin-bottom: 16px;
   width: 100%;
@@ -2262,7 +2339,7 @@ select.finput { appearance: none; background-image: url("data:image/svg+xml,%3Cs
   justify-content: center;
 }
 .form-badge-micro i {
-  color: var(--gold);
+  color: #B45309;
 }
 
 
@@ -3537,14 +3614,15 @@ html, body {
   margin-top: 4px;
 }
 
-/* ── Task 1.2: High-Contrast Secondary & Outlined CTA Buttons ── */
+/* ── Task 1.2: High-Contrast Secondary & Outlined CTA Buttons (Dark Surfaces) ── */
 .btn-secondary,
 .dark-section .btn-outline,
 .hero .btn-outline,
 .lp-hero .btn-outline,
 .footer .btn-outline,
 .content-dark .btn-outline,
-a.get-directions-btn {
+.dark-section a.get-directions-btn,
+.hero a.get-directions-btn {
   color: #FFFFFF !important;
   background-color: rgba(255, 255, 255, 0.10);
   border: 1.5px solid #F59E0B;
@@ -3558,10 +3636,51 @@ a.get-directions-btn {
 .lp-hero .btn-outline:hover,
 .footer .btn-outline:hover,
 .content-dark .btn-outline:hover,
-a.get-directions-btn:hover {
+.dark-section a.get-directions-btn:hover,
+.hero a.get-directions-btn:hover {
   background-color: #F59E0B;
   color: #0F172A !important;
   border-color: #F59E0B;
+}
+
+/* ── High-Contrast Dark Outline Buttons for Light Surfaces ── */
+.btn-outline-dark,
+.btn-outline.btn-outline-dark,
+.local-seo-section .btn-outline:not(.btn-google-review):not([style*="#4285F4"]),
+.map-wrap .btn-outline:not(.btn-google-review):not([style*="#4285F4"]),
+.contact-row .btn-outline:not(.btn-google-review):not([style*="#4285F4"]) {
+  color: #1B3A5C !important;
+  background-color: #FFFFFF !important;
+  border: 1.5px solid #1B3A5C !important;
+  font-weight: 700 !important;
+  text-decoration: none !important;
+  transition: all 0.2s ease-in-out;
+}
+
+.btn-outline-dark *,
+.btn-outline.btn-outline-dark *,
+.local-seo-section .btn-outline:not(.btn-google-review):not([style*="#4285F4"]) *,
+.map-wrap .btn-outline:not(.btn-google-review):not([style*="#4285F4"]) *,
+.contact-row .btn-outline:not(.btn-google-review):not([style*="#4285F4"]) * {
+  color: #1B3A5C !important;
+}
+
+.btn-outline-dark:hover,
+.btn-outline.btn-outline-dark:hover,
+.local-seo-section .btn-outline:not(.btn-google-review):not([style*="#4285F4"]):hover,
+.map-wrap .btn-outline:not(.btn-google-review):not([style*="#4285F4"]):hover,
+.contact-row .btn-outline:not(.btn-google-review):not([style*="#4285F4"]):hover {
+  background-color: #1B3A5C !important;
+  color: #FFFFFF !important;
+  border-color: #1B3A5C !important;
+}
+
+.btn-outline-dark:hover *,
+.btn-outline.btn-outline-dark:hover *,
+.local-seo-section .btn-outline:not(.btn-google-review):not([style*="#4285F4"]):hover *,
+.map-wrap .btn-outline:not(.btn-google-review):not([style*="#4285F4"]):hover *,
+.contact-row .btn-outline:not(.btn-google-review):not([style*="#4285F4"]):hover * {
+  color: #FFFFFF !important;
 }
 
 /* ── Google Review Pill & Light Outlined Badges ── */
@@ -3569,10 +3688,12 @@ a.get-directions-btn:hover {
 a.btn-google-review,
 .btn-outline.btn-google-review,
 .btn-outline[style*="#4285F4"],
-.btn-outline[style*="1a73e8"] {
-  color: #1A73E8 !important;
+.btn-outline[style*="1a73e8"],
+.btn-outline[style*="0B57D0"],
+.btn-outline[style*="0b57d0"] {
+  color: #0B57D0 !important;
   background-color: #FFFFFF !important;
-  border: 1.5px solid #4285F4 !important;
+  border: 1.5px solid #1A73E8 !important;
   font-weight: 700 !important;
   text-decoration: none !important;
 }
@@ -3580,22 +3701,24 @@ a.btn-google-review,
 .btn-google-review *,
 a.btn-google-review *,
 .btn-outline.btn-google-review * {
-  color: #1A73E8 !important;
+  color: #0B57D0 !important;
 }
 
 .btn-google-review:hover,
 a.btn-google-review:hover,
 .btn-outline.btn-google-review:hover,
 .btn-outline[style*="#4285F4"]:hover,
-.btn-outline[style*="1a73e8"]:hover {
+.btn-outline[style*="1a73e8"]:hover,
+.btn-outline[style*="0B57D0"]:hover,
+.btn-outline[style*="0b57d0"]:hover {
   background-color: #F0F6FF !important;
-  color: #1557B0 !important;
-  border-color: #1A73E8 !important;
+  color: #0842A0 !important;
+  border-color: #0B57D0 !important;
 }
 
 .btn-google-review:hover *,
 a.btn-google-review:hover * {
-  color: #1557B0 !important;
+  color: #0842A0 !important;
 }
 
 /* ── Hero Subtitle Contrast & Readability ── */
