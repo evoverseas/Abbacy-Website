@@ -5,6 +5,8 @@
 # ==========================================
 
 # Standard Web Search Crawlers
+# Legacy URLs (himayatnagar.html, daad-scholarship.html, ...) stay crawlable so Google can follow
+# their canonical + redirect to the live pages; they are noindex.
 User-agent: Googlebot
 User-agent: Googlebot-Image
 User-agent: Bingbot
@@ -13,11 +15,6 @@ User-agent: DuckDuckBot
 User-agent: Baiduspider
 User-agent: YandexBot
 Allow: /
-Disallow: /daad-scholarship.html
-Disallow: /himayatnagar.html
-Disallow: /himayat-nagar.html
-Disallow: /study-abroad-consultants-himayat-nagar.html
-Disallow: /study-abroad-consultants-himayathnagar.html
 
 # AI Search Discovery & Real-Time Answer Engine Crawlers
 # Powers citations in Google AI Overviews, ChatGPT Search, Perplexity, Claude, and Gemini
@@ -38,11 +35,6 @@ Allow: /
 # Default Policy for All Other Agents
 User-agent: *
 Allow: /
-Disallow: /daad-scholarship.html
-Disallow: /himayatnagar.html
-Disallow: /himayat-nagar.html
-Disallow: /study-abroad-consultants-himayat-nagar.html
-Disallow: /study-abroad-consultants-himayathnagar.html
 
 # Machine-Readable Discovery Files & Sitemaps
 Sitemap: https://abbacy.in/sitemap.xml

@@ -35,20 +35,41 @@ if (statsBlock) {
   io.observe(statsBlock);
 }
 
+/* ── Centralized rAF Scroll Dispatcher (CWV & INP Optimization) ── */
+const scrollCallbacks = [];
+let scrollTicking = false;
+
+function onWindowScroll(cb) {
+  scrollCallbacks.push(cb);
+}
+
+window.addEventListener('scroll', () => {
+  if (!scrollTicking) {
+    window.requestAnimationFrame(() => {
+      const scrollY = window.scrollY || window.pageYOffset || 0;
+      for (let i = 0; i < scrollCallbacks.length; i++) {
+        scrollCallbacks[i](scrollY);
+      }
+      scrollTicking = false;
+    });
+    scrollTicking = true;
+  }
+}, { passive: true });
+
 /* ── Navbar scroll effect ──────────────────────────────── */
 const navbar = document.getElementById('navbar');
 if (navbar) {
-  window.addEventListener('scroll', () => {
-    navbar.classList.toggle('scrolled', window.scrollY > 40);
-  }, { passive: true });
+  onWindowScroll((scrollY) => {
+    navbar.classList.toggle('scrolled', scrollY > 40);
+  });
 }
 
 /* ── Active nav link on scroll ─────────────────────────── */
 const sections = document.querySelectorAll('section[id], .hero[id]');
 const navLinks = document.querySelectorAll('.nav-links a[href^="#"]');
 if (navLinks.length) {
-  window.addEventListener('scroll', () => {
-    const offset = window.scrollY + 100;
+  onWindowScroll((scrollY) => {
+    const offset = scrollY + 100;
     sections.forEach(sec => {
       if (offset >= sec.offsetTop && offset < sec.offsetTop + sec.offsetHeight) {
         navLinks.forEach(a => {
@@ -56,7 +77,7 @@ if (navLinks.length) {
         });
       }
     });
-  }, { passive: true });
+  });
 }
 
 /* ── Hamburger / Mobile Menu ───────────────────────────── */
@@ -97,7 +118,7 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.getElementById(id);
     if (target) {
       e.preventDefault();
-      window.scrollTo({ top: target.offsetTop - 76, behavior: 'smooth' });
+      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' });
     }
   });
 });
@@ -107,24 +128,27 @@ const animEls = document.querySelectorAll(
   '.service-card, .dest-card, .tcard, .journey-card, .why-card, .cinfo-card, .faq-item, .about-grid, .stat-box, .award-item, .blog-card, .video-card, .local-grid, .pillar'
 );
 if ('IntersectionObserver' in window && animEls.length) {
-  const obs = new IntersectionObserver((entries, o) => {
-    entries.forEach((entry, i) => {
-      if (entry.isIntersecting) {
-        setTimeout(() => {
-          entry.target.style.opacity = '1';
-          entry.target.style.transform = 'translateY(0)';
-        }, i * 70);
-        o.unobserve(entry.target);
-      }
-    });
-  }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
+  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if (!prefersReducedMotion) {
+    const obs = new IntersectionObserver((entries, o) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => {
+            entry.target.style.opacity = '1';
+            entry.target.style.transform = 'translateY(0)';
+          }, i * 70);
+          o.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
 
-  animEls.forEach(el => {
-    el.style.opacity = '0';
-    el.style.transform = 'translateY(24px)';
-    el.style.transition = 'opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1)';
-    obs.observe(el);
-  });
+    animEls.forEach(el => {
+      el.style.opacity = '0';
+      el.style.transform = 'translateY(24px)';
+      el.style.transition = 'opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1)';
+      obs.observe(el);
+    });
+  }
 }
 
 /* ── FAQ Accordion ─────────────────────────────────────── */
@@ -558,7 +582,7 @@ if (carouselTrack && carouselDots) {
           <p style="margin: 0 0 10px; color: rgba(255,255,255,0.8); font-size: 0.82rem;">${scholarshipText}</p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-hand-holding-usd" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>TA/RA Assistantships:</strong> Earn hourly stipends and tuition waivers by assisting professors.</span></li>
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-file-invoice-dollar" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Unsecured Student Loans:</strong> Pre-screened for collateral-free education loans up to ₹60 Lakhs.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-file-invoice-dollar" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Unsecured Student Loans:</strong> Pre-screened for collateral-free education loans up to ₹50 Lakhs (and ₹1 Crore+ with collateral).</span></li>
           </ul>
         </div>
       `;
@@ -1088,11 +1112,11 @@ if (carouselTrack && carouselDots) {
       const contactData = Object.fromEntries(formData);
       
       if (!contactData.name.trim() || !contactData.phone.trim()) {
-        alert('Please enter your name and phone number.');
+        showAbbacyToast('Please enter your name and phone number.');
         return;
       }
       if (!isValidPhone(contactData.phone)) {
-        alert('Please enter a valid 10-digit phone number.');
+        showAbbacyToast('Please enter a valid 10-digit phone number.');
         return;
       }
 
@@ -1176,9 +1200,9 @@ if (carouselTrack && carouselDots) {
 /* ── Back to Top Button ────────────────────────────────── */
 const backToTop = document.getElementById('backToTop');
 if (backToTop) {
-  window.addEventListener('scroll', () => {
-    backToTop.classList.toggle('visible', window.scrollY > 600);
-  }, { passive: true });
+  onWindowScroll((scrollY) => {
+    backToTop.classList.toggle('visible', scrollY > 600);
+  });
 
   backToTop.addEventListener('click', () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -1188,18 +1212,15 @@ if (backToTop) {
 /* ── Sticky Mobile CTA ────────────────────────────────── */
 const stickyMobileCta = document.getElementById('stickyMobileCta');
 if (stickyMobileCta) {
-  let lastScroll = 0;
-  window.addEventListener('scroll', () => {
+  onWindowScroll((scrollY) => {
     // On mobile devices, reveal sticky CTA promptly once scrolled past initial fold (400px)
-    const isPastThreshold = window.scrollY > 400;
-    lastScroll = window.scrollY;
-
+    const isPastThreshold = scrollY > 400;
     if (isPastThreshold && window.innerWidth <= 768) {
       stickyMobileCta.classList.add('visible');
     } else {
       stickyMobileCta.classList.remove('visible');
     }
-  }, { passive: true });
+  });
 }
 
 // Prevent sticky CTA and FABs from obscuring inputs when mobile keyboard opens across all pages
@@ -1215,6 +1236,23 @@ window.addEventListener('focusout', (e) => {
     document.body.classList.remove('keyboard-open');
   }
 });
+
+/* ── Universal Non-Blocking Toast Notification Helper ─── */
+function showAbbacyToast(message) {
+  let toast = document.getElementById('abbacyToast');
+  if (!toast) {
+    toast = document.createElement('div');
+    toast.id = 'abbacyToast';
+    toast.className = 'abbacy-toast';
+    toast.setAttribute('role', 'status');
+    toast.setAttribute('aria-live', 'polite');
+    document.body.appendChild(toast);
+  }
+  toast.innerHTML = '<i class="fas fa-exclamation-circle" style="color:#F59E0B;"></i> <span>' + message + '</span>';
+  toast.classList.add('show');
+  clearTimeout(toast._timer);
+  toast._timer = setTimeout(() => toast.classList.remove('show'), 4000);
+}
 
 /* ── Universal Phone Validation Helper ─────────────────── */
 function isValidPhone(phone) {
@@ -1590,12 +1628,11 @@ if (document.readyState === 'loading') {
   progressBar.className = 'scroll-progress-bar';
   document.body.appendChild(progressBar);
 
-  window.addEventListener('scroll', () => {
-    const winScroll = document.documentElement.scrollTop || document.body.scrollTop;
+  onWindowScroll((scrollY) => {
     const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
-    const scrolled = height > 0 ? (winScroll / height) * 100 : 0;
+    const scrolled = height > 0 ? (scrollY / height) * 100 : 0;
     progressBar.style.width = scrolled + '%';
-  }, { passive: true });
+  });
 })();
 
 /* ── Interactive Input Fields Feedback ──────────────────── */
@@ -1695,7 +1732,7 @@ if (document.readyState === 'loading') {
     SouthKorea: { lat: 35.9078, lon: 127.7669, name: 'South Korea', flag: 'https://flagcdn.com/w40/kr.png', desc: 'South Korea: Global leader in tech and innovation. Affordable tuition, extensive scholarships, and booming employment opportunities.' },
     China: { lat: 35.8617, lon: 104.1954, name: 'China', flag: 'https://flagcdn.com/w40/cn.png', desc: 'China: Highly affordable medicine (MBBS) & engineering programs. World-class infrastructure and growing global influence.' }
   };
-  const origin = { lat: 17.3850, lon: 78.4867, name: 'Hyderabad (India)' };
+  const origin = { lat: 17.3955, lon: 78.4867, name: 'Himayatnagar, Hyderabad' };
 
   // Generate uniform sphere mesh coordinates
   const spherePoints = [];
@@ -1912,8 +1949,28 @@ if (document.readyState === 'loading') {
     });
   }
 
+  // Pause rendering when canvas is off-screen (Mobile INP & Battery optimization)
+  let isGlobeVisible = true;
+  let isGlobeAnimating = true;
+  if ('IntersectionObserver' in window) {
+    const globeObserver = new IntersectionObserver(entries => {
+      isGlobeVisible = entries[0].isIntersecting;
+      if (isGlobeVisible && !isGlobeAnimating) {
+        isGlobeAnimating = true;
+        requestAnimationFrame(animate);
+      }
+    }, { threshold: 0.05 });
+    globeObserver.observe(canvas);
+  }
+
   // Animation Loop
   function animate() {
+    if (!isGlobeVisible) {
+      isGlobeAnimating = false;
+      return;
+    }
+    isGlobeAnimating = true;
+
     if (!initialized) {
       resize();
       if (!initialized) {
@@ -2477,12 +2534,12 @@ if (document.readyState === 'loading') {
         const successBox = document.getElementById('calcLeadSuccess');
 
         if (!name || !phone) {
-          alert('Please enter your name and phone number.');
+          showAbbacyToast('Please enter your name and phone number.');
           return;
         }
 
         if (!isValidPhone(phone)) {
-          alert('Please enter a valid 10-digit mobile number.');
+          showAbbacyToast('Please enter a valid 10-digit mobile number.');
           if (phoneInput) phoneInput.focus();
           return;
         }
@@ -2556,4 +2613,53 @@ if (document.readyState === 'loading') {
   } else {
     setupCalculator();
   }
+})();
+
+/* ── Unified Mobile Bottom Conversion Bar ────────────────── */
+(function initMobileBottomBar() {
+  function attachBar() {
+    if (document.querySelector('.mobile-bottom-bar')) return;
+    const bar = document.createElement('div');
+    bar.className = 'mobile-bottom-bar';
+    bar.setAttribute('aria-label', 'Quick Contact Actions');
+    const formTarget = document.querySelector('#contactForm, #leadForm, #eligForm, #form-container')
+      ? '#form-container'
+      : 'contact.html';
+    bar.innerHTML = `
+      <a href="tel:+918309713212" class="mbb-btn mbb-call" aria-label="Call Abbacy Global">
+        <i class="fas fa-phone-alt"></i> Call Now
+      </a>
+      <a href="https://wa.me/918309713212?text=Hi%20Abbacy%20Global%20Team%2C%20I%20want%20a%20free%20study%20abroad%20profile%20evaluation." target="_blank" rel="noopener" class="mbb-btn mbb-wa" aria-label="WhatsApp Abbacy Global">
+        <i class="fab fa-whatsapp"></i> WhatsApp
+      </a>
+      <a href="${formTarget}" class="mbb-btn mbb-apply">
+        Free Audit →
+      </a>
+    `;
+    document.body.appendChild(bar);
+  }
+
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', attachBar);
+  } else {
+    attachBar();
+  }
+})();
+
+
+/* ── Highlight colour: bright on dark backgrounds, vivid orange on light ── */
+(function tagHighlightsOnDark() {
+  function run() {
+    document.querySelectorAll('.text-gradient').forEach(function (el) {
+      var host = el.parentElement;
+      if (!host) return;
+      var m = getComputedStyle(host).color.match(/\d+(\.\d+)?/g);
+      if (!m) return;
+      // Relative luminance of the surrounding text: light text means the designer put it on a dark background
+      var lum = (0.2126 * m[0] + 0.7152 * m[1] + 0.0722 * m[2]) / 255;
+      if (lum > 0.6) el.classList.add('ab-on-dark');
+    });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
+  else run();
 })();
