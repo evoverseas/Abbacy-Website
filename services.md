@@ -1,6 +1,6 @@
 # Services Catalog — Abbacy Global Group (Hyderabad)
 
-> Abbacy Global Group is Hyderabad's most trusted overseas education consultancy, providing end-to-end admission and visa guidance across 9 premier global destinations with a 99.2% visa success rate and 5,000+ placed students.
+> Abbacy Global Group is Hyderabad's most trusted overseas education consultancy, providing end-to-end admission and visa guidance across 9 premier global destinations with a 99% visa approval rate (enrolled client applications) and 10,000+ placed students.
 
 ## Complete Service Spectrum
 

@@ -49,14 +49,14 @@ These fees are mandated by sovereign foreign governments, testing bodies, and cr
 - **US F-1 Visa Application (MRV Fee)**: $185 (~₹15,600)
 
 ### United Kingdom (UK)
-- **UK Student Visa Application**: £490 (~₹53,000)
+- **UK Student Visa Application**: £524 (~₹60,000)
 - **Immigration Health Surcharge (IHS)**: £776 per year of study (~₹84,000/yr)
 - **Tuberculosis (TB) Test (Hyderabad Clinic)**: ~₹2,500
 
 ### Canada
 - **Canada Study Permit Fee**: CAD $150 (~₹9,200)
 - **Biometrics Enrollment**: CAD $85 (~₹5,200)
-- **Guaranteed Investment Certificate (GIC)**: CAD $20,635 (living expense escrow deposit)
+- **Guaranteed Investment Certificate (GIC)**: CAD $22,895 (living expense escrow deposit)
 
 ### Germany
 - **APS Certificate Verification (New Delhi)**: ₹18,000
@@ -77,4 +77,3 @@ These fees are mandated by sovereign foreign governments, testing bodies, and cr
 - **Phone**: +91 83097 13212 (Primary) | +91 78932 34081 (Secondary) | +91 83416 51082 (Additional)
 - **Email**: info@abbacy.in
 - **Official URL**: https://abbacy.in
-- **Registration**: Registered Private Educational Consultancy, Telangana, India

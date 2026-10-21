@@ -21,6 +21,7 @@
 
 ## 🌐 2. Official Digital Footprint & Channels
 * **Canonical Website**: `https://abbacy.in/`
+* **GBP Primary Website URL**: `https://abbacy.in/?utm_source=google&utm_medium=organic&utm_campaign=gbp`
 * **Instagram**: `https://www.instagram.com/abbacy_global_group_hyd/`
 * **Facebook**: `https://www.facebook.com/abbacyglobal/`
 * **YouTube**: `https://www.youtube.com/@abbacyglobalgroup6312`
