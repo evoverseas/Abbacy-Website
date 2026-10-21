@@ -123,33 +123,8 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
   });
 });
 
-/* ── Scroll Animations — Staggered Reveal ──────────────── */
-const animEls = document.querySelectorAll(
-  '.service-card, .dest-card, .tcard, .journey-card, .why-card, .cinfo-card, .faq-item, .about-grid, .stat-box, .award-item, .blog-card, .video-card, .local-grid, .pillar'
-);
-if ('IntersectionObserver' in window && animEls.length) {
-  const prefersReducedMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  if (!prefersReducedMotion) {
-    const obs = new IntersectionObserver((entries, o) => {
-      entries.forEach((entry, i) => {
-        if (entry.isIntersecting) {
-          setTimeout(() => {
-            entry.target.style.opacity = '1';
-            entry.target.style.transform = 'translateY(0)';
-          }, i * 70);
-          o.unobserve(entry.target);
-        }
-      });
-    }, { threshold: 0.08, rootMargin: '0px 0px -40px 0px' });
-
-    animEls.forEach(el => {
-      el.style.opacity = '0';
-      el.style.transform = 'translateY(24px)';
-      el.style.transition = 'opacity .6s cubic-bezier(.4,0,.2,1), transform .6s cubic-bezier(.4,0,.2,1)';
-      obs.observe(el);
-    });
-  }
-}
+/* Scroll-reveal removed (Oct 2026): it hid FAQ items and contact cards at opacity 0 until
+   scrolled into view, so content skipped by anchors, print or capture stayed invisible. */
 
 /* ── FAQ Accordion ─────────────────────────────────────── */
 const faqContainers = document.querySelectorAll('.faq-list, .faq-accordion');
@@ -280,9 +255,11 @@ if (carouselTrack && carouselDots) {
   const gaugeFill = document.getElementById('eligGaugeFill');
   const gaugePct = document.getElementById('eligGaugePct');
   
-  const leadCard = document.getElementById('eligLeadCard');
-  const successState = document.getElementById('eligSuccessState');
-  const leadForm = document.getElementById('eligForm');
+  // The lead form lives inside <template id="eligibility-result-template">, so these
+  // are null until the result step is cloned into the page (see goTo('result')).
+  let leadCard = document.getElementById('eligLeadCard');
+  let successState = document.getElementById('eligSuccessState');
+  let leadForm = document.getElementById('eligForm');
 
   let currentStep = 1;
   const total = 4;
@@ -296,6 +273,10 @@ if (carouselTrack && carouselDots) {
       const tpl = document.getElementById('eligibility-result-template');
       if (resultEl && tpl && resultEl.children.length === 0) {
         resultEl.appendChild(tpl.content.cloneNode(true));
+        leadCard = resultEl.querySelector('#eligLeadCard');
+        successState = resultEl.querySelector('#eligSuccessState');
+        leadForm = resultEl.querySelector('#eligForm');
+        bindLeadForm();
         const newRestartBtn = resultEl.querySelector('#eligRestart');
         if (newRestartBtn) {
           newRestartBtn.addEventListener('click', function() {
@@ -1085,7 +1066,9 @@ if (carouselTrack && carouselDots) {
   }
 
   /* ── Form Capture & Submission to Sheets ── */
-  if (leadForm) {
+  function bindLeadForm() {
+    if (!leadForm || leadForm.dataset.bound === '1') return;
+    leadForm.dataset.bound = '1';
     leadForm.addEventListener('submit', function(e) {
       if (leadForm.dataset.submitting === 'true') {
         e.preventDefault();
@@ -1195,6 +1178,7 @@ if (carouselTrack && carouselDots) {
       }, 60);
     });
   }
+  bindLeadForm();
 })();
 
 /* ── Back to Top Button ────────────────────────────────── */
