@@ -42,4 +42,3 @@ Sitemap: https://abbacy.in/sitemap.xml
 # LLM Context Discovery (llmstxt.org standard)
 # Concise AI context index: https://abbacy.in/llms.txt
 # Comprehensive knowledge bundle: https://abbacy.in/llms-full.txt
-# Transparent service & fee schedule for agents: https://abbacy.in/pricing.md
