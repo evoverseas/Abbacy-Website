@@ -571,7 +571,7 @@ select.ab-input {
   .ab-nav__dd:hover .ab-nav__menu, .ab-nav__dd:focus-within .ab-nav__menu { opacity: 1; visibility: visible; transform: none; }
   .ab-nav__menu a { display: block; padding: 10px 12px; border-radius: 8px; color: var(--ab-ink); text-decoration: none; font: 600 .93rem var(--ab-font); }
   .ab-nav__menu a:hover { background: var(--ab-sand); }
-  .ab-header__cta { display: inline-flex; min-height: 46px; padding: 10px 18px; font-size: .95rem; box-shadow: 0 4px 0 #C98100; }
+  .ab-header__cta { display: inline-flex; flex: none; min-height: 46px; padding: 10px 18px; font-size: .95rem; white-space: nowrap; box-shadow: 0 4px 0 #C98100; }
   .ab-brand img { width: 42px; height: 42px; }
 
   .ab-hero { padding: 56px 0 88px; }
@@ -630,7 +630,9 @@ body.v2-inner {
 /* Inner pages don't get the .v2 base reset, so the header's .ab-wrap overflowed phones by its padding (32px) */
 /* Legacy inline styles on these pages pad heroes with var(--nav-h); without it the padding was dropped and the fixed header covered the hero top */
 body.v2-inner { margin: 0; --nav-h: 70px; }
-body.v2-inner .ab-wrap { box-sizing: border-box; }
+body.v2-inner .ab-wrap,
+body.v2-inner .ab-header, body.v2-inner .ab-header *, body.v2-inner .ab-mmenu, body.v2-inner .ab-mmenu *,
+body.v2-inner .ab-footer, body.v2-inner .ab-footer *, body.v2-inner .ab-btn, body.v2-inner .ab-gbtn { box-sizing: border-box; }
 body.v2-inner p, body.v2-inner li, body.v2-inner td { font-family: var(--ab-font); }
 body.v2-inner h1, body.v2-inner h2, body.v2-inner h3, body.v2-inner h4 { font-family: var(--ab-font-display) !important; letter-spacing: -0.015em; }
 body.v2-inner .reveal-on-scroll { opacity: 1 !important; transform: none !important; }
