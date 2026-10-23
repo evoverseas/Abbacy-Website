@@ -246,13 +246,17 @@
 }
   </script>
   <!--/LD_V2-->
-  <!-- Microsoft Clarity (project z29dlxcmxt; masking: Balanced) -->
+  <!-- Microsoft Clarity (project z29dlxcmxt; masking: Balanced). Loaded after the page has rendered so it never delays first paint -->
   <script type="text/javascript">
-    (function(c,l,a,r,i,t,y){
-      c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
-      t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
-      y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
-    })(window, document, "clarity", "script", "z29dlxcmxt");
+    window.addEventListener('load', function () {
+      setTimeout(function () {
+        (function(c,l,a,r,i,t,y){
+          c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+          t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+          y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+        })(window, document, "clarity", "script", "z29dlxcmxt");
+      }, 0);
+    });
   </script>
 </head>
 <body class="v2">
