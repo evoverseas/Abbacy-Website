@@ -519,6 +519,12 @@ select.ab-input {
 /* app.js adds .ab-on-dark when the heading sits on a dark background (its own text colour is light) */
 .text-gradient.ab-on-dark, .section-dark .text-gradient, .hero .text-gradient, .calc-section .text-gradient, .footer-cta .text-gradient { color: var(--ab-amber-bright) !important; }
 
+.ab-contact__alt { margin: 14px 0 0; padding-top: 14px; border-top: 1px dashed var(--ab-line); font-size: .92rem; text-align: center; }
+.ab-contact__alt a { font-weight: 700; }
+
+/* ---------- Homepage: skip rendering below-the-fold sections until they near the viewport (faster first paint on phones) ---------- */
+.ab-home #main > .ab-section { content-visibility: auto; contain-intrinsic-size: auto 900px; }
+
 /* ---------- Motion ---------- */
 @media (prefers-reduced-motion: no-preference) {
   .ab-rise { animation: ab-rise .6s cubic-bezier(.2, .8, .2, 1) both; }
@@ -621,6 +627,10 @@ body.v2-inner {
   font-family: var(--ab-font) !important;
   -webkit-font-smoothing: antialiased;
 }
+/* Inner pages don't get the .v2 base reset, so the header's .ab-wrap overflowed phones by its padding (32px) */
+/* Legacy inline styles on these pages pad heroes with var(--nav-h); without it the padding was dropped and the fixed header covered the hero top */
+body.v2-inner { margin: 0; --nav-h: 70px; }
+body.v2-inner .ab-wrap { box-sizing: border-box; }
 body.v2-inner p, body.v2-inner li, body.v2-inner td { font-family: var(--ab-font); }
 body.v2-inner h1, body.v2-inner h2, body.v2-inner h3, body.v2-inner h4 { font-family: var(--ab-font-display) !important; letter-spacing: -0.015em; }
 body.v2-inner .reveal-on-scroll { opacity: 1 !important; transform: none !important; }

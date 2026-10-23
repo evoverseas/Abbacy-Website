@@ -2647,3 +2647,29 @@ if (document.readyState === 'loading') {
   if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', run);
   else run();
 })();
+
+/* ── GA4: call and WhatsApp click tracking (forms untouched) ── */
+(function trackContactClicks() {
+  // One delegated listener so links added later (e.g. the mobile bottom bar) are counted too
+  document.addEventListener('click', function (e) {
+    var link = e.target.closest && e.target.closest('a[href]');
+    if (!link || typeof window.gtag !== 'function') return;
+    var href = link.getAttribute('href') || '';
+    var name = /^tel:/i.test(href) ? 'phone_click'
+      : /(wa\.me|api\.whatsapp\.com|whatsapp:\/\/)/i.test(href) ? 'whatsapp_click'
+      : null;
+    if (!name) return;
+    var where = link.closest('.mobile-bottom-bar') ? 'mobile_bar'
+      : link.closest('header, nav') ? 'header'
+      : link.closest('footer') ? 'footer'
+      : link.closest('form, .lead-card, .lp-form-box, #form-container') ? 'form_card'
+      : 'page_body';
+    try {
+      window.gtag('event', name, {
+        link_location: where,
+        page_path: window.location.pathname,
+        transport_type: 'beacon'
+      });
+    } catch (_) {}
+  }, true);
+})();
