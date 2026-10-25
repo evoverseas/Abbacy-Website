@@ -1716,7 +1716,7 @@ if (document.readyState === 'loading') {
     SouthKorea: { lat: 35.9078, lon: 127.7669, name: 'South Korea', flag: 'https://flagcdn.com/w40/kr.png', desc: 'South Korea: Global leader in tech and innovation. Affordable tuition, extensive scholarships, and booming employment opportunities.' },
     China: { lat: 35.8617, lon: 104.1954, name: 'China', flag: 'https://flagcdn.com/w40/cn.png', desc: 'China: Highly affordable medicine (MBBS) & engineering programs. World-class infrastructure and growing global influence.' }
   };
-  const origin = { lat: 17.3955, lon: 78.4867, name: 'Himayatnagar, Hyderabad' };
+  const origin = { lat: 17.4016, lon: 78.4865, name: 'Himayatnagar, Hyderabad' };
 
   // Generate uniform sphere mesh coordinates
   const spherePoints = [];
@@ -2617,7 +2617,7 @@ if (document.readyState === 'loading') {
         <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
       <a href="${formTarget}" class="mbb-btn mbb-apply">
-        Free Audit →
+        Free Plan →
       </a>
     `;
     document.body.appendChild(bar);
@@ -2627,6 +2627,33 @@ if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', attachBar);
   } else {
     attachBar();
+  }
+})();
+
+/* ── Live office hours for [data-hours] (Hyderabad time, IST). Most form leads arrive after
+      closing time, so after hours we say plainly when a counsellor will reply ── */
+(function initOfficeHours() {
+  function fill() {
+    var els = document.querySelectorAll('[data-hours]');
+    if (!els.length) return;
+    var now = new Date(Date.now() + (new Date().getTimezoneOffset() + 330) * 60000);
+    var day = now.getDay(), mins = now.getHours() * 60 + now.getMinutes();
+    var open = day === 0 ? 600 : 540, close = day === 0 ? 960 : 1170;
+    var fmt = function (m) { var h = Math.floor(m / 60), mm = m % 60, ap = h >= 12 ? 'PM' : 'AM'; h = h % 12 || 12; return h + (mm ? ':' + (mm < 10 ? '0' : '') + mm : '') + ' ' + ap; };
+    var isOpen = mins >= open && mins < close, text;
+    if (isOpen) {
+      text = 'Open now until ' + fmt(close) + '. Call or WhatsApp a counsellor.';
+    } else {
+      var nextOpen = mins < open ? open : ((day + 1) % 7 === 0 ? 600 : 540);
+      text = 'We’re closed now. WhatsApp us or send your details, and a counsellor replies from ' +
+        fmt(nextOpen) + (mins < open ? ' today.' : ' tomorrow.');
+    }
+    els.forEach(function (el) { el.textContent = text; el.classList.toggle('is-open', isOpen); });
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', fill);
+  } else {
+    fill();
   }
 })();
 

@@ -19,12 +19,12 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="site.css?v=20261023a">
+  <link rel="stylesheet" href="site.css?v=20261025e">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
   <!-- Google Analytics 4 (GA4) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-F8BD5FD268"></script>
+  <script>if (/(^|\.)abbacy\.in$/.test(location.hostname)) { var gs=document.createElement('script'); gs.async=true; gs.src='https://www.googletagmanager.com/gtag/js?id=G-F8BD5FD268'; document.head.appendChild(gs); }</script>
   <script>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
@@ -147,6 +147,7 @@
   <script type="text/javascript">
     window.addEventListener('load', function () {
       setTimeout(function () {
+        if (!/(^|\.)abbacy\.in$/.test(location.hostname)) return; // only count real visits on abbacy.in, never local testing
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -255,99 +256,71 @@
 
 
 
-<!-- HERO -->
-<div class="contact-page-hero">
-  <div class="container">
-    <h1>Thank You.</h1>
-    <p>Your study abroad enquiry has been successfully received.</p>
-  </div>
-</div>
-<!--PAGEMETA-->
-<div class="ab-pagemeta"><div class="ab-wrap ab-pagemeta__in"><nav class="ab-crumbs" aria-label="Breadcrumb"><a href="index.html">Home</a> <span aria-hidden="true">›</span> <span aria-current="page">Thank You</span></nav></div></div>
-<!--/PAGEMETA-->
-
-
-
-
-
-
-<!-- MAIN CONTENT -->
-<div class="container">
-  <div class="thank-you-box">
-    <div class="success-icon-wrap">
-      <i class="fas fa-check"></i>
-    </div>
-    
-    <h2>We're On It.</h2>
-    <p style="color: var(--gray-500); font-size: .95rem; margin-top: 10px; line-height: 1.6;">
-      Thank you for choosing Abbacy Global Group. We have successfully logged your enquiry and forwarded it to our senior overseas education counselors at our Himayatnagar, Hyderabad office.
-    </p>
-
-    <!-- Visual Journey Timeline of what's next -->
-    <div class="next-steps">
-      <h4><i class="fas fa-route" style="color: var(--gold);"></i> What Happens Next?</h4>
-      
-      <div class="step-item">
-        <div class="step-num-badge">1</div>
-        <div class="step-text">
-          <p><strong>Counselor Assigned:</strong> A dedicated country expert is assigned to evaluate your academic profile and preferences.</p>
-        </div>
-      </div>
-      
-      <div class="step-item">
-        <div class="step-num-badge">2</div>
-        <div class="step-text">
-          <p><strong>Personalized Call:</strong> We will call you within <strong>15 minutes</strong> (during working hours) or early next morning to schedule a free face-to-face or video consultation.</p>
-        </div>
-      </div>
-
-      <div class="step-item">
-        <div class="step-num-badge">3</div>
-        <div class="step-text">
-          <p><strong>Custom Strategy:</strong> We map out your complete study abroad roadmap, university shortlist, scholarship opportunities, and loan eligibility.</p>
-        </div>
+<!-- THANK-YOU (v2). Conversion tags live in <head> and are untouched. -->
+<main id="main">
+<section class="ab-section ab-ty">
+  <div class="ab-wrap ab-ty__wrap">
+    <div class="ab-ty__card">
+      <span class="ab-ty__tick" aria-hidden="true">✓</span>
+      <h1>Thank you, we&#8217;ve got your details.</h1>
+      <p class="ab-ty__lead">Your enquiry has reached our counsellors at the Himayatnagar office.</p>
+      <p class="ab-ty__hours" data-hours></p>
+      <div class="ab-ty__fast">
+        <p><strong>Want to start faster?</strong> Send your latest marksheet, or just your course and budget, on WhatsApp. A counsellor can look at it before your call.</p>
+        <a class="ab-btn ab-btn--wa ab-btn--block" id="tyWa" href="https://wa.me/918309713212?text=Hi%20Abbacy%2C%20I%20just%20sent%20my%20details%20on%20your%20website.%20Here%20is%20my%20marksheet%20%2F%20course%20and%20budget%3A" target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg> Send my details on WhatsApp</a>
+        <a class="ab-btn ab-btn--ghost ab-btn--block" href="tel:+918309713212">Call +91 83097 13212</a>
       </div>
     </div>
-
-    <!-- Double Action Row for Immediate Leads / Engagement -->
-    <div class="cta-row">
-      <a href="https://wa.me/918309713212?text=Hi%20Abbacy%20Global,%20I%20just%20submitted%20the%20form%20on%20your%20website%20and%20would%20like%20to%20chat!" target="_blank" rel="noopener" class="btn btn-shimmer" style="background: #25D366; box-shadow: 0 4px 16px rgba(37,211,102,.25);">
-        <i class="fab fa-whatsapp"></i> Chat on WhatsApp
-      </a>
-      <a href="tel:+918309713212" class="btn btn-navy">
-        <i class="fas fa-phone-alt"></i> Call Us Directly
-      </a>
-    </div>
-
-    <!-- Free Guides for secondary user engagement -->
-    <div class="thank-you-guides">
-      <h3>Prepare for Your Journey While You Wait</h3>
-      <div class="blog-grid" style="grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 16px; text-align: left;">
-        <a href="guide-usa.html" class="blog-card" style="box-shadow: none;">
-          <div class="blog-card-img blog-usa" style="height: 120px; font-size: 2rem;">🗽</div>
-          <div class="blog-card-body" style="padding: 14px;">
-            <span class="blog-tag" style="font-size: .6rem; margin-bottom: 6px;">USA Guide</span>
-            <h4 style="font-size: .85rem; line-height: 1.3; margin-bottom: 0;">Study in USA from Hyderabad — 2026 Guide</h4>
-          </div>
-        </a>
-        <a href="guide-ielts.html" class="blog-card" style="box-shadow: none;">
-          <div class="blog-card-img blog-ielts" style="height: 120px; font-size: 2rem;">📝</div>
-          <div class="blog-card-body" style="padding: 14px;">
-            <span class="blog-tag" style="font-size: .6rem; margin-bottom: 6px;">Test Prep</span>
-            <h4 style="font-size: .85rem; line-height: 1.3; margin-bottom: 0;">IELTS vs PTE vs Duolingo Guide</h4>
-          </div>
-        </a>
-        <a href="guide-loans.html" class="blog-card" style="box-shadow: none;">
-          <div class="blog-card-img blog-loan" style="height: 120px; font-size: 2rem;">💰</div>
-          <div class="blog-card-body" style="padding: 14px;">
-            <span class="blog-tag" style="font-size: .6rem; margin-bottom: 6px;">Finance</span>
-            <h4 style="font-size: .85rem; line-height: 1.3; margin-bottom: 0;">Education Loan Guide for Students</h4>
-          </div>
-        </a>
-      </div>
+    <div class="ab-ty__next">
+      <h2>What happens next</h2>
+      <ol class="ab-ty__steps">
+        <li><strong>A counsellor reviews your profile</strong> and the country you chose.</li>
+        <li><strong>We get in touch during office hours</strong> (Mon–Sat 9 AM–7:30 PM, Sun 10 AM–4 PM) by call or WhatsApp to set up your free consultation.</li>
+        <li><strong>Your free consultation:</strong> a university shortlist, a full cost and loan plan, and the visa steps, in person at Himayatnagar or by video.</li>
+      </ol>
+      <p class="ab-ty__note">Counselling is free. You&#8217;ll never be pushed into an application.</p>
     </div>
   </div>
-</div>
+</section>
+<section class="ab-section ab-section--sand" aria-labelledby="tyGuidesH">
+  <div class="ab-wrap">
+    <h2 class="ab-h2" id="tyGuidesH">While you wait: guides for you</h2>
+    <ul class="ab-ty__guides" id="tyGuides">
+      <li><a href="cheapest-countries-to-study-abroad-for-indian-students.html">Cheapest countries to study abroad</a></li>
+      <li><a href="guide-loans.html">Education loans without collateral</a></li>
+      <li><a href="student-visa-documents-checklist-by-country.html">Student visa documents checklist</a></li>
+      <li><a href="study-abroad-intakes-and-deadlines-2027.html">Intakes &amp; deadlines for 2027</a></li>
+    </ul>
+  </div>
+</section>
+</main>
+<script>
+  // Show guides for the country the student chose (thank-you.html?destination=...)
+  (function () {
+    var dest = (new URLSearchParams(location.search).get('destination') || '').toLowerCase();
+    var sets = [
+      [/ielts|pte|gre|duolingo|coaching/, 'English test', [['guide-ielts.html', 'IELTS vs PTE vs Duolingo'], ['ielts-exam-fee-in-india.html', 'IELTS exam fee in India'], ['pte-exam-fee-in-india.html', 'PTE exam fee in India'], ['study-in-uk-without-ielts.html', 'Study in the UK without IELTS']]],
+      [/daad|germany/, 'Germany', [['study-in-germany-for-free.html', 'Study in Germany for free'], ['ms-in-germany-cost-and-blocked-account.html', 'MS in Germany cost & blocked account'], ['germany-student-visa-from-india.html', 'Germany student visa from India'], ['daad-scholarship-germany.html', 'DAAD scholarship guide']]],
+      [/uk/, 'UK', [['uk-student-visa-from-india.html', 'UK student visa from India'], ['ms-in-uk-cost-and-scholarships.html', 'MS in UK cost & scholarships'], ['uk-scholarships-for-indian-students.html', 'UK scholarships for Indian students'], ['uk-graduate-visa-psw.html', 'UK Graduate visa (PSW)']]],
+      [/usa/, 'USA', [['guide-usa.html', 'MS in USA cost for Indian students'], ['f1-visa-interview-questions-hyderabad.html', 'F-1 visa interview questions'], ['usa-f1-rule-changes-2026-fixed-admission-and-opt-fee-proposal.html', 'US F-1 rule changes in 2026']]],
+      [/canada/, 'Canada', [['ms-in-canada-cost-for-indian-students.html', 'MS in Canada cost'], ['canada-student-visa-from-india.html', 'Canada student visa from India'], ['study-in-canada-without-ielts.html', 'Study in Canada without IELTS']]],
+      [/australia/, 'Australia', [['masters-in-australia-cost-for-indian-students.html', "Master's in Australia cost"], ['australia-student-visa-and-485.html', 'Australia student visa & 485'], ['study-in-australia-without-ielts.html', 'Study in Australia without IELTS']]],
+      [/ireland/, 'Ireland', [['ms-in-ireland-cost-for-indian-students.html', 'MS in Ireland cost'], ['ireland-student-visa-from-india.html', 'Ireland student visa from India'], ['study-in-ireland.html', 'Study in Ireland']]],
+      [/dubai|uae/, 'Dubai', [['top-universities-in-dubai-fees-for-indian-students.html', 'Dubai university fees in INR'], ['uae-student-visa-process-hyderabad.html', 'UAE student visa process'], ['part-time-jobs-and-living-cost-in-dubai.html', 'Living cost in Dubai']]],
+      [/france|netherlands|europe/, 'Europe', [['study-in-germany-for-free.html', 'Study in Germany for free'], ['ms-in-france-cost-for-indian-students.html', 'MS in France cost'], ['ms-in-netherlands-cost-for-indian-students.html', 'MS in the Netherlands cost'], ['ms-in-ireland-cost-for-indian-students.html', 'MS in Ireland cost']]]
+    ];
+    for (var i = 0; i < sets.length; i++) {
+      if (!sets[i][0].test(dest)) continue;
+      document.getElementById('tyGuidesH').textContent = 'While you wait: ' + sets[i][1] + ' guides';
+      document.getElementById('tyGuides').innerHTML = sets[i][2].map(function (g) {
+        return '<li><a href="' + g[0] + '">' + g[1] + '</a></li>';
+      }).join('');
+      var wa = document.getElementById('tyWa');
+      wa.href = wa.href.replace('website.', 'website%20about%20' + encodeURIComponent(sets[i][1]) + '.');
+      break;
+    }
+  })();
+</script>
 
 <!--FOOTER-->
 <footer class="ab-footer">
@@ -448,7 +421,7 @@
     }
   })();
 </script>
-<script src="app.js?v=20261022a" defer></script>
+<script src="app.js?v=20261025b" defer></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -479,8 +452,8 @@
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 17.3955,
-    "longitude": 78.4867
+    "latitude": 17.4016,
+    "longitude": 78.4865
   },
   "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM",
   "openingHoursSpecification": [

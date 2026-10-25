@@ -11,8 +11,8 @@
   <meta name="author" content="Abbacy Global Group">
   <meta name="geo.region" content="IN-TG">
   <meta name="geo.placename" content="Hyderabad">
-  <meta name="geo.position" content="17.3955;78.4867">
-  <meta name="ICBM" content="17.3955, 78.4867">
+  <meta name="geo.position" content="17.4016;78.4865">
+  <meta name="ICBM" content="17.4016, 78.4865">
   <meta name="theme-color" content="#1B3A5C">
 
   <meta property="og:type" content="website">
@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="site.css?v=20261023a">
+  <link rel="stylesheet" href="site.css?v=20261025e">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -50,7 +50,7 @@
     gtag('config', 'G-F8BD5FD268');
     gtag('config', 'AW-18184235814');
     /* Load gtag.js on first interaction (or 7s after load) to keep it off the critical path */
-    (function(){var l=0;function go(){if(l)return;l=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-F8BD5FD268';document.head.appendChild(s);}['pointerdown','keydown','touchstart','scroll','mousemove'].forEach(function(e){addEventListener(e,go,{passive:true,once:true});});addEventListener('load',function(){setTimeout(go,7000);});})();
+    (function(){var l=0;function go(){if(l||!/(^|\.)abbacy\.in$/.test(location.hostname))return;l=1;var s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id=G-F8BD5FD268';document.head.appendChild(s);}['pointerdown','keydown','touchstart','scroll','mousemove'].forEach(function(e){addEventListener(e,go,{passive:true,once:true});});addEventListener('load',function(){setTimeout(go,7000);});})();
   </script>
 
   <!-- Structured Data: WebPage -->
@@ -358,6 +358,7 @@
   <script type="text/javascript">
     window.addEventListener('load', function () {
       setTimeout(function () {
+        if (!/(^|\.)abbacy\.in$/.test(location.hostname)) return; // only count real visits on abbacy.in, never local testing
         (function(c,l,a,r,i,t,y){
           c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
           t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
@@ -858,7 +859,7 @@
 <!-- Back to Top -->
 <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></button>
 
-<script src="app.js?v=20261022a" defer></script>
+<script src="app.js?v=20261025b" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -965,8 +966,8 @@
   },
   "geo": {
     "@type": "GeoCoordinates",
-    "latitude": 17.3955,
-    "longitude": 78.4867
+    "latitude": 17.4016,
+    "longitude": 78.4865
   },
   "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM",
   "openingHoursSpecification": [
