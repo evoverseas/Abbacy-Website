@@ -38,7 +38,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="site.css?v=20261025e">
+  <link rel="stylesheet" href="site.css?v=20261026b">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -76,7 +76,7 @@
     .eligibility-card select,
     .elig-tabs-box,
     .elig-tab-content {
-      font-family: 'Inter', sans-serif !important;
+      font-family: var(--ab-font, 'Figtree', system-ui, sans-serif) !important;
     }
     .eligibility-step h3,
     .elig-lead-card h4,
@@ -84,8 +84,8 @@
     .section-header h2,
     .elig-gauge-pct,
     .elig-gauge-label {
-      font-family: 'Plus Jakarta Sans', sans-serif !important;
-      font-weight: 700 !important;
+      font-family: var(--ab-font-display, 'Bricolage Grotesque', system-ui, sans-serif) !important;
+      font-weight: 800 !important;
     }
     
     /* Strict guardrail to restore FontAwesome icons and prevent hollow square box bug */
@@ -353,6 +353,78 @@
       70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
       100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
     }
+
+    /* ===== v2 design language for the eligibility checker (26 Oct 2026) =====
+       Solid navy (ink) panels, amber accents, Bricolage headings, Figtree text. Logic and form untouched. */
+    .eligibility-section {
+      --gold: var(--ab-amber); --gold-light: var(--ab-amber-hi); --gold-dark: #C98100;
+      background:
+        radial-gradient(520px 420px at 100% 0%, rgba(245, 165, 36, .14), transparent 65%),
+        radial-gradient(480px 420px at 0% 100%, rgba(255, 255, 255, .04), transparent 70%),
+        var(--ab-ink) !important;
+      color: #D7DEE8;
+    }
+    .eligibility-section .section-header h2 { font-family: var(--ab-font-display) !important; font-weight: 800 !important; letter-spacing: -.02em; color: #fff; }
+    .eligibility-section .section-header p { font-family: var(--ab-font) !important; color: #B9C6D6 !important; }
+    .eligibility-section .section-tag {
+      font-family: var(--ab-font) !important; font-weight: 800 !important; letter-spacing: .08em; text-transform: uppercase;
+      background: rgba(245, 165, 36, .14) !important; color: var(--ab-amber-hi) !important; border: 1px solid rgba(245, 165, 36, .35) !important; border-radius: 999px !important;
+    }
+    /* The summary box already has its own amber edge; the paragraph inside stays plain */
+    .eligibility-section .aeo-text {
+      font-family: var(--ab-font) !important; background: transparent !important; border: 0 !important;
+      border-radius: 0 !important; padding: 0 !important; box-shadow: none !important; color: #D7DEE8 !important;
+    }
+    .eligibility-card {
+      background: var(--ab-ink-2) !important; border: 1px solid rgba(255, 255, 255, .08) !important; border-radius: 24px !important;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, .35) !important; backdrop-filter: none !important;
+    }
+    .eligibility-step h3 { color: #fff !important; letter-spacing: -.01em; }
+    .eligibility-step > p { color: #B9C6D6 !important; }
+    .eligibility-progress-labels { font-family: var(--ab-font) !important; font-weight: 800 !important; letter-spacing: .06em; }
+    .eligibility-step-indicator { background: rgba(255, 255, 255, .1) !important; border-radius: 999px !important; }
+    .eligibility-step-indicator.active, .eligibility-step-indicator.done, .eligibility-step-indicator.completed { background: var(--ab-amber) !important; }
+
+    .elig-option {
+      background: rgba(255, 255, 255, .04) !important; border: 1.5px solid rgba(255, 255, 255, .12) !important; border-radius: 16px !important;
+      transition: border-color .2s ease, background-color .2s ease, transform .2s ease !important; box-shadow: none !important;
+    }
+    .elig-option:hover { border-color: rgba(245, 165, 36, .6) !important; transform: translateY(-2px); }
+    .elig-option.selected { border-color: var(--ab-amber) !important; background: rgba(245, 165, 36, .10) !important; }
+    .elig-option.selected::after { background: var(--ab-amber) !important; color: var(--ab-ink) !important; }
+    .elig-option span { font-family: var(--ab-font) !important; font-weight: 800 !important; color: #fff; }
+    .elig-option .elig-option-sub { font-weight: 500 !important; color: #9FB0C6 !important; }
+    .elig-option i { color: var(--ab-amber) !important; }
+    .elig-option-badge { background: rgba(245, 165, 36, .16) !important; color: var(--ab-amber-hi) !important; border-radius: 999px !important; font-family: var(--ab-font) !important; font-weight: 800 !important; }
+
+    /* Buttons in the homepage style: amber primary with a solid base, outline secondary */
+    .eligibility-section .btn {
+      font-family: var(--ab-font) !important; font-weight: 800 !important; border-radius: 14px !important; letter-spacing: 0;
+    }
+    .eligibility-section .btn-primary, .eligibility-section .btn-shimmer {
+      background: var(--ab-amber) !important; color: var(--ab-ink) !important; border: 0 !important;
+      box-shadow: 0 6px 0 #C98100, 0 10px 24px rgba(245, 165, 36, .3) !important;
+    }
+    .eligibility-section .btn-primary:hover, .eligibility-section .btn-shimmer:hover { background: var(--ab-amber-hi) !important; }
+    .eligibility-section .btn-shimmer::before, .eligibility-section .btn-shimmer::after { display: none !important; }
+    .eligibility-section .btn-outline { background: transparent !important; color: #fff !important; border: 1.5px solid rgba(255, 255, 255, .3) !important; box-shadow: none !important; }
+    .eligibility-section .btn-outline:hover { border-color: var(--ab-amber) !important; color: var(--ab-amber-hi) !important; }
+
+    /* Result step */
+    .elig-gauge-label { color: #B9C6D6 !important; }
+    .elig-tabs-box { background: rgba(255, 255, 255, .03) !important; border: 1px solid rgba(255, 255, 255, .08) !important; border-radius: 18px !important; overflow: hidden; }
+    .elig-tab-btn { font-family: var(--ab-font) !important; font-weight: 800 !important; color: #9FB0C6 !important; background: transparent !important; }
+    .elig-tab-btn.active { color: var(--ab-ink) !important; background: var(--ab-amber) !important; }
+    .elig-lead-card {
+      background: #fff !important; border: 0 !important; border-radius: 20px !important; box-shadow: 0 16px 40px rgba(0, 0, 0, .3) !important; backdrop-filter: none !important;
+    }
+    .elig-lead-card h4 { color: var(--ab-ink) !important; }
+    .elig-lead-card p, .elig-lead-card label { color: #4B5A6E !important; font-family: var(--ab-font) !important; }
+    .elig-lead-card .finput {
+      background: var(--ab-paper) !important; color: var(--ab-ink) !important; border: 1.5px solid var(--ab-line) !important; border-radius: 12px !important;
+      font-family: var(--ab-font) !important;
+    }
+    .elig-lead-card .finput:focus { border-color: var(--ab-amber) !important; box-shadow: 0 0 0 3px rgba(245, 165, 36, .2) !important; outline: none; }
   </style>
   <!-- Microsoft Clarity (project z29dlxcmxt; masking: Balanced). Loaded after the page has rendered so it never delays first paint -->
   <script type="text/javascript">
@@ -520,7 +592,7 @@
           <div class="elig-option" data-value="bachelors">
             <i class="fas fa-user-graduate"></i>
             <span>Bachelors Graduate (UG)</span>
-            <span class="elig-option-sub">Pathways to elite Masters &amp; Global MBAs</span>
+            <span class="elig-option-sub">Master's and MBA routes at top universities</span>
           </div>
           <div class="elig-option" data-value="masters">
             <i class="fas fa-award"></i>
@@ -541,7 +613,7 @@
       <!-- Step 2: Destination -->
       <div class="eligibility-step" data-step="2">
         <h3>🌍 Where does your heart want to study?</h3>
-        <p>Select your dream destination. Each has unique stayback visas and post-study opportunities.</p>
+        <p>Choose a country. Each has its own post-study work visa and job market.</p>
         <div class="elig-options">
           <div class="elig-option" data-value="USA">
             <span class="elig-option-badge">STEM FOCUS</span>
@@ -612,7 +684,7 @@
           <div class="elig-option" data-value="high">
             <i class="fas fa-gem"></i>
             <span>Premium Tier Budget</span>
-            <span class="elig-option-sub">₹20L+/year (Elite tier &amp; Ivy league institutions)</span>
+            <span class="elig-option-sub">₹20L+/year (top-ranked and Ivy League universities)</span>
           </div>
           <div class="elig-option" data-value="any">
             <i class="fas fa-handshake"></i>
@@ -630,7 +702,7 @@
           <div class="elig-option" data-value="preparing">
             <i class="fas fa-book"></i>
             <span>Score is Ready / Booking soon</span>
-            <span class="elig-option-sub">Ready for direct elite applications</span>
+            <span class="elig-option-sub">Ready to apply to top-ranked universities</span>
           </div>
           <div class="elig-option" data-value="without">
             <i class="fas fa-eye-slash"></i>
@@ -664,7 +736,7 @@
           </svg>
           <div class="elig-gauge-text">
             <span class="elig-gauge-pct" id="eligGaugePct">0%</span>
-            <span class="elig-gauge-label">Match Score</span>
+            <span class="elig-gauge-label">Profile reviewed</span>
           </div>
         </div>
         
@@ -698,8 +770,8 @@
 
         <!-- Integrated CRO Capture Form -->
         <div class="elig-lead-card" id="eligLeadCard">
-          <h4>🎁 Unlock Your Custom Visa Roadmap &amp; Scholarship Evaluation</h4>
-          <p>We've noted your academic profile details. Enter your contact details below to secure your dynamic Study Abroad Blueprint, Scholarship Checklist, and book a free counselling review via WhatsApp.</p>
+          <h4>🎁 Get your study plan and scholarship check</h4>
+          <p>We've noted your academic details. Add your contact details below and a counsellor will send your study plan and scholarship checklist on WhatsApp, and book your free counselling review.</p>
           
           <form class="elig-lead-form" id="eligForm">
             <!-- Hidden inputs for UTM tracking -->
@@ -721,9 +793,9 @@
               <input type="tel" id="eligPhone" name="phone" class="finput" placeholder="e.g. +91 98765 43210" required>
             </div>
             <button type="submit" class="btn btn-shimmer" id="eligSubmitBtn">
-              Get My Visa Roadmap &amp; Scholarship Checklist <i class="fas fa-arrow-right"></i>
+              Get my study plan &amp; scholarship checklist <i class="fas fa-arrow-right"></i>
             </button>
-            <p class="elig-lead-form-note">🔒 100% Privacy Secure · 0% Spam · Instant PDF &amp; Contact Delivery</p>
+            <p class="elig-lead-form-note">🔒 No spam. Your details stay with our counsellors, who reply on WhatsApp during office hours.</p>
           </form>
         </div>
 
@@ -731,7 +803,7 @@
         <div class="elig-success-state" id="eligSuccessState" style="display: none;">
           <i class="fas fa-check-circle"></i>
           <h4>Your Visa Roadmap Request Is In.</h4>
-          <p>Thank you. Your academic profile details and your request for an Overseas Admission &amp; Scholarship Evaluation Checklist have been received. We are sending your dynamic Study Abroad Blueprint directly to your WhatsApp. An expert counselor from our HIMAYATNAGAR office will reach out to you shortly to answer any questions.</p>
+          <p>Thank you. We've received your academic details and your request for a study plan and scholarship checklist. A counsellor from our Himayatnagar office will WhatsApp you during office hours with your plan and to answer any questions.</p>
         </div>
 
         <div class="elig-result-actions" style="margin-top: 24px; display: flex; gap: 12px; justify-content: center;">
@@ -774,7 +846,7 @@
       </details>
       <details>
         <summary>Is the eligibility assessment at Abbacy Global free?</summary>
-        <div class="ab-faq__a"><p>Yes. The online audit tool and 1-on-1 expert counselling sessions at Abbacy Global Group's Himayatnagar office are 100% free with no hidden charges. Call +91 83097 13212 to discuss your results.</p></div>
+        <div class="ab-faq__a"><p>Yes. The online eligibility check and one-to-one counselling at our Himayatnagar office are free, with no hidden charges. Call +91 83097 13212 to talk through your results.</p></div>
       </details>
     </div>
   </div>
@@ -786,7 +858,7 @@
     <div class="ab-footer__grid">
       <div class="ab-footer__brand">
         <a href="index.html" class="ab-brand" style="color:#fff"><img src="./images/logo-96.webp" alt="" width="42" height="42" loading="lazy"><span><span class="ab-brand__name">Abbacy Global Group</span><span class="ab-brand__sub" style="color:#8FA1B8">Overseas education consultants · since 2019</span></span></a>
-        <p>Free study abroad counselling from Himayatnagar, Hyderabad — admissions, scholarships, education loans and student visas for 9 countries.</p>
+        <p>Free study abroad counselling from Himayatnagar, Hyderabad: admissions, scholarships, education loans and student visas for 9 countries.</p>
         <div class="ab-socials">
           <a href="https://www.instagram.com/abbacy_global_group_hyd/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
           <a href="https://www.facebook.com/abbacyglobal/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
@@ -829,7 +901,7 @@
         <p style="margin:0 0 6px"><a href="tel:+918309713212">+91 83097 13212</a></p>
         <p style="margin:0 0 6px"><a href="mailto:info@abbacy.in">info@abbacy.in</a></p>
         <p style="margin:0 0 10px">Mon–Sat 9:00 AM – 7:30 PM · Sun 10:00 AM – 4:00 PM</p>
-        <a href="https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM" target="_blank" rel="noopener">View on Google Maps →</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Abbacy%20Global%20Group&amp;query_place_id=ChIJCdYvlKiZyzsRlDDkmB1CDdM" target="_blank" rel="noopener">View on Google Maps →</a>
       </div>
     </div>
     <div class="ab-footer__hubs">
@@ -859,7 +931,7 @@
 <!-- Back to Top -->
 <button class="back-to-top" id="backToTop" aria-label="Back to top"><svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m6 15 6-6 6 6"/></svg></button>
 
-<script src="app.js?v=20261025b" defer></script>
+<script src="app.js?v=20261026c" defer></script>
   <script type="application/ld+json">
   {
     "@context": "https://schema.org",
@@ -930,7 +1002,7 @@
       "name": "Is the eligibility assessment at Abbacy Global free?",
       "acceptedAnswer": {
         "@type": "Answer",
-        "text": "Yes. The online audit tool and 1-on-1 expert counselling sessions at Abbacy Global Group's Himayatnagar office are 100% free with no hidden charges. Call +91 83097 13212 to discuss your results."
+        "text": "Yes. The online eligibility check and one-to-one counselling at our Himayatnagar office are free, with no hidden charges. Call +91 83097 13212 to talk through your results."
       }
     }
   ]
@@ -969,7 +1041,7 @@
     "latitude": 17.4016,
     "longitude": 78.4865
   },
-  "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Abbacy%20Global%20Group&query_place_id=ChIJCdYvlKiZyzsRlDDkmB1CDdM",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -992,7 +1064,7 @@
     }
   ],
   "sameAs": [
-    "https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM",
+    "https://www.google.com/maps/search/?api=1&query=Abbacy%20Global%20Group&query_place_id=ChIJCdYvlKiZyzsRlDDkmB1CDdM",
     "https://www.instagram.com/abbacy_global_group_hyd/",
     "https://www.facebook.com/abbacyglobal/",
     "https://www.youtube.com/@abbacyglobalgroup6312",

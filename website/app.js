@@ -486,7 +486,7 @@ if (carouselTrack && carouselDots) {
     else if (dest === 'UK' && ielts === 'without') matchScore = 94;
     else if (dest === 'Canada' && edu === 'bachelors') matchScore = 92;
     else if (budget === 'any') matchScore = 91;
-    else matchScore = Math.floor(Math.random() * (96 - 88 + 1)) + 88; // Sleek variance
+    else matchScore = 90;
 
     // 2. Animate Circular Match Gauge
     const gPct = document.getElementById('eligGaugePct');
@@ -497,17 +497,15 @@ if (carouselTrack && carouselDots) {
       const circ = 339.29;
       gFill.style.strokeDashoffset = circ;
       
-      let count = 0;
-      const interval = setInterval(function() {
-        count++;
-        gPct.textContent = count + '%';
-        if (count >= matchScore) {
-          clearInterval(interval);
-        }
-      }, 15);
+      // No percentage: the quiz can't measure a real "match score", so the dial just fills and shows a tick
+      setTimeout(function() {
+        gPct.textContent = '\u2713';
+        gPct.style.setProperty('color', '#22C55E', 'important');  // green tick, never inherited red
+        gFill.style.stroke = '#22C55E';
+      }, 600);
 
       setTimeout(function() {
-        const offset = circ - (matchScore / 100) * circ;
+        const offset = 0;
         gFill.style.strokeDashoffset = offset;
       }, 50);
     }
@@ -535,23 +533,23 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>Target Country:</strong> Matched for direct university applications in the United States.</span></li>
             <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>3-Year STEM OPT Stayback:</strong> Work legally in the US in top tech/engineering fields for 36 months after graduation.</span></li>
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>High ROI:</strong> Average starting salaries for STEM graduates exceed $75,000/year.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-check-circle" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>High ROI:</strong> STEM graduates can use up to 3 years of OPT work experience in the US.</span></li>
           </ul>
         </div>
       `;
 
       let scholarshipText = 'Your profile qualifies you for merit-based fee waivers and fellowship grants.';
-      let scholarshipAmt = 'Up to $15,000 Tuition Fee Waiver';
+      let scholarshipAmt = 'Merit scholarships &amp; fee waivers to check';
       if (budget === 'low') {
         scholarshipText = 'Target public universities and maximum merit-based assistantships (TA/RA) to minimize costs.';
-        scholarshipAmt = 'Up to $20,000 Merit Scholarships &amp; Assistantships';
+        scholarshipAmt = 'Merit scholarships &amp; assistantships to check';
       }
 
       scholarshipHtml = `
@@ -607,8 +605,8 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -623,7 +621,7 @@ if (carouselTrack && carouselDots) {
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="background: rgba(201,151,58,0.12); border-left: 4px solid var(--gold); padding: 12px; border-radius: 6px; margin-bottom: 14px;">
             <strong style="color: var(--gold-light); font-size: 0.72rem; text-transform: uppercase; display: block; margin-bottom: 4px;">UK Funding Strategy:</strong>
-            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">£2,000 to £5,000 Fee Reductions</span>
+            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">University fee reductions to check</span>
           </div>
           <p style="margin: 0 0 10px; color: rgba(255,255,255,0.8); font-size: 0.82rem;">Direct fee discounts pre-screened for Abbacy students across 80+ partner UK universities.</p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -672,8 +670,8 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -737,8 +735,8 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -753,11 +751,11 @@ if (carouselTrack && carouselDots) {
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="background: rgba(201,151,58,0.12); border-left: 4px solid var(--gold); padding: 12px; border-radius: 6px; margin-bottom: 14px;">
             <strong style="color: var(--gold-light); font-size: 0.72rem; text-transform: uppercase; display: block; margin-bottom: 4px;">Canada Funding Strategy:</strong>
-            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">$2,000 - $5,000 CAD Entrance Awards</span>
+            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">University entrance awards to check</span>
           </div>
           <p style="margin: 0 0 10px; color: rgba(255,255,255,0.8); font-size: 0.82rem;">Eligible for entrance scholarship pools at select partner universities and DLI colleges.</p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
-            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-coins" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>GIC Funding Loans:</strong> Secure low-interest student loans up to ₹45 Lakhs to fund GIC Blocked Account deposit ($20,635 CAD) and first-year fees.</span></li>
+            <li style="display: flex; gap: 8px; align-items: flex-start;"><i class="fas fa-coins" style="color: var(--gold-light); margin-top: 3px; font-size: 0.85rem;"></i> <span><strong>GIC Funding Loans:</strong> Secure low-interest student loans up to ₹45 Lakhs to fund GIC Blocked Account deposit (CAD 23,448) and first-year fees.</span></li>
           </ul>
         </div>
       `;
@@ -784,7 +782,7 @@ if (carouselTrack && carouselDots) {
               <span style="display: flex; align-items: center; justify-content: center; width: 22px; height: 22px; border-radius: 50%; background: rgba(201,151,58,0.2); color: var(--gold-light); font-size: 0.72rem; font-weight: 800; flex-shrink: 0; margin-top: 2px;">3</span>
               <div>
                 <strong style="display: block; font-size: 0.82rem; color: var(--white);">GIC Account Deposit</strong>
-                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Open a GIC account with CIBC or Scotiabank and transfer $20,635 CAD as verified proof of Canadian living costs.</span>
+                <span style="font-size: 0.76rem; color: rgba(255,255,255,0.5);">Open a GIC account with CIBC or Scotiabank and transfer CAD 23,448 as verified proof of Canadian living costs.</span>
               </div>
             </div>
             <div style="display: flex; gap: 10px; align-items: flex-start;">
@@ -801,8 +799,8 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -865,8 +863,8 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -881,7 +879,7 @@ if (carouselTrack && carouselDots) {
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="background: rgba(201,151,58,0.12); border-left: 4px solid var(--gold); padding: 12px; border-radius: 6px; margin-bottom: 14px;">
             <strong style="color: var(--gold-light); font-size: 0.72rem; text-transform: uppercase; display: block; margin-bottom: 4px;">Ireland Funding Strategy:</strong>
-            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">€2,000 to €5,000 Global Excellence Awards</span>
+            <span style="font-size: 1rem; font-weight: 800; color: var(--white);">University scholarships to check</span>
           </div>
           <p style="margin: 0 0 10px; color: rgba(255,255,255,0.8); font-size: 0.82rem;">Merit fee waivers pre-screened based on UG CGPA (65%+). Combined with part-time earnings at €12.70/hr.</p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -929,8 +927,8 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -994,8 +992,8 @@ if (carouselTrack && carouselDots) {
       pathwayHtml = `
         <div style="font-size: 0.88rem; line-height: 1.6; color: rgba(255,255,255,0.9);">
           <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 14px; background: rgba(255,255,255,0.04); padding: 8px 12px; border-radius: 6px;">
-            <span>Pre-Screening Match Status:</span>
-            <strong style="color: #4ADE80;">Highly Favorable (${matchScore}%)</strong>
+            <span>Next step:</span>
+            <strong style="color: #4ADE80;">Free counsellor review</strong>
           </div>
           <p style="margin: 0 0 12px;">Matched course tier: <strong style="color: var(--gold-light);">${idealCourse}</strong></p>
           <ul style="list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 8px;">
@@ -2358,7 +2356,7 @@ if (document.readyState === 'loading') {
       mastersTuition: 22000,
       bachelorsTuition: 25000,
       livingMonthly: 1720,
-      proofFunds: 'C$ 20,635 (GIC) + 1st Year Tuition',
+      proofFunds: 'C$ 23,448 (GIC) + 1st Year Tuition',
       workPermit: 'Up to 3 Years PGWP'
     },
     australia: {
@@ -2699,4 +2697,51 @@ if (document.readyState === 'loading') {
       });
     } catch (_) {}
   }, true);
+})();
+
+/* ── Spam trap ───────────────────────────────────────────────
+   Adds one invisible, UNNAMED field to every form. People never see or fill it; bots that fill
+   every field do. A capturing listener runs before any form handler and drops a submission only
+   when that field has a value. Because the field has no name, it is never part of FormData or
+   any lead payload, so genuine leads reach the Google Sheet exactly as before. */
+(function initSpamTrap() {
+  function addTraps() {
+    document.querySelectorAll('form').forEach(function (form) {
+      if (form.querySelector('.ab-hp')) return;
+      var wrap = document.createElement('div');
+      wrap.setAttribute('aria-hidden', 'true');
+      wrap.style.cssText = 'position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;';
+      var trap = document.createElement('input');
+      trap.type = 'text';
+      trap.className = 'ab-hp';
+      trap.tabIndex = -1;
+      trap.setAttribute('autocomplete', 'off');
+      trap.id = 'abhp-' + Math.random().toString(36).slice(2, 8);
+      wrap.appendChild(trap);
+      form.appendChild(wrap);
+    });
+  }
+  document.addEventListener('submit', function (e) {
+    var trap = e.target && e.target.querySelector ? e.target.querySelector('.ab-hp') : null;
+    if (trap && trap.value) {
+      e.preventDefault();
+      e.stopImmediatePropagation();
+    }
+  }, true);
+  function start() {
+    addTraps();
+    // Some forms (the eligibility quiz's contact step) are copied in from a <template> later
+    if ('MutationObserver' in window) {
+      new MutationObserver(function (records) {
+        for (var i = 0; i < records.length; i++) {
+          if (records[i].addedNodes.length) { addTraps(); return; }
+        }
+      }).observe(document.body, { childList: true, subtree: true });
+    }
+  }
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', start);
+  } else {
+    start();
+  }
 })();

@@ -1,0 +1,38 @@
+/* Scroll-lite: light scroll effects for the homepage only (based on the scroll-craft device kit).
+   Everything here is gated behind html.sl-on, which scroll-lite.js adds only when the visitor has
+   not asked for reduced motion. Without JS, or with reduced motion, the page renders exactly as before.
+   To revert: delete the <!--SCROLL-LITE--> block in index.html. */
+
+/* 1. Hero depth: a soft glow layer that drifts slower than the page */
+.sl-on .ab-hero { position: relative; overflow: hidden; isolation: isolate; }
+.sl-on .ab-hero::before {
+  content: ""; position: absolute; z-index: -1; pointer-events: none;
+  width: 620px; height: 620px; right: -160px; top: -220px; border-radius: 50%;
+  background: radial-gradient(circle, rgba(245, 165, 36, .22), transparent 62%);
+  transform: translate3d(0, calc(var(--sl-hero, 0) * 120px), 0);
+  will-change: transform;
+}
+
+/* 2. Reveal on entry: 14px rise, 620ms ease-out, once, staggered in reading order */
+.sl-on [data-sl-in] { opacity: 0; transform: translate3d(0, 14px, 0); }
+.sl-on [data-sl-in].sl-shown {
+  opacity: 1; transform: none;
+  transition: opacity .62s cubic-bezier(.22, .61, .36, 1), transform .62s cubic-bezier(.22, .61, .36, 1);
+  transition-delay: var(--sl-delay, 0ms);
+}
+
+/* 3. "How it works": the connecting line fills as you scroll and each step lights up */
+.sl-on .ab-step::after {
+  background: linear-gradient(var(--sl-dir, 180deg), var(--ab-amber) var(--sl-fill, 0%), var(--ab-line) var(--sl-fill, 0%));
+}
+@media (min-width: 900px) { .sl-on .ab-step::after { --sl-dir: 90deg; } }
+.sl-on .ab-step::before { transition: background-color .35s ease, color .35s ease, box-shadow .35s ease; }
+.sl-on .ab-step.sl-lit::before { background: var(--ab-amber); color: var(--ab-ink); box-shadow: 0 0 0 6px rgba(245, 165, 36, .18); }
+
+/* 4. Count-up: digits keep their width while they change */
+.sl-on .ab-rv__num { font-variant-numeric: tabular-nums; }
+
+/* 5. Destination cards lean toward the pointer (mouse only) */
+@media (hover: hover) and (pointer: fine) {
+  .sl-on .ab-dest { transform: perspective(700px) rotateX(var(--sl-rx, 0deg)) rotateY(var(--sl-ry, 0deg)); transition: transform .25s ease-out; }
+}

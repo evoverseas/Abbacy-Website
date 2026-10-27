@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="site.css?v=20261025e">
+  <link rel="stylesheet" href="site.css?v=20261026b">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -328,7 +328,7 @@
     <div class="ab-footer__grid">
       <div class="ab-footer__brand">
         <a href="index.html" class="ab-brand" style="color:#fff"><img src="./images/logo-96.webp" alt="" width="42" height="42" loading="lazy"><span><span class="ab-brand__name">Abbacy Global Group</span><span class="ab-brand__sub" style="color:#8FA1B8">Overseas education consultants · since 2019</span></span></a>
-        <p>Free study abroad counselling from Himayatnagar, Hyderabad — admissions, scholarships, education loans and student visas for 9 countries.</p>
+        <p>Free study abroad counselling from Himayatnagar, Hyderabad: admissions, scholarships, education loans and student visas for 9 countries.</p>
         <div class="ab-socials">
           <a href="https://www.instagram.com/abbacy_global_group_hyd/" target="_blank" rel="noopener" aria-label="Instagram"><svg><use href="#i-ig"/></svg></a>
           <a href="https://www.facebook.com/abbacyglobal/" target="_blank" rel="noopener" aria-label="Facebook"><svg><use href="#i-fb"/></svg></a>
@@ -371,7 +371,7 @@
         <p style="margin:0 0 6px"><a href="tel:+918309713212">+91 83097 13212</a></p>
         <p style="margin:0 0 6px"><a href="mailto:info@abbacy.in">info@abbacy.in</a></p>
         <p style="margin:0 0 10px">Mon–Sat 9:00 AM – 7:30 PM · Sun 10:00 AM – 4:00 PM</p>
-        <a href="https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM" target="_blank" rel="noopener">View on Google Maps →</a>
+        <a href="https://www.google.com/maps/search/?api=1&amp;query=Abbacy%20Global%20Group&amp;query_place_id=ChIJCdYvlKiZyzsRlDDkmB1CDdM" target="_blank" rel="noopener">View on Google Maps →</a>
       </div>
     </div>
     <div class="ab-footer__hubs">
@@ -388,40 +388,7 @@
 </footer>
 <!--/FOOTER-->
 
-<!-- Dynamic Personalization & Fallback Lead Capture -->
-<script>
-  (function() {
-    try {
-      var params = new URLSearchParams(window.location.search);
-      var name = (sessionStorage.getItem('abbacy_lead_name') || '').trim();
-      var destination = (sessionStorage.getItem('abbacy_lead_dest') || params.get('destination') || '').trim();
-
-      // Dynamic Greeting Personalization (with zero PII in URL)
-      var displayName = name ? name.split(' ')[0] : 'Future Global Scholar';
-      var h2 = document.querySelector('.thank-you-box h2');
-      if (h2) {
-        h2.innerHTML = "We're On It, <span style='color: var(--gold);'>" + displayName + "</span>!";
-      }
-
-      if (destination) {
-        var p = document.querySelector('.thank-you-box > p');
-        if (p) {
-          p.innerHTML = "Thank you for choosing Abbacy Global Group. We have successfully logged your enquiry for <strong>" + destination + "</strong> and assigned it to our senior overseas education counselors at our Himayatnagar, Hyderabad office.";
-        }
-      }
-
-      // Dynamic WhatsApp button link
-      var waBtn = document.querySelector('.thank-you-box .cta-row a[href*="wa.me"]');
-      if (waBtn) {
-        var waMsg = "Hi Abbacy Global, I just submitted my application" + (destination ? (" for " + destination) : "") + (name ? (" (" + name + ")") : "") + " and would like to connect!";
-        waBtn.href = "https://wa.me/918309713212?text=" + encodeURIComponent(waMsg);
-      }
-    } catch(e) {
-      console.warn('Thank you script error:', e);
-    }
-  })();
-</script>
-<script src="app.js?v=20261025b" defer></script>
+<script src="app.js?v=20261026c" defer></script>
   <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -455,7 +422,7 @@
     "latitude": 17.4016,
     "longitude": 78.4865
   },
-  "hasMap": "https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM",
+  "hasMap": "https://www.google.com/maps/search/?api=1&query=Abbacy%20Global%20Group&query_place_id=ChIJCdYvlKiZyzsRlDDkmB1CDdM",
   "openingHoursSpecification": [
     {
       "@type": "OpeningHoursSpecification",
@@ -478,7 +445,7 @@
     }
   ],
   "sameAs": [
-    "https://www.google.com/maps/place/?q=place_id:ChIJCdYvlKiZyzsRlDDkmB1CDdM",
+    "https://www.google.com/maps/search/?api=1&query=Abbacy%20Global%20Group&query_place_id=ChIJCdYvlKiZyzsRlDDkmB1CDdM",
     "https://www.instagram.com/abbacy_global_group_hyd/",
     "https://www.facebook.com/abbacyglobal/",
     "https://www.youtube.com/@abbacyglobalgroup6312",
