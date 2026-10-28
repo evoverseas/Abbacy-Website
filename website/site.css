@@ -192,6 +192,17 @@ html { -webkit-text-size-adjust: 100%; scroll-padding-top: 80px; }
 .ab-hero .ab-ticks { order: 5; }
 .ab-pass { order: 4; }
 .ab-hide-sm { display: none; }
+/* Visit strip: Maps visitors want the address, open status and directions first */
+.ab-visit { order: 3; display: grid; gap: 8px; padding: 12px 14px; border: 1px solid var(--ab-line); border-radius: 14px; background: rgba(255, 255, 255, .75); }
+.ab-visit p { margin: 0; }
+.ab-visit__addr { display: flex; gap: 8px; align-items: flex-start; font-weight: 600; color: var(--ab-ink); font-size: .95rem; }
+.ab-visit__addr svg { width: 18px; height: 18px; flex: none; margin-top: 2px; color: var(--ab-amber-ink); }
+.ab-visit__hours { font-size: .88rem; font-weight: 700; color: var(--ab-muted, #5b6b7d); }
+.ab-visit__hours.is-open { color: #138A44; }
+.ab-visit__hours:empty { display: none; }
+.ab-visit__btns { display: grid; grid-template-columns: repeat(3, 1fr); gap: 8px; }
+.ab-visit__btns .ab-btn { min-height: 44px; padding: 8px 6px; font-size: .88rem; gap: 6px; white-space: nowrap; }
+.ab-visit__btns svg { width: 16px; height: 16px; }
 .ab-rating {
   display: inline-flex; align-items: center; gap: 8px; flex-wrap: wrap;
   padding: 7px 12px 7px 8px; border-radius: 999px; background: var(--ab-white); border: 1px solid var(--ab-line);
@@ -580,6 +591,9 @@ select.ab-input {
   .ab-hero__copy > .ab-rating { display: inline-flex; }
   .ab-hero .ab-hero__copy h1 { margin: 18px 0 14px; }
   .ab-hero .ab-hero__copy .ab-hero__sub { margin-bottom: 18px; }
+  .ab-hero .ab-hero__copy .ab-visit { margin-bottom: 18px; max-width: 540px; grid-template-columns: 1fr; }
+  .ab-hero .ab-hero__copy .ab-visit__btns { grid-template-columns: repeat(3, auto); justify-content: start; }
+  .ab-hero .ab-hero__copy .ab-visit__btns .ab-btn { padding: 8px 16px; }
   .ab-hide-sm { display: inline; }
   .ab-pass__body { padding: 24px 26px 26px; }
   .ab-proof { padding: 30px 0; }

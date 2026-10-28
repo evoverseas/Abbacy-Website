@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="site.css?v=20261026b">
+  <link rel="stylesheet" href="site.css?v=20261028a">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -32,16 +32,19 @@
     gtag('config', 'G-F8BD5FD268');
     gtag('config', 'AW-18184235814');
 
-    // Fire immediate conversion events upon landing on thank-you page
-    gtag('event', 'generate_lead', {
-      'event_category': 'Leads',
-      'event_label': 'Study Abroad Lead Conversion',
-      'value': 1.0,
-      'currency': 'INR'
-    });
-    gtag('event', 'conversion', {
-      'send_to': 'AW-18184235814'
-    });
+    // Count each enquiry once. app.js already sends GA4 generate_lead on submit, so this page
+    // only sends the Ads conversion, and only after a real form submit (app.js sets
+    // abbacy_lead_name), never again on refresh or a direct visit.
+    (function () {
+      try {
+        var name = sessionStorage.getItem('abbacy_lead_name');
+        if (name === null) return;
+        var key = 'abbacy_conv_' + location.search + '|' + name;
+        if (sessionStorage.getItem(key)) return;
+        sessionStorage.setItem(key, '1');
+      } catch (e) { return; }
+      gtag('event', 'conversion', { 'send_to': 'AW-18184235814' });
+    })();
   </script>
 
   <style>
@@ -361,7 +364,7 @@
           <li><a href="guide-scholarships.html">Scholarships</a></li>
           <li><a href="ielts-coaching-in-hyderabad.html">IELTS coaching</a></li>
           <li><a href="about-our-team.html">Our counsellors</a></li>
-          <li><a href="about-our-team.html#editorial-policy">Editorial policy</a></li>
+          <li><a href="about-our-team.html#editorial-policy">Editorial policy</a></li><li><a href="privacy-policy.html">Privacy policy</a></li><li><a href="terms.html">Terms of use</a></li>
           <li><a href="contact.html">Contact</a></li>
         </ul>
       </div>
