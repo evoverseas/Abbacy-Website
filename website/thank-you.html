@@ -19,7 +19,7 @@
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
   <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="site.css?v=20261028a">
+  <link rel="stylesheet" href="site.css?v=20261029a">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"></noscript>
 
@@ -32,9 +32,11 @@
     gtag('config', 'G-F8BD5FD268');
     gtag('config', 'AW-18184235814');
 
-    // Count each enquiry once. app.js already sends GA4 generate_lead on submit, so this page
-    // only sends the Ads conversion, and only after a real form submit (app.js sets
-    // abbacy_lead_name), never again on refresh or a direct visit.
+    // The reliable lead signal: app.js also sends generate_lead on submit, but that hit is often
+    // lost when the page changes (13 of 53 in GA4, Aug–Oct 2026). Send it here once per enquiry,
+    // only after a real form submit (app.js sets abbacy_lead_name), never on refresh or a direct
+    // visit. GA4 and Google Ads count generate_lead once per session/click, so an occasional
+    // second hit from app.js isn't double-counted.
     (function () {
       try {
         var name = sessionStorage.getItem('abbacy_lead_name');
@@ -43,7 +45,7 @@
         if (sessionStorage.getItem(key)) return;
         sessionStorage.setItem(key, '1');
       } catch (e) { return; }
-      gtag('event', 'conversion', { 'send_to': 'AW-18184235814' });
+      gtag('event', 'generate_lead', { 'event_category': 'Leads', 'value': 1.0, 'currency': 'INR' });
     })();
   </script>
 
