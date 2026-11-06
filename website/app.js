@@ -1381,7 +1381,7 @@ function attachUniversalFormHandler(form) {
     payload.name = nameVal.trim();
     payload.phone = phoneVal.trim();
     payload.email = emailVal.trim();
-    payload.course = courseVal || 'Overseas Career Counselling';
+    payload.course = courseVal || ('Enquiry: ' + (document.title.split('|')[0].trim() || window.location.pathname));
     payload.destination = destVal || document.title.split('|')[0].replace('Study in', '').trim();
     payload.source_page = window.location.pathname;
     payload.page_title = document.title;
@@ -2334,7 +2334,7 @@ if (document.readyState === 'loading') {
   const countryCosts = {
     usa: {
       currency: '$ (USD)',
-      rate: 86.5,
+      rate: 94.9,
       mastersTuition: 28000,
       bachelorsTuition: 32000,
       livingMonthly: 1250,
@@ -2343,7 +2343,7 @@ if (document.readyState === 'loading') {
     },
     uk: {
       currency: '£ (GBP)',
-      rate: 110.0,
+      rate: 127.4,
       mastersTuition: 17500,
       bachelorsTuition: 19000,
       livingMonthly: 1050,
@@ -2352,7 +2352,7 @@ if (document.readyState === 'loading') {
     },
     canada: {
       currency: 'C$ (CAD)',
-      rate: 61.5,
+      rate: 67.9,
       mastersTuition: 22000,
       bachelorsTuition: 25000,
       livingMonthly: 1720,
@@ -2361,7 +2361,7 @@ if (document.readyState === 'loading') {
     },
     australia: {
       currency: 'A$ (AUD)',
-      rate: 55.5,
+      rate: 66.5,
       mastersTuition: 34000,
       bachelorsTuition: 36000,
       livingMonthly: 2000,
@@ -2370,7 +2370,7 @@ if (document.readyState === 'loading') {
     },
     germany: {
       currency: '€ (EUR)',
-      rate: 93.0,
+      rate: 106.5,
       mastersTuition: 0,
       bachelorsTuition: 0,
       livingMonthly: 992,
@@ -2379,7 +2379,7 @@ if (document.readyState === 'loading') {
     },
     france: {
       currency: '€ (EUR)',
-      rate: 93.0,
+      rate: 106.5,
       mastersTuition: 3770,
       bachelorsTuition: 2770,
       livingMonthly: 850,
@@ -2388,7 +2388,7 @@ if (document.readyState === 'loading') {
     },
     dubai: {
       currency: 'AED',
-      rate: 23.5,
+      rate: 25.8,
       mastersTuition: 55000,
       bachelorsTuition: 60000,
       livingMonthly: 3500,
@@ -2397,7 +2397,7 @@ if (document.readyState === 'loading') {
     },
     ireland: {
       currency: '€ (EUR)',
-      rate: 93.0,
+      rate: 106.5,
       mastersTuition: 15500,
       bachelorsTuition: 16000,
       livingMonthly: 1100,
