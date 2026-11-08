@@ -40,7 +40,7 @@
   <link rel="dns-prefetch" href="https://www.googletagmanager.com">
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="site.css?v=20261029a">
+  <link rel="stylesheet" href="site.css?v=20261108a">
   <!--SCROLL-LITE: light scroll effects for the homepage only. To revert, delete this block and the two scroll-lite files.-->
   <link rel="stylesheet" href="scroll-lite.css?v=20261026a">
   <script src="scroll-lite.js?v=20261026b" defer></script>
@@ -183,9 +183,9 @@
       </a>
       <h1 class="ab-rise ab-rise-2">
         <span class="ab-h1-kicker">Study abroad consultants in Hyderabad</span>
-        Get admitted, funded &amp; <span class="ab-mark">visa-approved.</span>
+        Honest study abroad advice. <span class="ab-mark">Free, from shortlist to visa.</span>
       </h1>
-      <p class="ab-hero__sub ab-rise ab-rise-3">Free 1-on-1 guidance from senior counsellors at our overseas education consultancy in Himayatnagar. <span class="ab-hide-sm">An honest university shortlist, help with loans and scholarships, and daily visa mock interviews. </span>10,000+ students placed since 2019.</p>
+      <p class="ab-hero__sub ab-rise ab-rise-3">Senior counsellors at our overseas education consultancy in Himayatnagar tell you what's realistic for your marks and budget before you spend a rupee. <span class="ab-hide-sm">An honest university shortlist, help with loans and scholarships, and daily visa mock interviews. </span>10,000+ students placed since 2019.</p>
       <ul class="ab-ticks ab-rise ab-rise-4">
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>₹0 counselling, applications &amp; visa guidance</li>
         <li><svg aria-hidden="true"><use href="#i-check"/></svg>Collateral-free education loans up to ₹50 lakh</li>
@@ -349,6 +349,86 @@
   </div>
 </section>
 
+<!-- CALCULATOR -->
+<section id="calculator" class="ab-section ab-section--ink calc-section" aria-labelledby="calc-h">
+  <div class="ab-wrap">
+    <div class="ab-head ab-head--center">
+      <span class="ab-eyebrow">Plan your budget</span>
+      <h2 class="ab-h2" id="calc-h">What will it really cost, and what will the EMI be?</h2>
+      <p class="ab-lead">Pick a country to see tuition, living costs and proof of funds. Then slide to estimate your education loan EMI.</p>
+    </div>
+
+    <div class="calc-grid">
+      <div class="calc-card">
+        <div class="calc-card-header">
+          <h3>Cost by country</h3>
+          <p>Approximate yearly figures for Indian students.</p>
+        </div>
+        <div class="calc-group">
+          <label class="calc-label" for="calcDest">Country</label>
+          <select id="calcDest" class="calc-select">
+            <option value="usa" selected>United States (USA)</option>
+            <option value="uk">United Kingdom (UK)</option>
+            <option value="canada">Canada</option>
+            <option value="australia">Australia</option>
+            <option value="germany">Germany (€0 tuition)</option>
+            <option value="france">France</option>
+            <option value="dubai">Dubai (UAE)</option>
+            <option value="ireland">Ireland</option>
+          </select>
+        </div>
+        <div class="calc-group">
+          <label class="calc-label" for="calcDegree">Degree</label>
+          <select id="calcDegree" class="calc-select">
+            <option value="masters" selected>Master's (MS / MBA)</option>
+            <option value="bachelors">Bachelor's (BS / BA)</option>
+          </select>
+        </div>
+        <div class="calc-results-panel">
+          <div class="calc-result-row"><span>Tuition per year</span><span id="calcOutputTuition" class="calc-result-val">$ 28,000 (≈ ₹26.6 Lakhs/yr)</span></div>
+          <div class="calc-result-row"><span>Living cost per month</span><span id="calcOutputLiving" class="calc-result-val">$ 1,250 (≈ ₹1,18,625/mo)</span></div>
+          <div class="calc-result-row"><span>Proof of funds</span><span id="calcOutputProof" class="calc-result-val">₹35–45 Lakhs (I-20 Form)</span></div>
+          <div class="calc-result-row"><span>Post-study work</span><span id="calcOutputPSW" class="calc-result-val">3 Years STEM OPT</span></div>
+        </div>
+      </div>
+
+      <div class="calc-card">
+        <div class="calc-card-header">
+          <h3>Education loan EMI</h3>
+          <p>Indicative only. Your actual rate depends on the lender and your profile.</p>
+        </div>
+        <div class="calc-group">
+          <div class="calc-label"><label for="loanAmount">Loan amount</label><span id="loanAmountVal" class="calc-val-badge">₹30.0 Lakhs</span></div>
+          <input type="range" id="loanAmount" class="calc-range" min="500000" max="15000000" step="100000" value="3000000" aria-label="Loan amount">
+        </div>
+        <div class="calc-group">
+          <div class="calc-label"><label for="loanRate">Interest rate</label><span id="loanRateVal" class="calc-val-badge">10.5% p.a.</span></div>
+          <input type="range" id="loanRate" class="calc-range" min="8.0" max="15.0" step="0.25" value="10.5" aria-label="Interest rate per annum">
+        </div>
+        <div class="calc-group">
+          <div class="calc-label"><label for="loanTenure">Tenure</label><span id="loanTenureVal" class="calc-val-badge">10 Years</span></div>
+          <input type="range" id="loanTenure" class="calc-range" min="3" max="15" step="1" value="10" aria-label="Repayment tenure in years">
+        </div>
+        <div class="calc-results-panel">
+          <div class="calc-result-row"><span>Monthly EMI</span><span id="calcOutputEMI" class="calc-result-val highlight">₹40,480</span></div>
+          <div class="calc-result-row"><span>Total interest</span><span id="calcOutputInterest" class="calc-result-val">₹18.58 Lakhs</span></div>
+          <div class="calc-result-row"><span>Total repayment</span><span id="calcOutputTotalPay" class="calc-result-val">₹48.58 Lakhs</span></div>
+          <form id="calcLeadForm" class="calc-lead-box">
+            <p style="margin:0;color:#fff;font-weight:700">Get a detailed budget sheet + loan options on WhatsApp</p>
+            <div class="calc-lead-inputs">
+              <input type="text" id="calcLeadName" class="calc-input" placeholder="Your name" autocomplete="name" required aria-label="Your name">
+              <input type="tel" id="calcLeadPhone" class="calc-input" placeholder="WhatsApp number" autocomplete="tel" inputmode="numeric" required aria-label="WhatsApp number">
+            </div>
+            <button type="submit" class="ab-btn ab-btn--primary ab-btn--block">Send me my budget sheet <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
+            <div id="calcLeadSuccess" class="calc-lead-success"></div>
+          </form>
+        </div>
+      </div>
+    </div>
+    <p class="ab-calc-hint" style="text-align:center">Want a deeper read? <a class="ab-link" style="color:#fff" href="eligibility.html">Take the 2-minute eligibility check →</a></p>
+  </div>
+</section>
+
 <!-- DESTINATIONS -->
 <section class="ab-section ab-section--sand" id="destinations" aria-labelledby="dest-h">
   <div class="ab-wrap">
@@ -483,31 +563,6 @@
   </div>
 </section>
 
-<!-- HOW TO CHOOSE -->
-<section class="ab-section ab-section--white" id="choose" aria-labelledby="choose-h">
-  <div class="ab-wrap">
-    <div class="ab-head">
-      <span class="ab-eyebrow">Before you sign up anywhere</span>
-      <h2 class="ab-h2" id="choose-h">How to choose an overseas education consultancy in Hyderabad</h2>
-      <p class="ab-lead">Hyderabad has hundreds of abroad consultancies. Ask every one of them, including us, these six questions.</p>
-    </div>
-    <div class="ab-table-wrap" role="region" tabindex="0" aria-label="Consultancy checklist">
-      <table class="ab-table">
-        <thead><tr><th scope="col">What to check</th><th scope="col">Why it matters</th><th scope="col">Where Abbacy stands</th></tr></thead>
-        <tbody>
-          <tr><th scope="row">Fees in writing</th><td>Students tell us some agencies asked for ₹20,000–₹50,000 before reading their transcripts.</td><td>Counselling, applications and visa guidance are ₹0. Only optional test coaching is paid.</td></tr>
-          <tr><th scope="row">An office you can visit</th><td>Document checks and mock interviews work best face to face.</td><td>302-A, Aalto's A&amp;M Trade Centre, Himayatnagar Main Road. Open 7 days.</td></tr>
-          <tr><th scope="row">One named counsellor</th><td>Details get lost when you're passed between telecallers.</td><td>Alisha, Laxmi or Gopi stays with you from first chat to departure.</td></tr>
-          <tr><th scope="row">Reviews you can verify</th><td>Read the 1–3★ reviews too, not just the average.</td><td>4.9★ from 217+ <a href="https://search.google.com/local/reviews?placeid=ChIJCdYvlKiZyzsRlDDkmB1CDdM" target="_blank" rel="noopener">Google reviews</a>.</td></tr>
-          <tr><th scope="row">No visa guarantees</th><td>Only the embassy decides. A guaranteed visa is a red flag.</td><td>We prepare documents and run mock interviews; we never promise approval. 99% approval on applications filed for enrolled clients.</td></tr>
-          <tr><th scope="row">A shortlist with reasons</th><td>Each university should fit your marks, budget and career, not the agent's commission.</td><td>Dream, Target and Safe options across 9 countries, with costs in rupees.</td></tr>
-        </tbody>
-      </table>
-    </div>
-    <p style="margin-top:18px">Read the full checklist: <a class="ab-link" href="how-to-choose-study-abroad-consultant-hyderabad.html">how to choose a study abroad consultant in Hyderabad</a>.</p>
-  </div>
-</section>
-
 <!-- TEAM -->
 <section class="ab-section ab-section--sand" id="about" aria-labelledby="team-h">
   <div class="ab-wrap ab-split">
@@ -522,87 +577,9 @@
       <div class="ab-person"><span class="ab-avatar" aria-hidden="true">L</span><div><h3>Laxmi</h3><p class="ab-person__role">Senior Counsellor · UK, Canada &amp; Australia</p><p>Visa documentation and the mock interviews students mention in their reviews again and again.</p></div></div>
       <div class="ab-person"><span class="ab-avatar" aria-hidden="true">G</span><div><h3>Gopi</h3><p class="ab-person__role">Senior Counsellor · Germany, Europe &amp; Loans</p><p>Tuition-free German universities, APS, blocked accounts and education loan paperwork.</p></div></div>
     </div>
+  
   </div>
-</section>
-
-<!-- CALCULATOR -->
-<section id="calculator" class="ab-section ab-section--ink calc-section" aria-labelledby="calc-h">
-  <div class="ab-wrap">
-    <div class="ab-head ab-head--center">
-      <span class="ab-eyebrow">Plan your budget</span>
-      <h2 class="ab-h2" id="calc-h">What will it really cost, and what will the EMI be?</h2>
-      <p class="ab-lead">Pick a country to see tuition, living costs and proof of funds. Then slide to estimate your education loan EMI.</p>
-    </div>
-
-    <div class="calc-grid">
-      <div class="calc-card">
-        <div class="calc-card-header">
-          <h3>Cost by country</h3>
-          <p>Approximate yearly figures for Indian students.</p>
-        </div>
-        <div class="calc-group">
-          <label class="calc-label" for="calcDest">Country</label>
-          <select id="calcDest" class="calc-select">
-            <option value="usa" selected>United States (USA)</option>
-            <option value="uk">United Kingdom (UK)</option>
-            <option value="canada">Canada</option>
-            <option value="australia">Australia</option>
-            <option value="germany">Germany (€0 tuition)</option>
-            <option value="france">France</option>
-            <option value="dubai">Dubai (UAE)</option>
-            <option value="ireland">Ireland</option>
-          </select>
-        </div>
-        <div class="calc-group">
-          <label class="calc-label" for="calcDegree">Degree</label>
-          <select id="calcDegree" class="calc-select">
-            <option value="masters" selected>Master's (MS / MBA)</option>
-            <option value="bachelors">Bachelor's (BS / BA)</option>
-          </select>
-        </div>
-        <div class="calc-results-panel">
-          <div class="calc-result-row"><span>Tuition per year</span><span id="calcOutputTuition" class="calc-result-val">$ 28,000 (≈ ₹26.6 Lakhs/yr)</span></div>
-          <div class="calc-result-row"><span>Living cost per month</span><span id="calcOutputLiving" class="calc-result-val">$ 1,250 (≈ ₹1,18,625/mo)</span></div>
-          <div class="calc-result-row"><span>Proof of funds</span><span id="calcOutputProof" class="calc-result-val">₹35–45 Lakhs (I-20 Form)</span></div>
-          <div class="calc-result-row"><span>Post-study work</span><span id="calcOutputPSW" class="calc-result-val">3 Years STEM OPT</span></div>
-        </div>
-      </div>
-
-      <div class="calc-card">
-        <div class="calc-card-header">
-          <h3>Education loan EMI</h3>
-          <p>Indicative only. Your actual rate depends on the lender and your profile.</p>
-        </div>
-        <div class="calc-group">
-          <div class="calc-label"><label for="loanAmount">Loan amount</label><span id="loanAmountVal" class="calc-val-badge">₹30.0 Lakhs</span></div>
-          <input type="range" id="loanAmount" class="calc-range" min="500000" max="15000000" step="100000" value="3000000" aria-label="Loan amount">
-        </div>
-        <div class="calc-group">
-          <div class="calc-label"><label for="loanRate">Interest rate</label><span id="loanRateVal" class="calc-val-badge">10.5% p.a.</span></div>
-          <input type="range" id="loanRate" class="calc-range" min="8.0" max="15.0" step="0.25" value="10.5" aria-label="Interest rate per annum">
-        </div>
-        <div class="calc-group">
-          <div class="calc-label"><label for="loanTenure">Tenure</label><span id="loanTenureVal" class="calc-val-badge">10 Years</span></div>
-          <input type="range" id="loanTenure" class="calc-range" min="3" max="15" step="1" value="10" aria-label="Repayment tenure in years">
-        </div>
-        <div class="calc-results-panel">
-          <div class="calc-result-row"><span>Monthly EMI</span><span id="calcOutputEMI" class="calc-result-val highlight">₹40,480</span></div>
-          <div class="calc-result-row"><span>Total interest</span><span id="calcOutputInterest" class="calc-result-val">₹18.58 Lakhs</span></div>
-          <div class="calc-result-row"><span>Total repayment</span><span id="calcOutputTotalPay" class="calc-result-val">₹48.58 Lakhs</span></div>
-          <form id="calcLeadForm" class="calc-lead-box">
-            <p style="margin:0;color:#fff;font-weight:700">Get a detailed budget sheet + loan options on WhatsApp</p>
-            <div class="calc-lead-inputs">
-              <input type="text" id="calcLeadName" class="calc-input" placeholder="Your name" autocomplete="name" required aria-label="Your name">
-              <input type="tel" id="calcLeadPhone" class="calc-input" placeholder="WhatsApp number" autocomplete="tel" inputmode="numeric" required aria-label="WhatsApp number">
-            </div>
-            <button type="submit" class="ab-btn ab-btn--primary ab-btn--block">Send me my budget sheet <svg aria-hidden="true"><use href="#i-arrow"/></svg></button>
-            <div id="calcLeadSuccess" class="calc-lead-success"></div>
-          </form>
-        </div>
-      </div>
-    </div>
-    <p class="ab-calc-hint" style="text-align:center">Want a deeper read? <a class="ab-link" style="color:#fff" href="eligibility.html">Take the 2-minute eligibility check →</a></p>
-  </div>
+  <div class="ab-wrap"><div class="ab-photos ab-photos--3" aria-label="Our Himayatnagar office"><figure><img src="images/office-staircase.webp" alt="Staircase signs at Aalto's A&amp;M Trade Centre pointing to Abbacy on the 3rd floor" width="800" height="1066" loading="lazy"><figcaption>302-A, 3rd floor<span>Follow the signs up the stairs. Walk in, no appointment needed.</span></figcaption></figure><figure><img src="images/office-counselling-room.webp" alt="Counsellors meeting students inside the Abbacy office in Himayatnagar" width="800" height="726" loading="lazy"><figcaption>Free 1-on-1 sessions<span>In English, Telugu, Hindi or Urdu.</span></figcaption></figure><figure><img src="images/office-desk.webp" alt="A counselling desk at the Abbacy office" width="800" height="930" loading="lazy"><figcaption>Leave with a plan<span>Shortlist, budget in rupees and next steps.</span></figcaption></figure></div></div>
 </section>
 
 <!-- VISIT -->
@@ -917,7 +894,7 @@
   "logo": "https://abbacy.in/images/logo.webp",
   "image": "https://abbacy.in/images/hero_students.webp",
   "foundingDate": "2019",
-  "slogan": "Get admitted, funded & visa-approved.",
+  "slogan": "Honest study abroad advice. Free, from shortlist to visa.",
   "description": "Abbacy Global Group is a study abroad and overseas education consultancy in Himayatnagar, Hyderabad, established in 2019. It offers free counselling, university applications, scholarship and education loan assistance, and student visa guidance for the USA, UK, Canada, Australia, Germany, Ireland, France, Netherlands and Dubai, and has placed 10,000+ students with a 99% visa approval rate on enrolled client applications.",
   "telephone": "+91-83097-13212",
   "email": "info@abbacy.in",
