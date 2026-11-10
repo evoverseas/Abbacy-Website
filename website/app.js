@@ -1400,9 +1400,6 @@ function attachUniversalFormHandler(form) {
         sessionStorage.setItem('abbacy_thankyou_lead_' + payload.phone, 'submitted');
         sessionStorage.setItem('abbacy_lead_submitted_' + payload.phone, 'true');
       }
-      const stored = JSON.parse(localStorage.getItem('abbacy_leads_db') || '[]');
-      stored.push(payload);
-      localStorage.setItem('abbacy_leads_db', JSON.stringify(stored));
     } catch(err) {}
 
     // Transmit directly to Google Apps Script endpoint via single network request
@@ -1425,15 +1422,7 @@ function attachUniversalFormHandler(form) {
 
     const thankYouUrl = 'thank-you.html?' + cleanParams.toString();
 
-    // Fire conversion event to dataLayer before navigation
-    try {
-      if (typeof window.gtag === 'function') {
-        window.gtag('event', 'generate_lead', {
-          event_category: 'Leads',
-          event_label: payload.destination || 'Study Abroad'
-        });
-      }
-    } catch(gtagErr) {}
+    // generate_lead is sent once from thank-you.html, so it is not fired here (avoids double counting)
 
     // REDIRECT IMMEDIATELY (no 2.5s delay) to guarantee conversion capture on thank-you page
     setTimeout(function() {
@@ -1481,15 +1470,49 @@ immediateForms.forEach(attachUniversalFormHandler);
 
 const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbxvdUdZJDAIbYjM1OaZF96iTb5oh81VK5Z6TWtS9eNxSVWYm6nwPkOK5N0Be_56ga6c/exec';
 
+// Earlier versions kept every submitted lead (name, phone, email) in the visitor's browser; clear those copies.
+try { localStorage.removeItem('abbacy_leads_db'); localStorage.removeItem('abbacy_calculator_leads'); } catch (_) {}
+
+/* Fill the sheet's columns the same way for every form (contact, eligibility quiz, loan calculator):
+   page/page_title feed the "Page" columns, quiz answers land in Destination/Course/Message,
+   form_type says which form it was, and UTMs come from the session when the form had no hidden fields. */
+function normaliseLeadPayload(data) {
+  const d = Object.assign({}, data);
+  const path = window.location.pathname;
+  d.page = d.page || d.source_page || path;
+  d.source_page = d.source_page || d.page;
+  d.page_title = d.page_title || document.title;
+  if (!d.form_type) {
+    d.form_type = d.dream_destination ? 'eligibility_quiz'
+      : /Calculator Lead/.test(d.message || '') ? 'loan_calculator'
+      : 'enquiry_form';
+  }
+  if (d.dream_destination) {
+    if (!d.destination) d.destination = d.dream_destination;
+    if (!d.course && d.academic_background) d.course = d.academic_background;
+    const quiz = 'Eligibility quiz: background ' + (d.academic_background || 'Unknown') +
+      '; funding ' + (d.funding_preference || 'Unknown') +
+      '; English test ' + (d.english_test_status || 'Unknown');
+    d.message = d.message ? d.message + ' | ' + quiz : quiz;
+  }
+  try {
+    UTM_PARAMS.forEach(function (k) {
+      if (!d[k]) { const v = sessionStorage.getItem(k); if (v) d[k] = v; }
+    });
+  } catch (_) {}
+  return d;
+}
+
 function submitToGoogleSheets(data) {
   try {
+    data = normaliseLeadPayload(data);
     const cleanPhone = String(data.phone || '').replace(/\D/g, '');
     const dedupeKey = 'abbacy_sub_' + (cleanPhone || (data.email ? String(data.email).toLowerCase() : 'lead_' + Date.now()));
 
-    // Client-side deduplication guard: prevent duplicate submission within 60 seconds
+    // Client-side deduplication guard: prevent duplicate submission within 10 minutes
     const lastSubmitTime = sessionStorage.getItem(dedupeKey);
     const now = Date.now();
-    if (lastSubmitTime && (now - parseInt(lastSubmitTime, 10)) < 60000) {
+    if (lastSubmitTime && (now - parseInt(lastSubmitTime, 10)) < 600000) {
       console.warn('Duplicate Google Sheet submission prevented for:', cleanPhone || data.email);
       return false;
     }
@@ -1544,7 +1567,7 @@ function submitToGoogleSheets(data) {
   }
 }
 
-/* â”€â”€ UTM & Paid Ads Conversion Attribution Tracker â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* ── UTM & Paid Ads Conversion Attribution Tracker ──────── */
 const UTM_PARAMS = ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term', 'gclid', 'fbclid'];
 
 function captureUtmParameters() {
@@ -2540,14 +2563,6 @@ if (document.readyState === 'loading') {
 
         const cleanPhone = String(leadPayload.phone || '').replace(/\D/g, '');
 
-        // Store lead info locally
-        try {
-          const storedLeads = JSON.parse(localStorage.getItem('abbacy_calculator_leads') || '[]');
-          storedLeads.push(leadPayload);
-          localStorage.setItem('abbacy_calculator_leads', JSON.stringify(storedLeads));
-        } catch (err) {
-          // ignore storage errors
-        }
 
         const calcSubmitBtn = leadForm.querySelector('button[type="submit"]');
         if (calcSubmitBtn) {
@@ -2607,6 +2622,13 @@ if (document.readyState === 'loading') {
     const formTarget = document.querySelector('#contactForm, #leadForm, #eligForm, #form-container')
       ? '#form-container'
       : 'contact.html';
+    // Button label matches the offer on the page's own form card (audit 10 Nov 2026)
+    const path = window.location.pathname;
+    const ctaLabel = /overseas-scholarship|vidya-nidhi/.test(path) ? 'ePASS alert'
+      : /ielts|pte-|gre-|duolingo/.test(path) ? 'Free demo'
+      : /vfs-global/.test(path) ? 'Doc check'
+      : /consulate|f1-visa/.test(path) ? 'Free mock'
+      : 'Free check';
     bar.innerHTML = `
       <a href="tel:+918309713212" class="mbb-btn mbb-call" aria-label="Call Abbacy Global">
         <i class="fas fa-phone-alt"></i> Call Now
@@ -2615,7 +2637,7 @@ if (document.readyState === 'loading') {
         <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
       <a href="${formTarget}" class="mbb-btn mbb-apply">
-        Free Plan →
+        ${ctaLabel} →
       </a>
     `;
     document.body.appendChild(bar);
@@ -2744,4 +2766,13 @@ if (document.readyState === 'loading') {
   } else {
     start();
   }
+})();
+
+/* ── Folded sections (homepage country table, guide groups): closed on phones to keep the page short, open on desktop ── */
+(function () {
+  function openFolds() {
+    if (!window.matchMedia('(min-width: 900px)').matches) return;
+    document.querySelectorAll('details[data-open-desktop]').forEach(function (d) { d.open = true; });
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', openFolds); else openFolds();
 })();

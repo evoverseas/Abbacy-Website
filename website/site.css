@@ -1134,3 +1134,37 @@ body.v2-inner.keyboard-open .fab-whatsapp, body.v2-inner.keyboard-open .fab-call
   .ab-table:not(:has(tr > :nth-child(4))) { min-width: 0; }
   .ab-table:not(:has(tr > :nth-child(4))) tbody th { white-space: normal; }
 }
+
+/* ---------- 360 review 10 Nov 2026 ---------- */
+.ab-seealso { margin: 18px 0 26px; padding: 12px 16px; background: #F5F9FD; border-radius: var(--ab-r); font-size: .95rem; line-height: 1.7; }
+
+/* Folded blocks: closed on phones, opened on desktop by app.js */
+details.ab-fold > summary, details.ab-hub__group > summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 44px; }
+details.ab-fold > summary::-webkit-details-marker, details.ab-hub__group > summary::-webkit-details-marker { display: none; }
+details.ab-fold > summary::after, details.ab-hub__group > summary::after { content: "+"; flex: none; width: 30px; height: 30px; border-radius: 50%; display: grid; place-items: center; background: #EEF3FA; font-weight: 800; }
+details.ab-fold[open] > summary::after, details.ab-hub__group[open] > summary::after { content: "–"; }
+details.ab-fold { background: #fff; border: 1px solid var(--ab-line); border-radius: var(--ab-r); padding: 6px 16px; margin-top: 14px; }
+details.ab-fold > summary { font-weight: 800; }
+details.ab-fold[open] { padding-bottom: 16px; }
+details.ab-hub__group > summary h3 { margin: 0; }
+details.ab-hub__group[open] > summary { margin-bottom: 10px; }
+@media (min-width: 900px) {
+  details.ab-fold { border: 0; padding: 0; background: none; }
+  details.ab-fold > summary, details.ab-hub__group > summary::after { display: none; }
+  details.ab-hub__group > summary { pointer-events: none; min-height: 0; }
+}
+@media (max-width: 640px) {
+  .ab-free__item p { display: none; }
+  #worries .ab-pain:nth-of-type(n+7) { display: none; }
+  .ab-hero .ab-ticks { display: none; }
+  .ab-free { gap: 8px; }
+}
+
+/* Simple horizontal bar charts in guides (no JS, readable as text) */
+.ab-bars { margin: 22px 0; padding: 18px; background: #fff; border: 1px solid var(--ab-line); border-radius: var(--ab-r); }
+.ab-bars figcaption { font-weight: 800; margin-bottom: 12px; color: var(--ab-ink); }
+.ab-bars__row { display: grid; grid-template-columns: minmax(96px, 34%) 1fr 98px; align-items: center; gap: 10px; padding: 5px 0; font-size: .92rem; }
+.ab-bars__t { background: #EEF3FA; border-radius: 6px; height: 16px; overflow: hidden; }
+.ab-bars__b { display: block; height: 100%; background: var(--ab-amber); border-radius: 6px; }
+.ab-bars__v { font-weight: 700; white-space: nowrap; text-align: right; color: var(--ab-ink); }
+.ab-bars__n { margin: 10px 0 0; font-size: .82rem; color: #5B6B82; }
