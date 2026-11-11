@@ -118,7 +118,9 @@ document.querySelectorAll('a[href^="#"]').forEach(a => {
     const target = document.getElementById(id);
     if (target) {
       e.preventDefault();
-      window.scrollTo({ top: target.getBoundingClientRect().top + window.scrollY - 76, behavior: 'smooth' });
+      const top = target.getBoundingClientRect().top + window.scrollY - 76;
+      // Long jumps (e.g. bottom CTA back to the hero form) go instantly; short ones glide
+      window.scrollTo({ top, behavior: Math.abs(top - window.scrollY) > 2500 ? 'instant' : 'smooth' });
     }
   });
 });
@@ -2641,6 +2643,20 @@ if (document.readyState === 'loading') {
       </a>
     `;
     document.body.appendChild(bar);
+    // The bar is added after the page's smooth-scroll links are wired, so give its form button its own
+    // handler: jump straight to the form (a long smooth scroll felt like nothing happened) and pulse the card.
+    const apply = bar.querySelector('.mbb-apply');
+    if (apply && formTarget.charAt(0) === '#') {
+      apply.addEventListener('click', e => {
+        const t = document.querySelector(formTarget);
+        if (!t) return;
+        e.preventDefault();
+        window.scrollTo({ top: t.getBoundingClientRect().top + window.scrollY - 76, behavior: 'instant' });
+        t.classList.remove('ab-flash');
+        void t.offsetWidth;
+        t.classList.add('ab-flash');
+      });
+    }
   }
 
   if (document.readyState === 'loading') {
