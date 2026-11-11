@@ -36,7 +36,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap" media="print" onload="this.media='all';this.onload=null">
   <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,700;12..96,800&family=Figtree:wght@400;500;600;700;800&display=swap"></noscript>
-  <link rel="stylesheet" href="site.css?v=20261111a">
+  <link rel="stylesheet" href="site.css?v=20261111b">
   <script>(function(){var l=0;function go(){if(l)return;l=1;var k=document.createElement('link');k.rel='stylesheet';k.href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css';document.head.appendChild(k);}['pointerdown','keydown','touchstart','scroll','mousemove'].forEach(function(e){addEventListener(e,go,{passive:true,once:true});});addEventListener('load',function(){setTimeout(go,7000);});})();</script>
 
   <!-- Google Analytics 4 -->
@@ -392,28 +392,38 @@
 <!--/HEADER-->
 
 <!-- HERO -->
-<section class="contact-page-hero ab-chero">
-  <div class="ab-wrap">
-    <span class="ab-open" id="openStatus" aria-live="polite"><span class="ab-open__dot"></span><span id="openStatusText">Mon–Sat 9:00 AM – 7:30 PM · Sun 10:00 AM – 4:00 PM</span></span>
-    <h1>Talk to a counsellor <span class="serif-italic text-gradient">today</span></h1>
-    <p class="ab-chero__lead">Visit our Himayatnagar office, call us, or send your details below. Counselling is free, and we reply within working hours.</p>
-
-    <div class="ab-chero__actions">
-      <a class="ab-ctile ab-ctile--wa" href="https://wa.me/918309713212?text=Hi%20Abbacy%20Global%20Team%2C%20I%20would%20like%20to%20book%20a%20free%20study%20abroad%20counselling%20session." target="_blank" rel="noopener">
-        <svg aria-hidden="true"><use href="#i-wa"/></svg><span><strong>WhatsApp us</strong><small>Fastest reply</small></span>
-      </a>
-      <a class="ab-ctile" href="tel:+918309713212">
-        <svg aria-hidden="true"><use href="#i-phone"/></svg><span><strong>+91 83097 13212</strong><small>Tap to call</small></span>
-      </a>
-      <a class="ab-ctile" href="#visit">
-        <svg aria-hidden="true"><use href="#i-plane"/></svg><span><strong>Visit the office</strong><small>Himayatnagar Main Road</small></span>
-      </a>
+<section class="contact-page-hero ab-chero ab-chero--video">
+  <div class="ab-wrap ab-chero__grid">
+    <div class="ab-chero__copy">
+      <span class="ab-open" id="openStatus" aria-live="polite"><span class="ab-open__dot"></span><span id="openStatusText">Mon–Sat 9:00 AM – 7:30 PM · Sun 10:00 AM – 4:00 PM</span></span>
+      <h1>Talk to a counsellor <span class="serif-italic text-gradient">today</span></h1>
+      <p class="ab-chero__lead">Free counselling, in Himayatnagar or on a video call. Watch how it works, then book your session just below.</p>
     </div>
-
-    <p class="ab-chero__proof"><span class="ab-stars" aria-hidden="true">★★★★★</span> <strong>4.9</strong> from 218 Google reviews · 10,000+ students guided since 2019</p>
-
-    <div class="aeo-capsule ab-chero__answer">
-      <p class="aeo-text"><strong>Abbacy Global Group's office</strong> is at 302-A, 3rd Floor, Aalto's A&amp;M Trade Centre (above Subway), Himayatnagar Main Road, Hyderabad 500029. It is open Monday to Saturday 9:00 AM–7:30 PM and Sunday 10:00 AM–4:00 PM. Call or WhatsApp +91 83097 13212 for a free profile assessment, university shortlist, loan guidance or visa interview practice.</p>
+    <div class="ab-chero__media" data-vsl-scope>
+      <div class="ab-vsl__frame" data-vsl="contact" data-title="How studying abroad works, in 6 steps (2 minutes)" data-src-hd="videos/abbacy-study-abroad-1080.mp4" data-src-sd="videos/abbacy-study-abroad-720.mp4">
+        <img src="images/vsl-poster.webp" width="1280" height="720" alt="Animated video: a student in Hyderabad dreaming of studying abroad" loading="eager" fetchpriority="high" decoding="async">
+        <button type="button" class="ab-vsl__play" aria-label="Play the 2-minute video: how studying abroad works">
+          <span class="ab-vsl__btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
+          <span class="ab-vsl__label">Watch: how it works <small>2:15 · subtitled</small></span>
+        </button>
+        <div class="ab-vsl__end" hidden>
+          <p class="ab-vsl__end-k">Your next step</p>
+          <p class="ab-vsl__end-h">Book your free counselling session</p>
+          <div class="ab-vsl__end-btns">
+            <a class="ab-btn ab-btn--primary" href="#form-container" data-cta="form">Book my free session <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+            <a class="ab-btn ab-btn--wa" href="https://wa.me/918309713212?text=Hi%20Abbacy%2C%20I%20watched%20your%20study%20abroad%20video%20and%20would%20like%20a%20free%20counselling%20session." target="_blank" rel="noopener" data-cta="whatsapp"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp us</a>
+          </div>
+          <button type="button" class="ab-vsl__replay" data-vsl-replay>&#8635; Watch again</button>
+        </div>
+      </div>
+    </div>
+    <div class="ab-chero__after">
+      <div class="ab-chero__quick">
+        <a class="ab-btn ab-btn--primary" href="#form-container">Book my free session <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
+        <a class="ab-btn ab-btn--wa" href="https://wa.me/918309713212?text=Hi%20Abbacy%20Global%20Team%2C%20I%20would%20like%20to%20book%20a%20free%20study%20abroad%20counselling%20session." target="_blank" rel="noopener"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp</a>
+        <a class="ab-btn ab-btn--light" href="tel:+918309713212"><svg aria-hidden="true"><use href="#i-phone"/></svg> Call</a>
+      </div>
+      <p class="ab-chero__proof"><span class="ab-stars" aria-hidden="true">★★★★★</span> <strong>4.9</strong> from 218 Google reviews · 10,000+ students since 2019 · <a href="#visit">Visit the office</a></p>
     </div>
   </div>
 </section>
@@ -492,27 +502,6 @@
     </div>
 
     <div class="ab-contact__side">
-      <div class="ab-contact__card ab-vsl-mini" data-vsl-scope>
-        <h2 class="ab-contact__h">New to studying abroad? Watch this first</h2>
-        <p class="ab-vsl-mini__p">The 6 steps from Hyderabad to campus, in 2 minutes.</p>
-        <div class="ab-vsl__frame" data-vsl="contact" data-title="How studying abroad works, in 6 steps (2 minutes)" data-src-hd="videos/abbacy-study-abroad-1080.mp4" data-src-sd="videos/abbacy-study-abroad-720.mp4">
-        <img src="images/vsl-poster.webp" width="1280" height="720" alt="Animated video: a student in Hyderabad dreaming of studying abroad" loading="lazy" decoding="async">
-        <button type="button" class="ab-vsl__play" aria-label="Play the 2-minute video: how studying abroad works">
-          <span class="ab-vsl__btn" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M8 5.5v13a1 1 0 0 0 1.5.86l10.6-6.5a1 1 0 0 0 0-1.72L9.5 4.64A1 1 0 0 0 8 5.5z"/></svg></span>
-          <span class="ab-vsl__label">Watch: how it works <small>2:15 · subtitled</small></span>
-        </button>
-        <div class="ab-vsl__end" hidden>
-          <p class="ab-vsl__end-k">Your next step</p>
-          <p class="ab-vsl__end-h">Book your free counselling session</p>
-          <div class="ab-vsl__end-btns">
-            <a class="ab-btn ab-btn--primary" href="#form-container" data-cta="form">Book my free session <svg aria-hidden="true"><use href="#i-arrow"/></svg></a>
-            <a class="ab-btn ab-btn--wa" href="https://wa.me/918309713212?text=Hi%20Abbacy%2C%20I%20watched%20your%20study%20abroad%20video%20and%20would%20like%20a%20free%20counselling%20session." target="_blank" rel="noopener" data-cta="whatsapp"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp us</a>
-          </div>
-          <button type="button" class="ab-vsl__replay" data-vsl-replay>&#8635; Watch again</button>
-        </div>
-      </div>
-      </div>
-
       <div class="ab-contact__card">
         <h2 class="ab-contact__h">What happens after you send this</h2>
         <ol class="ab-contact__steps">
