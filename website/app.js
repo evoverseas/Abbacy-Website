@@ -2631,11 +2631,14 @@ if (document.readyState === 'loading') {
       : /vfs-global/.test(path) ? 'Doc check'
       : /consulate|f1-visa/.test(path) ? 'Free mock'
       : 'Free check';
+    // WhatsApp text matches the page's own offer when the hero has one (website 360 plan, 21 Nov 2026)
+    const heroWa = document.querySelector('.ab-herocta .ab-btn--wa');
+    const waHref = heroWa ? heroWa.getAttribute('href') : 'https://wa.me/918309713212?text=Hi%20Abbacy%20Global%20Team%2C%20I%20want%20a%20free%20study%20abroad%20profile%20evaluation.';
     bar.innerHTML = `
       <a href="tel:+918309713212" class="mbb-btn mbb-call" aria-label="Call Abbacy Global">
         <i class="fas fa-phone-alt"></i> Call Now
       </a>
-      <a href="https://wa.me/918309713212?text=Hi%20Abbacy%20Global%20Team%2C%20I%20want%20a%20free%20study%20abroad%20profile%20evaluation." target="_blank" rel="noopener" class="mbb-btn mbb-wa" aria-label="WhatsApp Abbacy Global">
+      <a href="${waHref}" target="_blank" rel="noopener" class="mbb-btn mbb-wa" aria-label="WhatsApp Abbacy Global">
         <i class="fab fa-whatsapp"></i> WhatsApp
       </a>
       <a href="${formTarget}" class="mbb-btn mbb-apply">
@@ -2664,6 +2667,27 @@ if (document.readyState === 'loading') {
   } else {
     attachBar();
   }
+})();
+
+/* ── Desktop WhatsApp + call float (website 360 plan, 21 Nov 2026). Phones already have the bottom bar,
+      so site.css shows this only from 900px. Skipped on pages with their own floating buttons. ── */
+(function initDesktopFloat() {
+  function attach() {
+    if (document.querySelector('.ab-dfloat, .fab-whatsapp') || !document.getElementById('i-wa')) return;
+    var heroWa = document.querySelector('.ab-herocta .ab-btn--wa');
+    var wa = heroWa ? heroWa.getAttribute('href') : 'https://wa.me/918309713212?text=Hi%20Abbacy%2C%20I%27d%20like%20free%20study%20abroad%20advice.';
+    var box = document.createElement('div');
+    box.className = 'ab-dfloat';
+    box.innerHTML = '<a class="ab-dfloat__wa" href="' + wa + '" target="_blank" rel="noopener" data-cta="whatsapp"><svg aria-hidden="true"><use href="#i-wa"/></svg> WhatsApp us</a>'
+      + '<a class="ab-dfloat__call" href="tel:+918309713212" data-cta="call"><svg aria-hidden="true"><use href="#i-phone"/></svg> +91 83097 13212</a>';
+    document.body.appendChild(box);
+    // Show it once the visitor scrolls past the hero, so it never covers the hero form
+    var onScroll = function () { box.classList.toggle('is-on', window.scrollY > 520); };
+    window.addEventListener('scroll', onScroll, { passive: true });
+    onScroll();
+  }
+  if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', attach);
+  else attach();
 })();
 
 /* ── Live office hours for [data-hours] (Hyderabad time, IST). Most form leads arrive after
